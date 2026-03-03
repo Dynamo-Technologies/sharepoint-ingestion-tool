@@ -88,44 +88,56 @@ class QueryMiddleware:
             ``result_type``, and ``chunks_retrieved``.
         """
         start_time = time.monotonic()
+        resolved_groups: list[str] = []
+        retrieval_filter: dict = {}
+        upn = ""
+        chunks: list[dict] = []
+        result: dict = {}
 
-        # 1. Resolve groups
-        resolved = self._resolver.resolve(user_id, saml_groups=user_groups or [])
+        try:
+            # 1. Resolve groups
+            resolved = self._resolver.resolve(user_id, saml_groups=user_groups or [])
+            upn = resolved.upn
+            resolved_groups = resolved.groups
 
-        # 2. Build filter
-        retrieval_filter = self._filter_builder.build_filter(
-            groups=resolved.groups,
-            sensitivity_ceiling=resolved.sensitivity_ceiling,
-        )
+            # 2. Build filter
+            retrieval_filter = self._filter_builder.build_filter(
+                groups=resolved.groups,
+                sensitivity_ceiling=resolved.sensitivity_ceiling,
+            )
 
-        # 3. Retrieve from Bedrock KB (filtered)
-        retrieve_response = self._bedrock_agent.retrieve(
-            knowledgeBaseId=self._kb_id,
-            retrievalQuery={"text": query_text},
-            retrievalConfiguration={
-                "vectorSearchConfiguration": {
-                    "numberOfResults": self._num_results,
-                    "filter": retrieval_filter,
+            # 3. Retrieve from Bedrock KB (filtered)
+            retrieve_response = self._bedrock_agent.retrieve(
+                knowledgeBaseId=self._kb_id,
+                retrievalQuery={"text": query_text},
+                retrievalConfiguration={
+                    "vectorSearchConfiguration": {
+                        "numberOfResults": self._num_results,
+                        "filter": retrieval_filter,
+                    },
                 },
-            },
-        )
+            )
 
-        chunks = retrieve_response.get("retrievalResults", [])
+            chunks = retrieve_response.get("retrievalResults", [])
 
-        # 4. Check results
-        if not chunks:
+            # 4. Check results
+            if not chunks:
+                result = self._response_handler.format_no_results()
+            else:
+                # 5. Generate response via Bedrock InvokeModel
+                llm_text = self._invoke_model(query_text, chunks)
+                result = self._response_handler.format_success(llm_text, chunks)
+
+        except Exception:
+            logger.exception("Query failed for user %s", user_id)
             result = self._response_handler.format_no_results()
-        else:
-            # 5. Generate response via Bedrock InvokeModel
-            llm_text = self._invoke_model(query_text, chunks)
-            result = self._response_handler.format_success(llm_text, chunks)
 
-        # 6. Audit log
+        # 6. Audit log (always runs)
         elapsed_ms = int((time.monotonic() - start_time) * 1000)
         self._audit.log_query(
             user_id=user_id,
-            user_upn=resolved.upn,
-            resolved_groups=resolved.groups,
+            user_upn=upn,
+            resolved_groups=resolved_groups,
             filters_applied=retrieval_filter,
             chunk_ids=[
                 c.get("metadata", {}).get("chunk_id", "") for c in chunks
@@ -175,4 +187,8 @@ class QueryMiddleware:
         )
 
         response_body = json.loads(response["body"].read())
-        return response_body.get("content", [{}])[0].get("text", "")
+        content_blocks = response_body.get("content", [])
+        if not content_blocks:
+            logger.warning("LLM returned empty content blocks")
+            return ""
+        return content_blocks[0].get("text", "")

@@ -3,7 +3,8 @@
 import json
 import hashlib
 import logging
-from unittest.mock import MagicMock
+import time
+from unittest.mock import patch, MagicMock
 
 import pytest
 
@@ -11,6 +12,7 @@ from lib.query_middleware.group_resolver import GroupResolver
 from lib.query_middleware.filter_builder import FilterBuilder
 from lib.query_middleware.audit_logger import AuditLogger
 from lib.query_middleware.response_handler import ResponseHandler
+from lib.query_middleware.client import QueryMiddleware
 
 
 # ===================================================================
@@ -409,3 +411,152 @@ class TestResponseHandler:
 
         required_keys = {"response_text", "citations", "result_type", "chunks_retrieved"}
         assert required_keys == set(result.keys())
+
+
+# ===================================================================
+# QueryMiddleware orchestrator tests
+# ===================================================================
+
+class TestQueryMiddleware:
+    def _make_middleware(
+        self,
+        retrieve_results=None,
+        invoke_model_response=None,
+        resolver_result=None,
+    ):
+        """Create a QueryMiddleware with mocked dependencies."""
+        # Mock GroupResolver
+        mock_resolver = MagicMock()
+        if resolver_result is None:
+            resolver_result = MagicMock()
+            resolver_result.user_id = "user-001"
+            resolver_result.groups = ["grp-hr-1"]
+            resolver_result.upn = "alice@dynamo.com"
+            resolver_result.custom_attributes = {}
+            resolver_result.sensitivity_ceiling = "confidential"
+            resolver_result.cache_hit = True
+            resolver_result.cache_expired = False
+        mock_resolver.resolve.return_value = resolver_result
+
+        # Mock Bedrock clients
+        mock_bedrock_agent = MagicMock()
+        if retrieve_results is None:
+            retrieve_results = {"retrievalResults": []}
+        mock_bedrock_agent.retrieve.return_value = retrieve_results
+
+        mock_bedrock_runtime = MagicMock()
+        if invoke_model_response is None:
+            invoke_model_response = {
+                "body": MagicMock(
+                    read=MagicMock(return_value=b'{"content": [{"text": "The answer is 42."}]}')
+                )
+            }
+        mock_bedrock_runtime.invoke_model.return_value = invoke_model_response
+
+        middleware = QueryMiddleware(
+            knowledge_base_id="test-kb-id",
+            model_id="anthropic.claude-3-sonnet-20240229-v1:0",
+            group_resolver=mock_resolver,
+            bedrock_agent_client=mock_bedrock_agent,
+            bedrock_runtime_client=mock_bedrock_runtime,
+        )
+
+        return middleware, mock_bedrock_agent, mock_bedrock_runtime, mock_resolver
+
+    def test_full_query_with_results(self):
+        """Happy path: chunks returned -> LLM response with citations."""
+        retrieve_results = {
+            "retrievalResults": [
+                {
+                    "content": {"text": "PTO policy allows 15 days per year."},
+                    "metadata": {
+                        "chunk_id": "abc_0",
+                        "document_id": "abc",
+                        "source_s3_key": "source/Dynamo/HR/handbook.pdf",
+                        "sensitivity_level": "confidential",
+                    },
+                    "score": 0.92,
+                },
+            ],
+        }
+
+        middleware, mock_agent, mock_runtime, _ = self._make_middleware(
+            retrieve_results=retrieve_results,
+        )
+
+        result = middleware.query(
+            query_text="What is the PTO policy?",
+            user_id="user-001",
+            user_groups=["grp-hr-1"],
+        )
+
+        assert result["result_type"] == "success"
+        assert "response_text" in result
+        assert len(result["citations"]) == 1
+        mock_agent.retrieve.assert_called_once()
+        mock_runtime.invoke_model.assert_called_once()
+
+    def test_full_query_no_results_returns_safe_denial(self):
+        """No chunks -> privacy-safe denial, no LLM call."""
+        middleware, mock_agent, mock_runtime, _ = self._make_middleware(
+            retrieve_results={"retrievalResults": []},
+        )
+
+        result = middleware.query(
+            query_text="What about classified stuff?",
+            user_id="user-001",
+            user_groups=["grp-general"],
+        )
+
+        assert result["result_type"] == "no_results"
+        assert result["chunks_retrieved"] == 0
+        # Should NOT call InvokeModel when there are no chunks
+        mock_runtime.invoke_model.assert_not_called()
+
+    def test_retrieve_called_with_filter(self):
+        """Bedrock Retrieve is called with the permission filter."""
+        middleware, mock_agent, _, _ = self._make_middleware()
+
+        middleware.query(
+            query_text="test query",
+            user_id="user-001",
+            user_groups=["grp-hr-1"],
+        )
+
+        call_kwargs = mock_agent.retrieve.call_args[1]
+        assert call_kwargs["knowledgeBaseId"] == "test-kb-id"
+        assert "filter" in call_kwargs["retrievalConfiguration"]["vectorSearchConfiguration"]
+
+    def test_audit_log_emitted(self, caplog):
+        """Every query emits an audit log entry."""
+        middleware, _, _, _ = self._make_middleware()
+
+        with caplog.at_level(logging.INFO, logger="query_middleware.audit"):
+            middleware.query(
+                query_text="test",
+                user_id="user-001",
+                user_groups=[],
+            )
+
+        # Find the audit log entry
+        audit_records = [
+            r for r in caplog.records if r.name == "query_middleware.audit"
+        ]
+        assert len(audit_records) == 1
+        entry = json.loads(audit_records[0].message)
+        assert entry["user_id"] == "user-001"
+        assert "query_text_hash" in entry
+
+    def test_group_resolver_called_with_user_and_saml_groups(self):
+        """GroupResolver receives user_id and SAML groups."""
+        middleware, _, _, mock_resolver = self._make_middleware()
+
+        middleware.query(
+            query_text="test",
+            user_id="user-001",
+            user_groups=["grp-a", "grp-b"],
+        )
+
+        mock_resolver.resolve.assert_called_once_with(
+            "user-001", saml_groups=["grp-a", "grp-b"]
+        )

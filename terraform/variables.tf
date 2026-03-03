@@ -34,6 +34,18 @@ variable "registry_table_name" {
   default     = "sp-ingest-document-registry"
 }
 
+variable "permission_mappings_table_name" {
+  description = "DynamoDB table for S3 prefix → group permission mappings"
+  type        = string
+  default     = "doc-permission-mappings"
+}
+
+variable "user_group_cache_table_name" {
+  description = "DynamoDB table caching user → group memberships from Entra ID"
+  type        = string
+  default     = "user-group-cache"
+}
+
 variable "alert_email" {
   description = "Email address for SNS alert notifications"
   type        = string

@@ -30,17 +30,18 @@ resource "aws_lambda_function" "daily_sync" {
 
   environment {
     variables = {
-      PYTHONPATH             = "/var/task/src:/opt/python"
-      SHAREPOINT_SITE_NAME   = var.sharepoint_site_name
-      EXCLUDED_FOLDERS       = var.excluded_folders
-      S3_BUCKET              = var.s3_bucket_name
-      S3_SOURCE_PREFIX       = "source"
-      S3_EXTRACTED_PREFIX    = "extracted"
-      DYNAMODB_DELTA_TABLE   = var.delta_table_name
-      DYNAMODB_REGISTRY_TABLE = var.registry_table_name
-      SECRET_PREFIX          = "sp-ingest/"
-      AWS_REGION_NAME        = var.aws_region
-      LOG_LEVEL              = "INFO"
+      PYTHONPATH                = "/var/task/src:/opt/python"
+      SHAREPOINT_SITE_NAME      = var.sharepoint_site_name
+      EXCLUDED_FOLDERS          = var.excluded_folders
+      S3_BUCKET                 = var.s3_bucket_name
+      S3_SOURCE_PREFIX          = "source"
+      S3_EXTRACTED_PREFIX       = "extracted"
+      DYNAMODB_DELTA_TABLE      = var.delta_table_name
+      DYNAMODB_REGISTRY_TABLE   = var.registry_table_name
+      PERMISSION_MAPPINGS_TABLE = var.permission_mappings_table_name
+      SECRET_PREFIX             = "sp-ingest/"
+      AWS_REGION_NAME           = var.aws_region
+      LOG_LEVEL                 = "INFO"
     }
   }
 }
@@ -65,12 +66,14 @@ resource "aws_lambda_function" "textract_trigger" {
 
   environment {
     variables = {
-      PYTHONPATH              = "/var/task/src:/opt/python"
-      S3_BUCKET               = var.s3_bucket_name
-      DYNAMODB_REGISTRY_TABLE = var.registry_table_name
-      TEXTRACT_SNS_TOPIC_ARN  = aws_sns_topic.textract_notifications.arn
-      TEXTRACT_SNS_ROLE_ARN   = aws_iam_role.textract_service.arn
-      LOG_LEVEL               = "INFO"
+      PYTHONPATH                = "/var/task/src:/opt/python"
+      S3_BUCKET                 = var.s3_bucket_name
+      DYNAMODB_REGISTRY_TABLE   = var.registry_table_name
+      PERMISSION_MAPPINGS_TABLE = var.permission_mappings_table_name
+      TEXTRACT_SNS_TOPIC_ARN    = aws_sns_topic.textract_notifications.arn
+      TEXTRACT_SNS_ROLE_ARN     = aws_iam_role.textract_service.arn
+      QUARANTINE_SNS_TOPIC_ARN  = aws_sns_topic.quarantine_alerts.arn
+      LOG_LEVEL                 = "INFO"
     }
   }
 }

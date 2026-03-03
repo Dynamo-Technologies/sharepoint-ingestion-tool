@@ -157,6 +157,20 @@ resource "aws_iam_role_policy" "daily_sync_lambda" {
           aws_secretsmanager_secret.azure_client_secret.arn,
         ]
       },
+      {
+        Sid    = "PermissionTablesRead"
+        Effect = "Allow"
+        Action = [
+          "dynamodb:GetItem",
+          "dynamodb:Query",
+          "dynamodb:Scan",
+        ]
+        Resource = [
+          aws_dynamodb_table.permission_mappings.arn,
+          "${aws_dynamodb_table.permission_mappings.arn}/index/*",
+          aws_dynamodb_table.user_group_cache.arn,
+        ]
+      },
     ]
   })
 }
@@ -199,6 +213,7 @@ resource "aws_iam_role_policy" "textract_trigger_lambda" {
           "s3:HeadObject",
           "s3:PutObject",
           "s3:PutObjectTagging",
+          "s3:DeleteObject",
           "s3:HeadBucket",
           "s3:ListBucket",
         ]
@@ -218,6 +233,19 @@ resource "aws_iam_role_policy" "textract_trigger_lambda" {
         Resource = aws_dynamodb_table.document_registry.arn
       },
       {
+        Sid    = "PermissionTablesRead"
+        Effect = "Allow"
+        Action = [
+          "dynamodb:GetItem",
+          "dynamodb:Query",
+          "dynamodb:Scan",
+        ]
+        Resource = [
+          aws_dynamodb_table.permission_mappings.arn,
+          "${aws_dynamodb_table.permission_mappings.arn}/index/*",
+        ]
+      },
+      {
         Sid    = "TextractStartJobs"
         Effect = "Allow"
         Action = [
@@ -227,15 +255,21 @@ resource "aws_iam_role_policy" "textract_trigger_lambda" {
         Resource = "*"
       },
       {
-        Sid    = "SNSPublish"
-        Effect = "Allow"
-        Action = "sns:Publish"
+        Sid      = "SNSPublish"
+        Effect   = "Allow"
+        Action   = "sns:Publish"
         Resource = aws_sns_topic.textract_notifications.arn
       },
       {
-        Sid    = "PassTextractServiceRole"
-        Effect = "Allow"
-        Action = "iam:PassRole"
+        Sid      = "QuarantineSNSPublish"
+        Effect   = "Allow"
+        Action   = "sns:Publish"
+        Resource = aws_sns_topic.quarantine_alerts.arn
+      },
+      {
+        Sid      = "PassTextractServiceRole"
+        Effect   = "Allow"
+        Action   = "iam:PassRole"
         Resource = aws_iam_role.textract_service.arn
       },
     ]

@@ -71,3 +71,60 @@ resource "aws_dynamodb_table" "document_registry" {
     enabled = true
   }
 }
+
+
+# ---------------------------------------------------------------------------
+# Permission Mappings — maps S3 prefixes to allowed Entra ID groups.
+# PK: s3_prefix (S)
+# GSI: sensitivity_level-index (PK: sensitivity_level)
+# ---------------------------------------------------------------------------
+resource "aws_dynamodb_table" "permission_mappings" {
+  name         = var.permission_mappings_table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "s3_prefix"
+
+  attribute {
+    name = "s3_prefix"
+    type = "S"
+  }
+
+  attribute {
+    name = "sensitivity_level"
+    type = "S"
+  }
+
+  global_secondary_index {
+    name            = "sensitivity_level-index"
+    hash_key        = "sensitivity_level"
+    projection_type = "ALL"
+  }
+
+  point_in_time_recovery {
+    enabled = true
+  }
+}
+
+# ---------------------------------------------------------------------------
+# User-Group Cache — caches Entra ID user group memberships for RAG access.
+# PK: user_id (S)
+# TTL on ttl_expiry attribute (24 hours from last sync)
+# ---------------------------------------------------------------------------
+resource "aws_dynamodb_table" "user_group_cache" {
+  name         = var.user_group_cache_table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "user_id"
+
+  attribute {
+    name = "user_id"
+    type = "S"
+  }
+
+  ttl {
+    attribute_name = "ttl_expiry"
+    enabled        = true
+  }
+
+  point_in_time_recovery {
+    enabled = true
+  }
+}

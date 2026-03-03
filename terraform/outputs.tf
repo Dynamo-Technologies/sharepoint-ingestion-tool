@@ -18,9 +18,24 @@ output "registry_table_arn" {
   value       = aws_dynamodb_table.document_registry.arn
 }
 
+output "permission_mappings_table_arn" {
+  description = "ARN of the permission mappings DynamoDB table"
+  value       = aws_dynamodb_table.permission_mappings.arn
+}
+
+output "user_group_cache_table_arn" {
+  description = "ARN of the user-group cache DynamoDB table"
+  value       = aws_dynamodb_table.user_group_cache.arn
+}
+
 output "textract_sns_topic_arn" {
   description = "ARN of the SNS topic for Textract notifications"
   value       = aws_sns_topic.textract_notifications.arn
+}
+
+output "quarantine_sns_topic_arn" {
+  description = "ARN of the quarantine alerts SNS topic"
+  value       = aws_sns_topic.quarantine_alerts.arn
 }
 
 output "textract_service_role_arn" {

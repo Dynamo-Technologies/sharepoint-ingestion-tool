@@ -156,6 +156,11 @@ output "governance_alerts_topic_arn" {
   value       = aws_sns_topic.governance_alerts.arn
 }
 
+output "compliance_report_lambda_arn" {
+  description = "ARN of the compliance-report-generator Lambda"
+  value       = aws_lambda_function.compliance_report.arn
+}
+
 # --- Open WebUI / API Gateway ---
 
 output "api_gateway_url" {

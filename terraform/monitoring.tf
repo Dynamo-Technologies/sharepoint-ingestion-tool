@@ -164,6 +164,80 @@ resource "aws_cloudwatch_log_metric_filter" "bulk_documents_ingested" {
   }
 }
 
+# --- Query volume (total queries) ---
+resource "aws_cloudwatch_log_metric_filter" "query_volume" {
+  count          = var.enable_webui ? 1 : 0
+  name           = "sp-ingest-query-volume"
+  log_group_name = aws_cloudwatch_log_group.query_handler[0].name
+  pattern        = "{ $.result_type = \"*\" }"
+
+  metric_transformation {
+    name          = "QueryVolume"
+    namespace     = local.metric_namespace
+    value         = "1"
+    default_value = "0"
+  }
+}
+
+# --- Query no results (permission-scoped null results) ---
+resource "aws_cloudwatch_log_metric_filter" "query_no_results" {
+  count          = var.enable_webui ? 1 : 0
+  name           = "sp-ingest-query-no-results"
+  log_group_name = aws_cloudwatch_log_group.query_handler[0].name
+  pattern        = "{ $.result_type = \"no_results\" }"
+
+  metric_transformation {
+    name          = "QueryNoResults"
+    namespace     = local.metric_namespace
+    value         = "1"
+    default_value = "0"
+  }
+}
+
+# --- Query latency (response latency in ms) ---
+resource "aws_cloudwatch_log_metric_filter" "query_latency" {
+  count          = var.enable_webui ? 1 : 0
+  name           = "sp-ingest-query-latency"
+  log_group_name = aws_cloudwatch_log_group.query_handler[0].name
+  pattern        = "{ $.response_latency_ms = * }"
+
+  metric_transformation {
+    name          = "QueryLatencyMs"
+    namespace     = local.metric_namespace
+    value         = "$.response_latency_ms"
+    default_value = "0"
+  }
+}
+
+# --- Guardrail activation (Bedrock guardrail intervened) ---
+resource "aws_cloudwatch_log_metric_filter" "guardrail_activation" {
+  count          = var.enable_webui ? 1 : 0
+  name           = "sp-ingest-guardrail-activation"
+  log_group_name = aws_cloudwatch_log_group.query_handler[0].name
+  pattern        = "\"GUARDRAIL_INTERVENED\""
+
+  metric_transformation {
+    name          = "GuardrailActivation"
+    namespace     = local.metric_namespace
+    value         = "1"
+    default_value = "0"
+  }
+}
+
+# --- SCIM sync success (group cache refresh complete) ---
+resource "aws_cloudwatch_log_metric_filter" "scim_sync_success" {
+  name           = "sp-ingest-scim-sync-success"
+  log_group_name = aws_cloudwatch_log_group.group_cache_refresh.name
+  pattern        = "\"Cache refresh complete\""
+
+  metric_transformation {
+    name          = "SCIMSyncSuccess"
+    namespace     = local.metric_namespace
+    value         = "1"
+    default_value = "0"
+  }
+}
+
 
 # ===================================================================
 # CloudWatch Alarms
@@ -270,6 +344,189 @@ resource "aws_cloudwatch_metric_alarm" "dynamo_throttle_registry" {
   }
 
   alarm_actions = [aws_sns_topic.alerts.arn]
+}
+
+# --- CRITICAL: SCIM sync stale (no invocations in 2 hours) ---
+resource "aws_cloudwatch_metric_alarm" "scim_sync_stale" {
+  alarm_name          = "sp-ingest-scim-sync-stale"
+  alarm_description   = "CRITICAL: group-cache-refresh has not been invoked in 2 hours"
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "Invocations"
+  namespace           = "AWS/Lambda"
+  period              = 7200
+  statistic           = "Sum"
+  threshold           = 1
+  treat_missing_data  = "breaching"
+
+  dimensions = {
+    FunctionName = aws_lambda_function.group_cache_refresh.function_name
+  }
+
+  alarm_actions = [aws_sns_topic.alerts.arn]
+  ok_actions    = [aws_sns_topic.alerts.arn]
+}
+
+# --- CRITICAL: Quarantine document detected ---
+resource "aws_cloudwatch_metric_alarm" "quarantine_detected" {
+  alarm_name          = "sp-ingest-quarantine-detected"
+  alarm_description   = "CRITICAL: Document quarantined — malware or policy violation detected"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "NumberOfMessagesPublished"
+  namespace           = "AWS/SNS"
+  period              = 300
+  statistic           = "Sum"
+  threshold           = 0
+  treat_missing_data  = "notBreaching"
+
+  dimensions = {
+    TopicName = aws_sns_topic.quarantine_alerts.name
+  }
+
+  alarm_actions = [aws_sns_topic.alerts.arn]
+  ok_actions    = [aws_sns_topic.alerts.arn]
+}
+
+# --- HIGH: Permission-scoped null result rate > 20% ---
+resource "aws_cloudwatch_metric_alarm" "permission_null_rate" {
+  count               = var.enable_webui ? 1 : 0
+  alarm_name          = "sp-ingest-permission-null-rate"
+  alarm_description   = "HIGH: >20% of queries returning no results (possible permission misconfiguration)"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  threshold           = 20
+  treat_missing_data  = "notBreaching"
+
+  metric_query {
+    id          = "denied"
+    return_data = false
+    metric {
+      metric_name = "QueryNoResults"
+      namespace   = local.metric_namespace
+      period      = 3600
+      stat        = "Sum"
+    }
+  }
+
+  metric_query {
+    id          = "total"
+    return_data = false
+    metric {
+      metric_name = "QueryVolume"
+      namespace   = local.metric_namespace
+      period      = 3600
+      stat        = "Sum"
+    }
+  }
+
+  metric_query {
+    id          = "null_rate"
+    expression  = "IF(total>0, (denied/total)*100, 0)"
+    label       = "Null Result Rate %"
+    return_data = true
+  }
+
+  alarm_actions = [aws_sns_topic.alerts.arn]
+  ok_actions    = [aws_sns_topic.alerts.arn]
+}
+
+# --- HIGH: DLQ depth — group-cache-refresh ---
+resource "aws_cloudwatch_metric_alarm" "dlq_group_cache_refresh" {
+  alarm_name          = "sp-ingest-dlq-group-cache-refresh"
+  alarm_description   = "HIGH: Messages in group-cache-refresh DLQ"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  namespace           = "AWS/SQS"
+  period              = 300
+  statistic           = "Sum"
+  threshold           = 0
+  treat_missing_data  = "notBreaching"
+
+  dimensions = {
+    QueueName = aws_sqs_queue.group_cache_refresh_dlq.name
+  }
+
+  alarm_actions = [aws_sns_topic.alerts.arn]
+  ok_actions    = [aws_sns_topic.alerts.arn]
+}
+
+# --- HIGH: DLQ depth — permission-drift-detector ---
+resource "aws_cloudwatch_metric_alarm" "dlq_permission_drift" {
+  alarm_name          = "sp-ingest-dlq-permission-drift"
+  alarm_description   = "HIGH: Messages in permission-drift-detector DLQ"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  namespace           = "AWS/SQS"
+  period              = 300
+  statistic           = "Sum"
+  threshold           = 0
+  treat_missing_data  = "notBreaching"
+
+  dimensions = {
+    QueueName = aws_sqs_queue.permission_drift_detector_dlq.name
+  }
+
+  alarm_actions = [aws_sns_topic.alerts.arn]
+  ok_actions    = [aws_sns_topic.alerts.arn]
+}
+
+# --- HIGH: DLQ depth — stale-account-cleanup ---
+resource "aws_cloudwatch_metric_alarm" "dlq_stale_account" {
+  alarm_name          = "sp-ingest-dlq-stale-account"
+  alarm_description   = "HIGH: Messages in stale-account-cleanup DLQ"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  namespace           = "AWS/SQS"
+  period              = 300
+  statistic           = "Sum"
+  threshold           = 0
+  treat_missing_data  = "notBreaching"
+
+  dimensions = {
+    QueueName = aws_sqs_queue.stale_account_cleanup_dlq.name
+  }
+
+  alarm_actions = [aws_sns_topic.alerts.arn]
+  ok_actions    = [aws_sns_topic.alerts.arn]
+}
+
+# --- MEDIUM: Query latency p99 > 10 seconds ---
+resource "aws_cloudwatch_metric_alarm" "query_latency_p99" {
+  count               = var.enable_webui ? 1 : 0
+  alarm_name          = "sp-ingest-query-latency-p99"
+  alarm_description   = "MEDIUM: Query p99 latency exceeds 10 seconds"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 3
+  metric_name         = "QueryLatencyMs"
+  namespace           = local.metric_namespace
+  period              = 300
+  extended_statistic  = "p99"
+  threshold           = 10000
+  treat_missing_data  = "notBreaching"
+
+  alarm_actions = [aws_sns_topic.alerts.arn]
+  ok_actions    = [aws_sns_topic.alerts.arn]
+}
+
+# --- LOW: Bedrock guardrail triggered (informational) ---
+resource "aws_cloudwatch_metric_alarm" "guardrail_triggered" {
+  count               = var.enable_webui ? 1 : 0
+  alarm_name          = "sp-ingest-guardrail-triggered"
+  alarm_description   = "LOW: Bedrock guardrail intervened on a query"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "GuardrailActivation"
+  namespace           = local.metric_namespace
+  period              = 3600
+  statistic           = "Sum"
+  threshold           = 0
+  treat_missing_data  = "notBreaching"
+
+  ok_actions = [aws_sns_topic.alerts.arn]
 }
 
 
@@ -489,6 +746,174 @@ resource "aws_cloudwatch_dashboard" "pipeline" {
           region = var.aws_region
           title  = "Extraction Activity"
           period = 3600
+        }
+      },
+
+      # ---------------------------------------------------------------
+      # Row 5: Query & Auth Metrics
+      # ---------------------------------------------------------------
+      {
+        type   = "metric"
+        x      = 0
+        y      = 22
+        width  = 6
+        height = 6
+        properties = {
+          metrics = [
+            [local.metric_namespace, "QueryVolume", { stat = "Sum", period = 300 }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "Query Volume"
+          period = 300
+        }
+      },
+      {
+        type   = "metric"
+        x      = 6
+        y      = 22
+        width  = 6
+        height = 6
+        properties = {
+          metrics = [
+            [local.metric_namespace, "QueryNoResults", { stat = "Sum", period = 3600, label = "No Results" }],
+            [local.metric_namespace, "QueryVolume", { stat = "Sum", period = 3600, label = "Total Queries" }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "Permission-Scoped Null Results"
+          period = 3600
+        }
+      },
+      {
+        type   = "metric"
+        x      = 12
+        y      = 22
+        width  = 6
+        height = 6
+        properties = {
+          metrics = [
+            [local.metric_namespace, "QueryLatencyMs", { stat = "Average", period = 300, label = "Average" }],
+            [local.metric_namespace, "QueryLatencyMs", { stat = "p99", period = 300, label = "p99" }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "Query Latency"
+          period = 300
+        }
+      },
+      {
+        type   = "metric"
+        x      = 18
+        y      = 22
+        width  = 6
+        height = 6
+        properties = {
+          metrics = [
+            [local.metric_namespace, "GuardrailActivation", { stat = "Sum", period = 3600 }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "Bedrock Guardrail Activations"
+          period = 3600
+        }
+      },
+
+      # ---------------------------------------------------------------
+      # Row 6: Governance Health
+      # ---------------------------------------------------------------
+      {
+        type   = "metric"
+        x      = 0
+        y      = 28
+        width  = 8
+        height = 6
+        properties = {
+          metrics = [
+            [local.metric_namespace, "SCIMSyncSuccess", { stat = "Sum", period = 900 }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "SCIM Sync Health"
+          period = 900
+        }
+      },
+      {
+        type   = "metric"
+        x      = 8
+        y      = 28
+        width  = 8
+        height = 6
+        properties = {
+          metrics = [
+            ["AWS/Lambda", "Invocations", "FunctionName", "sp-ingest-group-cache-refresh", { stat = "Sum", label = "Group Cache Refresh" }],
+            ["AWS/Lambda", "Invocations", "FunctionName", "sp-ingest-stale-account-cleanup", { stat = "Sum", label = "Stale Account Cleanup" }],
+            ["AWS/Lambda", "Invocations", "FunctionName", "sp-ingest-permission-drift-detector", { stat = "Sum", label = "Permission Drift Detector" }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "Governance Lambda Invocations"
+          period = 300
+        }
+      },
+      {
+        type   = "metric"
+        x      = 16
+        y      = 28
+        width  = 8
+        height = 6
+        properties = {
+          metrics = [
+            ["AWS/S3", "NumberOfObjects", "StorageType", "AllStorageTypes", "BucketName", var.s3_bucket_name, "FilterId", "quarantine", { stat = "Average", period = 86400 }],
+          ]
+          view   = "singleValue"
+          region = var.aws_region
+          title  = "Quarantine Document Count"
+          period = 86400
+        }
+      },
+
+      # ---------------------------------------------------------------
+      # Row 7: Governance Lambda Errors & DLQ Depth
+      # ---------------------------------------------------------------
+      {
+        type   = "metric"
+        x      = 0
+        y      = 34
+        width  = 12
+        height = 6
+        properties = {
+          metrics = [
+            ["AWS/Lambda", "Errors", "FunctionName", "sp-ingest-group-cache-refresh", { stat = "Sum", label = "Group Cache Refresh" }],
+            ["AWS/Lambda", "Errors", "FunctionName", "sp-ingest-stale-account-cleanup", { stat = "Sum", label = "Stale Account Cleanup" }],
+            ["AWS/Lambda", "Errors", "FunctionName", "sp-ingest-permission-drift-detector", { stat = "Sum", label = "Permission Drift Detector" }],
+            ["AWS/Lambda", "Errors", "FunctionName", "sp-ingest-compliance-report", { stat = "Sum", label = "Compliance Report" }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "Governance Lambda Errors"
+          period = 300
+          yAxis  = { left = { min = 0 } }
+        }
+      },
+      {
+        type   = "metric"
+        x      = 12
+        y      = 34
+        width  = 12
+        height = 6
+        properties = {
+          metrics = [
+            ["AWS/SQS", "ApproximateNumberOfMessagesVisible", "QueueName", "sp-ingest-group-cache-refresh-dlq", { stat = "Maximum", label = "Group Cache Refresh DLQ" }],
+            ["AWS/SQS", "ApproximateNumberOfMessagesVisible", "QueueName", "sp-ingest-stale-account-cleanup-dlq", { stat = "Maximum", label = "Stale Account Cleanup DLQ" }],
+            ["AWS/SQS", "ApproximateNumberOfMessagesVisible", "QueueName", "sp-ingest-permission-drift-detector-dlq", { stat = "Maximum", label = "Permission Drift DLQ" }],
+            ["AWS/SQS", "ApproximateNumberOfMessagesVisible", "QueueName", "sp-ingest-compliance-report-dlq", { stat = "Maximum", label = "Compliance Report DLQ" }],
+          ]
+          view   = "timeSeries"
+          region = var.aws_region
+          title  = "DLQ Message Depth"
+          period = 300
+          yAxis  = { left = { min = 0 } }
         }
       },
     ]

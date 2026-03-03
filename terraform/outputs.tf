@@ -128,3 +128,30 @@ output "azure_client_secret_secret_arn" {
   description = "ARN of the Azure client secret secret"
   value       = aws_secretsmanager_secret.azure_client_secret.arn
 }
+
+# --- SCIM Sync ---
+
+output "identity_store_id" {
+  description = "IAM Identity Center Identity Store ID"
+  value       = local.identity_store_id
+}
+
+output "group_cache_refresh_lambda_arn" {
+  description = "ARN of the group-cache-refresh Lambda"
+  value       = aws_lambda_function.group_cache_refresh.arn
+}
+
+output "permission_drift_detector_lambda_arn" {
+  description = "ARN of the permission-drift-detector Lambda"
+  value       = aws_lambda_function.permission_drift_detector.arn
+}
+
+output "stale_account_cleanup_lambda_arn" {
+  description = "ARN of the stale-account-cleanup Lambda"
+  value       = aws_lambda_function.stale_account_cleanup.arn
+}
+
+output "governance_alerts_topic_arn" {
+  description = "ARN of the governance alerts SNS topic"
+  value       = aws_sns_topic.governance_alerts.arn
+}

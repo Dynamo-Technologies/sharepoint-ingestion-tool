@@ -85,3 +85,19 @@ variable "bulk_admin_cidr" {
   type        = string
   default     = ""
 }
+
+# -------------------------------------------------------------------
+# IAM Identity Center / SCIM
+# -------------------------------------------------------------------
+
+variable "identity_store_id" {
+  description = "IAM Identity Center Identity Store ID (auto-detected if blank)"
+  type        = string
+  default     = ""
+}
+
+variable "governance_alerts_email" {
+  description = "Email address for governance drift alerts (optional)"
+  type        = string
+  default     = ""
+}

@@ -155,3 +155,30 @@ output "governance_alerts_topic_arn" {
   description = "ARN of the governance alerts SNS topic"
   value       = aws_sns_topic.governance_alerts.arn
 }
+
+# --- Open WebUI / API Gateway ---
+
+output "api_gateway_url" {
+  description = "API Gateway URL for the query API"
+  value       = var.enable_webui ? "https://${aws_apigatewayv2_api.query[0].id}.execute-api.${var.aws_region}.amazonaws.com" : ""
+}
+
+output "alb_dns_name" {
+  description = "DNS name of the Open WebUI ALB"
+  value       = var.enable_webui ? aws_lb.webui[0].dns_name : ""
+}
+
+output "query_handler_lambda_arn" {
+  description = "ARN of the query-handler Lambda"
+  value       = var.enable_webui ? aws_lambda_function.query_handler[0].arn : ""
+}
+
+output "api_authorizer_lambda_arn" {
+  description = "ARN of the api-authorizer Lambda"
+  value       = var.enable_webui ? aws_lambda_function.api_authorizer[0].arn : ""
+}
+
+output "guardrail_id" {
+  description = "Bedrock Guardrail ID"
+  value       = var.enable_webui ? aws_bedrock_guardrail.rag[0].guardrail_id : ""
+}

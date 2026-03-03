@@ -40,12 +40,13 @@ class ResponseHandler:
         """
         citations = []
         for chunk in chunks:
-            metadata = chunk.get("metadata", {})
+            metadata = chunk.get("metadata") or {}
+            content = chunk.get("content") or {}
             citations.append({
                 "chunk_id": metadata.get("chunk_id", ""),
                 "document_id": metadata.get("document_id", ""),
                 "source_s3_key": metadata.get("source_s3_key", ""),
-                "text_excerpt": chunk.get("content", {}).get("text", "")[:200],
+                "text_excerpt": content.get("text", "")[:200],
                 "score": chunk.get("score", 0.0),
             })
 

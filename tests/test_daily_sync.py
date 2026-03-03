@@ -11,11 +11,22 @@ sys.path.insert(0, "src")
 MOCK_LIBRARIES = [{"id": "drive-1", "name": "Documents", "webUrl": "https://sp/docs"}]
 
 
-def _setup_graph(mock_graph, delta_return):
-    """Wire up the common graph mock methods."""
+def _setup_graph(mock_graph, items, delta_token="new-token"):
+    """Wire up the common graph mock methods.
+
+    Parameters
+    ----------
+    mock_graph:
+        The ``GraphClient()`` mock instance.
+    items:
+        List of delta items that ``iter_delta`` should yield.
+    delta_token:
+        Value for ``last_delta_token`` (used after iteration completes).
+    """
     mock_graph.get_site_id.return_value = "site-1"
     mock_graph.list_document_libraries.return_value = MOCK_LIBRARIES
-    mock_graph.get_delta.return_value = delta_return
+    mock_graph.iter_delta.return_value = iter(items)
+    mock_graph.last_delta_token = delta_token
 
 
 def _new_file_item(**overrides):
@@ -53,10 +64,12 @@ def _patch_all():
         patch("daily_sync.DeltaTracker"),
         patch("daily_sync.S3Client"),
         patch("daily_sync.GraphClient"),
+        patch("daily_sync.PermissionTagger"),
     ]
 
 
 class TestDailySyncHandler:
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -64,9 +77,10 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_creates_new_file(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, ([_new_file_item()], "new-token"))
+        _setup_graph(mock_graph, [_new_file_item()])
         mock_graph.download_file.return_value = b"pdf-content"
 
         MockDelta.return_value.get_delta_token.return_value = None
@@ -86,6 +100,7 @@ class TestDailySyncHandler:
         MockRegistry.return_value.register_document.assert_called_once()
         MockDelta.return_value.save_delta_token.assert_called_once()
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -93,12 +108,13 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_updates_existing_file(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, (
+        _setup_graph(
+            mock_graph,
             [_new_file_item(lastModifiedDateTime="2025-06-02T10:00:00Z")],
-            "new-token",
-        ))
+        )
         mock_graph.download_file.return_value = b"updated"
 
         MockDelta.return_value.get_delta_token.return_value = "old-token"
@@ -114,6 +130,7 @@ class TestDailySyncHandler:
         assert body["updated"] == 1
         assert body["created"] == 0
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -121,9 +138,10 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_skips_unchanged(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, ([_new_file_item()], "delta-token"))
+        _setup_graph(mock_graph, [_new_file_item()])
 
         MockDelta.return_value.get_delta_token.return_value = "old-token"
         MockRegistry.return_value.get_document.return_value = {
@@ -137,6 +155,7 @@ class TestDailySyncHandler:
         assert body["skipped"] == 1
         mock_graph.download_file.assert_not_called()
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -144,9 +163,10 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_processes_deletion(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, ([_deleted_item()], "delta-token"))
+        _setup_graph(mock_graph, [_deleted_item()])
         MockDelta.return_value.get_delta_token.return_value = None
 
         mock_mapper = MockMapper.return_value
@@ -163,6 +183,7 @@ class TestDailySyncHandler:
             "source/Dynamo/Documents/General/old-file.pdf",
         )
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -170,6 +191,7 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_skips_folders(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         folder_item = {
             "id": "folder-1",
@@ -178,17 +200,18 @@ class TestDailySyncHandler:
             "parentReference": {"path": "/drives/drive-1/root:"},
         }
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, ([folder_item], "token"))
+        _setup_graph(mock_graph, [folder_item])
         MockDelta.return_value.get_delta_token.return_value = None
 
         from daily_sync import handler
         body = json.loads(handler({}, None)["body"])
 
-        # Folders are silently skipped — not counted in any stat
+        # Folders are silently skipped -- not counted in any stat
         assert body["created"] == 0
         assert body["skipped"] == 0
         mock_graph.download_file.assert_not_called()
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -196,11 +219,14 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_skips_no_download_url(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         item = _new_file_item()
         del item["@microsoft.graph.downloadUrl"]
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, ([item], "token"))
+        _setup_graph(mock_graph, [item])
+        # Fallback fetch also fails, so no download URL available at all
+        mock_graph.get_download_url.return_value = ""
         MockDelta.return_value.get_delta_token.return_value = None
         MockRegistry.return_value.get_document.return_value = None
         MockMapper.return_value.to_s3_source_key.return_value = "source/key.pdf"
@@ -211,6 +237,7 @@ class TestDailySyncHandler:
         assert body["skipped"] == 1
         mock_graph.download_file.assert_not_called()
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -218,6 +245,7 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_no_libraries_returns_early(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
         mock_graph.get_site_id.return_value = "site-1"
@@ -230,6 +258,7 @@ class TestDailySyncHandler:
         assert "error" in body
         MockDelta.return_value.save_delta_token.assert_not_called()
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -237,6 +266,7 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_download_failure_continues(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         """A single file download failure should not crash the handler."""
         items = [
@@ -244,7 +274,7 @@ class TestDailySyncHandler:
             _new_file_item(id="item-2", name="ok.pdf"),
         ]
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, (items, "token"))
+        _setup_graph(mock_graph, items)
         mock_graph.download_file.side_effect = [
             RuntimeError("network error"),
             b"ok-content",
@@ -262,6 +292,7 @@ class TestDailySyncHandler:
         # Delta token still saved
         MockDelta.return_value.save_delta_token.assert_called_once()
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -269,6 +300,7 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_delta_api_failure_continues_other_libraries(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
         mock_graph.get_site_id.return_value = "site-1"
@@ -276,10 +308,11 @@ class TestDailySyncHandler:
             {"id": "drive-bad", "name": "Bad"},
             {"id": "drive-ok", "name": "OK"},
         ]
-        mock_graph.get_delta.side_effect = [
+        mock_graph.iter_delta.side_effect = [
             RuntimeError("Graph API error"),
-            ([_new_file_item()], "ok-token"),
+            iter([_new_file_item()]),
         ]
+        mock_graph.last_delta_token = "ok-token"
         mock_graph.download_file.return_value = b"data"
 
         MockDelta.return_value.get_delta_token.return_value = None
@@ -294,6 +327,7 @@ class TestDailySyncHandler:
         # save_delta_token called only for the OK library
         MockDelta.return_value.save_delta_token.assert_called_once()
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -301,9 +335,10 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_uploads_to_s3_with_tags(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
-        _setup_graph(mock_graph, ([_new_file_item()], "token"))
+        _setup_graph(mock_graph, [_new_file_item()])
         mock_graph.download_file.return_value = b"content"
 
         MockDelta.return_value.get_delta_token.return_value = None
@@ -320,6 +355,7 @@ class TestDailySyncHandler:
         assert call_kwargs["s3_key"] == "source/key.pdf"
         assert "tags" in call_kwargs
 
+    @patch("daily_sync.PermissionTagger")
     @patch("daily_sync.PathMapper")
     @patch("daily_sync.DocumentRegistry")
     @patch("daily_sync.DeltaTracker")
@@ -327,6 +363,7 @@ class TestDailySyncHandler:
     @patch("daily_sync.GraphClient")
     def test_multiple_libraries_processed(
         self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
     ):
         mock_graph = MockGraph.return_value
         mock_graph.get_site_id.return_value = "site-1"
@@ -334,10 +371,11 @@ class TestDailySyncHandler:
             {"id": "drive-a", "name": "HR"},
             {"id": "drive-b", "name": "Legal"},
         ]
-        mock_graph.get_delta.side_effect = [
-            ([_new_file_item(name="a.pdf")], "tok-a"),
-            ([_new_file_item(name="b.pdf")], "tok-b"),
+        mock_graph.iter_delta.side_effect = [
+            iter([_new_file_item(name="a.pdf")]),
+            iter([_new_file_item(name="b.pdf")]),
         ]
+        mock_graph.last_delta_token = "tok"
         mock_graph.download_file.return_value = b"data"
 
         MockDelta.return_value.get_delta_token.return_value = None
@@ -349,6 +387,98 @@ class TestDailySyncHandler:
 
         assert body["created"] == 2
         assert MockDelta.return_value.save_delta_token.call_count == 2
+
+
+class TestDailySyncPermissionTagging:
+    """Tests for DynamoDB-based permission tags added during upload."""
+
+    @patch("daily_sync.PermissionTagger")
+    @patch("daily_sync.PathMapper")
+    @patch("daily_sync.DocumentRegistry")
+    @patch("daily_sync.DeltaTracker")
+    @patch("daily_sync.S3Client")
+    @patch("daily_sync.GraphClient")
+    def test_permission_tags_added_to_upload(
+        self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
+    ):
+        """When PermissionTagger returns tags, they appear in the S3 upload."""
+        mock_graph = MockGraph.return_value
+        _setup_graph(mock_graph, [_new_file_item()])
+        mock_graph.download_file.return_value = b"pdf-bytes"
+
+        MockDelta.return_value.get_delta_token.return_value = None
+        MockRegistry.return_value.get_document.return_value = None
+        MockMapper.return_value.to_s3_source_key.return_value = (
+            "source/Dynamo/Documents/General/doc.pdf"
+        )
+        # build_s3_tags is called as a classmethod; return a real dict so
+        # subsequent tag mutations (tags["allowed_groups"] = ...) work.
+        MockMapper.build_s3_tags.return_value = {"base": "tag"}
+
+        # PermissionTagger returns permission tags
+        MockPermTagger.return_value.get_permission_tags.return_value = {
+            "allowed_groups": "hr-team,leadership",
+            "sensitivity_level": "confidential",
+            "matched_prefix": "source/Dynamo/Documents/General/",
+        }
+
+        from daily_sync import handler
+        result = handler({}, None)
+
+        body = json.loads(result["body"])
+        assert body["created"] == 1
+
+        # Verify S3 upload was called with permission tags
+        mock_s3 = MockS3.return_value
+        mock_s3.upload_document.assert_called_once()
+        call_kwargs = mock_s3.upload_document.call_args[1]
+        tags = call_kwargs["tags"]
+        assert tags["allowed_groups"] == "hr-team,leadership"
+        assert tags["sensitivity_level"] == "confidential"
+
+    @patch("daily_sync.PermissionTagger")
+    @patch("daily_sync.PathMapper")
+    @patch("daily_sync.DocumentRegistry")
+    @patch("daily_sync.DeltaTracker")
+    @patch("daily_sync.S3Client")
+    @patch("daily_sync.GraphClient")
+    def test_no_permission_mapping_still_uploads(
+        self, MockGraph, MockS3, MockDelta, MockRegistry, MockMapper,
+        MockPermTagger,
+    ):
+        """When PermissionTagger returns None, document still uploads normally."""
+        mock_graph = MockGraph.return_value
+        _setup_graph(mock_graph, [_new_file_item()])
+        mock_graph.download_file.return_value = b"pdf-bytes"
+
+        MockDelta.return_value.get_delta_token.return_value = None
+        MockRegistry.return_value.get_document.return_value = None
+        MockMapper.return_value.to_s3_source_key.return_value = (
+            "source/Dynamo/Documents/General/doc.pdf"
+        )
+        # build_s3_tags is called as a classmethod; return a real dict so
+        # we can verify permission tags are absent.
+        MockMapper.build_s3_tags.return_value = {"base": "tag"}
+
+        # PermissionTagger returns None (no mapping)
+        MockPermTagger.return_value.get_permission_tags.return_value = None
+
+        from daily_sync import handler
+        result = handler({}, None)
+
+        body = json.loads(result["body"])
+        assert body["created"] == 1
+
+        # Document still uploaded to S3
+        mock_s3 = MockS3.return_value
+        mock_s3.upload_document.assert_called_once()
+
+        # But no permission tags in the upload
+        call_kwargs = mock_s3.upload_document.call_args[1]
+        tags = call_kwargs["tags"]
+        assert "allowed_groups" not in tags
+        assert "sensitivity_level" not in tags
 
 
 class TestExtractSpPath:

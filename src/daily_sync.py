@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 from access_control import AccessControlMapper
 from config import config
 from graph_client import GraphClient
+from permission_tagger import PermissionTagger
 from s3_client import S3Client
 from delta_tracker import DeltaTracker
 from document_registry import DocumentRegistry
@@ -36,6 +37,7 @@ def handler(event: dict, context: object) -> dict:
         config.s3_bucket, config.s3_source_prefix, config.s3_extracted_prefix,
     )
     acl = AccessControlMapper()
+    perm_tagger = PermissionTagger()
 
     site_id = graph.get_site_id()
     libraries = graph.list_document_libraries(site_id)
@@ -53,13 +55,13 @@ def handler(event: dict, context: object) -> dict:
         items_processed = 0
 
         try:
-            changes, new_delta_token = graph.get_delta(drive_id, delta_token)
+            delta_iter = graph.iter_delta(drive_id, delta_token)
         except Exception:
             logger.exception("Failed to get delta for library %s", lib_name)
             stats["errors"] += 1
             continue
 
-        for item in changes:
+        for item in delta_iter:
             name = item.get("name", "")
             sp_id = item.get("id", "")
 
@@ -124,6 +126,13 @@ def handler(event: dict, context: object) -> dict:
             download_url = item.get("@microsoft.graph.downloadUrl", "")
 
             if not download_url:
+                # Delta responses often omit the download URL; fetch it directly.
+                try:
+                    download_url = graph.get_download_url(drive_id, item["id"])
+                except Exception:
+                    logger.warning("Could not fetch download URL for %s", name, exc_info=True)
+
+            if not download_url:
                 logger.warning("No download URL for delta item %s, skipping", name)
                 stats["skipped"] += 1
                 continue
@@ -143,6 +152,17 @@ def handler(event: dict, context: object) -> dict:
                     "id": sp_id,
                 })
                 tags["access-tags"] = ",".join(access_tags)
+
+                # Add DynamoDB permission tags
+                perm_tags = perm_tagger.get_permission_tags(s3_key)
+                if perm_tags:
+                    tags["allowed_groups"] = perm_tags["allowed_groups"]
+                    tags["sensitivity_level"] = perm_tags["sensitivity_level"]
+                else:
+                    logger.warning(
+                        "No permission mapping for %s — will be quarantined at extraction",
+                        s3_key,
+                    )
 
                 s3.upload_document(
                     content=data,
@@ -176,7 +196,7 @@ def handler(event: dict, context: object) -> dict:
         try:
             delta_tracker.save_delta_token(
                 drive_id=drive_id,
-                token=new_delta_token,
+                token=graph.last_delta_token,
                 last_sync=datetime.now(timezone.utc).isoformat(),
                 items_processed=items_processed,
             )

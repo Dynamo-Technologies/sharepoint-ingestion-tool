@@ -15,8 +15,12 @@ from datetime import datetime, timezone
 
 import boto3
 
-from lib.identity_store.client import IdentityStoreClient
-from lib.identity_store.group_flattener import GroupFlattener
+try:
+    from lib.identity_store.client import IdentityStoreClient
+    from lib.identity_store.group_flattener import GroupFlattener
+except ImportError:
+    from identity_store.client import IdentityStoreClient  # type: ignore[no-redef]
+    from identity_store.group_flattener import GroupFlattener  # type: ignore[no-redef]
 
 logger = logging.getLogger(__name__)
 logger.setLevel(os.getenv("LOG_LEVEL", "INFO"))

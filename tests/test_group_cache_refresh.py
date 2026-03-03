@@ -144,3 +144,41 @@ class TestGroupCacheRefresh:
 
         assert body["updated"] == 0
         assert body["unchanged"] == 0
+
+    @patch("group_cache_refresh.GroupFlattener")
+    @patch("group_cache_refresh.IdentityStoreClient")
+    def test_custom_attributes_preserved_on_group_change(
+        self, MockClient, MockFlattener, dynamodb_table,
+    ):
+        """Custom attributes from existing cache are preserved when groups change."""
+        table = dynamodb_table.Table(CACHE_TABLE)
+        table.put_item(Item={
+            "user_id": "u1",
+            "upn": "alice@test.com",
+            "groups": ["g1"],
+            "source": "scim",
+            "last_synced": "2026-01-01T00:00:00Z",
+            "ttl_expiry": int(time.time()) + 86400,
+            "custom_attributes": {"department": "Engineering", "ext_ClearanceLevel": "confidential"},
+        })
+
+        mock_client_inst = MagicMock()
+        mock_client_inst.list_users.return_value = iter([
+            {"UserId": "u1", "UserName": "alice@test.com"},
+        ])
+        MockClient.return_value = mock_client_inst
+
+        mock_flattener_inst = MagicMock()
+        mock_flattener_inst.flatten_all.return_value = {"u1": {"g1", "g2"}}
+        MockFlattener.return_value = mock_flattener_inst
+
+        from group_cache_refresh import handler
+        result = handler({}, None)
+        body = json.loads(result["body"])
+
+        assert body["updated"] == 1
+
+        item = table.get_item(Key={"user_id": "u1"}).get("Item")
+        assert item["custom_attributes"]["department"] == "Engineering"
+        assert item["custom_attributes"]["ext_ClearanceLevel"] == "confidential"
+        assert set(item["groups"]) == {"g1", "g2"}

@@ -1,11 +1,15 @@
 """Tests for the permission-filtered query middleware."""
 
+import json
+import hashlib
+import logging
 from unittest.mock import MagicMock
 
 import pytest
 
 from lib.query_middleware.group_resolver import GroupResolver
 from lib.query_middleware.filter_builder import FilterBuilder
+from lib.query_middleware.audit_logger import AuditLogger
 
 
 # ===================================================================
@@ -230,3 +234,109 @@ class TestFilterBuilder:
 
         sens_filter = f["andAll"][1]
         assert sens_filter["lessThanOrEquals"]["value"] == 0
+
+
+# ===================================================================
+# AuditLogger tests
+# ===================================================================
+
+class TestAuditLogger:
+    def test_log_entry_has_required_fields(self, caplog):
+        """Audit log must contain all required fields."""
+        logger_instance = AuditLogger()
+
+        with caplog.at_level(logging.INFO, logger="query_middleware.audit"):
+            logger_instance.log_query(
+                user_id="user-001",
+                user_upn="alice@dynamo.com",
+                resolved_groups=["grp-hr-1"],
+                filters_applied={"andAll": []},
+                chunk_ids=["abc_0", "abc_1"],
+                document_ids=["abc"],
+                sensitivity_levels=["confidential"],
+                query_text="What is the PTO policy?",
+                latency_ms=150,
+                result_type="success",
+            )
+
+        assert len(caplog.records) == 1
+        entry = json.loads(caplog.records[0].message)
+
+        required_fields = {
+            "timestamp", "user_id", "user_upn", "resolved_groups",
+            "filters_applied", "chunk_ids_retrieved", "source_document_ids",
+            "sensitivity_levels", "query_text_hash", "response_latency_ms",
+            "result_type",
+        }
+        assert required_fields.issubset(set(entry.keys()))
+
+    def test_query_text_is_hashed_not_stored(self, caplog):
+        """Query text must be SHA-256 hashed, not stored in plaintext."""
+        logger_instance = AuditLogger()
+        query = "What is the PTO policy?"
+
+        with caplog.at_level(logging.INFO, logger="query_middleware.audit"):
+            logger_instance.log_query(
+                user_id="user-001",
+                user_upn="",
+                resolved_groups=[],
+                filters_applied={},
+                chunk_ids=[],
+                document_ids=[],
+                sensitivity_levels=[],
+                query_text=query,
+                latency_ms=100,
+                result_type="no_results",
+            )
+
+        entry = json.loads(caplog.records[0].message)
+
+        # Must NOT contain the original query text
+        assert query not in json.dumps(entry)
+
+        # Must contain the SHA-256 hash
+        expected_hash = hashlib.sha256(query.encode()).hexdigest()
+        assert entry["query_text_hash"] == expected_hash
+
+    def test_permission_scoped_null_logged_distinctly(self, caplog):
+        """permission_scoped_null result type appears in log."""
+        logger_instance = AuditLogger()
+
+        with caplog.at_level(logging.INFO, logger="query_middleware.audit"):
+            logger_instance.log_query(
+                user_id="user-001",
+                user_upn="bob@dynamo.com",
+                resolved_groups=["grp-general"],
+                filters_applied={"andAll": []},
+                chunk_ids=[],
+                document_ids=[],
+                sensitivity_levels=[],
+                query_text="Tell me about HR policies",
+                latency_ms=200,
+                result_type="no_results",
+            )
+
+        entry = json.loads(caplog.records[0].message)
+        assert entry["result_type"] == "no_results"
+
+    def test_log_entry_is_valid_json(self, caplog):
+        """Log message must be valid JSON (for CloudWatch parsing)."""
+        logger_instance = AuditLogger()
+
+        with caplog.at_level(logging.INFO, logger="query_middleware.audit"):
+            logger_instance.log_query(
+                user_id="user-001",
+                user_upn="",
+                resolved_groups=[],
+                filters_applied={},
+                chunk_ids=[],
+                document_ids=[],
+                sensitivity_levels=[],
+                query_text="test",
+                latency_ms=50,
+                result_type="success",
+            )
+
+        # Should not raise
+        entry = json.loads(caplog.records[0].message)
+        assert isinstance(entry, dict)

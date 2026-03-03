@@ -101,3 +101,45 @@ variable "governance_alerts_email" {
   type        = string
   default     = ""
 }
+
+# -------------------------------------------------------------------
+# Open WebUI / API Gateway
+# -------------------------------------------------------------------
+
+variable "open_webui_image" {
+  description = "ECR image URI for the Open WebUI container"
+  type        = string
+  default     = ""
+}
+
+variable "knowledge_base_id" {
+  description = "Bedrock Knowledge Base ID for RAG queries"
+  type        = string
+  default     = ""
+}
+
+variable "bedrock_model_id" {
+  description = "Default Bedrock model ID for LLM generation"
+  type        = string
+  default     = "anthropic.claude-3-sonnet-20240229-v1:0"
+}
+
+variable "api_keys" {
+  description = "Comma-separated API keys for the query API (stored as env var)"
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
+variable "api_key_user_map" {
+  description = "JSON mapping of API key → user identity"
+  type        = string
+  default     = "{}"
+  sensitive   = true
+}
+
+variable "enable_webui" {
+  description = "Set to true to deploy Open WebUI ECS infrastructure"
+  type        = bool
+  default     = false
+}

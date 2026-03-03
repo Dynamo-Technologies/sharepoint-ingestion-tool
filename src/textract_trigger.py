@@ -23,6 +23,8 @@ from document_registry import DocumentRegistry
 from digital_twin import DigitalTwinBuilder
 from utils.file_converter import FileConverter
 from utils.path_mapper import PathMapper
+from permission_tagger import PermissionTagger
+from quarantine import QuarantineManager
 
 logger = logging.getLogger(__name__)
 logger.setLevel(getattr(logging, config.log_level))
@@ -38,8 +40,10 @@ def handler(event: dict, context: object) -> dict:
     mapper = PathMapper(
         config.s3_bucket, config.s3_source_prefix, config.s3_extracted_prefix,
     )
+    perm_tagger = PermissionTagger()
+    quarantine_mgr = QuarantineManager()
 
-    results = {"textract_jobs": 0, "direct_extracts": 0, "skipped": 0, "errors": 0}
+    results = {"textract_jobs": 0, "direct_extracts": 0, "skipped": 0, "errors": 0, "quarantined": 0}
 
     for record in event.get("Records", []):
         s3_bucket = record["s3"]["bucket"]["name"]
@@ -62,6 +66,17 @@ def handler(event: dict, context: object) -> dict:
         if not doc:
             logger.warning("No registry entry for %s, skipping", s3_key)
             results["skipped"] += 1
+            continue
+
+        # Permission check — quarantine unmapped documents
+        perm_tags = perm_tagger.get_permission_tags(s3_key)
+        if perm_tags is None:
+            try:
+                quarantine_mgr.quarantine_document(s3_key, reason="no_mapping")
+                registry.update_textract_status(s3_key, "quarantined")
+            except Exception:
+                logger.exception("Failed to quarantine %s", s3_key)
+            results["quarantined"] += 1
             continue
 
         try:

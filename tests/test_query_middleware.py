@@ -13,6 +13,7 @@ from lib.query_middleware.filter_builder import FilterBuilder
 from lib.query_middleware.audit_logger import AuditLogger
 from lib.query_middleware.response_handler import ResponseHandler
 from lib.query_middleware.client import QueryMiddleware
+from lib.query_middleware.metadata_exporter import MetadataExporter
 
 
 # ===================================================================
@@ -726,3 +727,105 @@ class TestPermissionTierUsers:
         assert result["result_type"] == "success"
         assert result["chunks_retrieved"] == 1
         assert result["citations"][0]["chunk_id"] == "fin_0"
+
+
+# ===================================================================
+# MetadataExporter tests
+# ===================================================================
+
+class TestMetadataExporter:
+    def test_exports_metadata_json(self):
+        """Produces Bedrock KB sidecar format with metadataAttributes."""
+        exporter = MetadataExporter()
+        chunk = {
+            "chunk_id": "abc_0",
+            "document_id": "abc",
+            "source_s3_key": "source/Dynamo/HR/handbook.pdf",
+            "filename": "handbook.pdf",
+            "allowed_groups": ["grp-hr-1", "grp-hr-2"],
+            "sensitivity_level": "confidential",
+            "s3_prefix": "source/Dynamo/HR",
+            "custom_filters": {},
+            "text": "PTO policy allows 15 days...",
+            "metadata": {"sp_library": "HR", "file_type": ".pdf"},
+        }
+
+        result = exporter.export_chunk_metadata(chunk)
+
+        assert "metadataAttributes" in result
+        attrs = result["metadataAttributes"]
+        assert attrs["allowed_groups"] == ["grp-hr-1", "grp-hr-2"]
+        assert attrs["sensitivity_level"] == "confidential"
+        assert attrs["sensitivity_level_numeric"] == 2
+        assert attrs["document_id"] == "abc"
+        assert attrs["chunk_id"] == "abc_0"
+        assert attrs["source_s3_key"] == "source/Dynamo/HR/handbook.pdf"
+        assert attrs["s3_prefix"] == "source/Dynamo/HR"
+        assert attrs["sp_library"] == "HR"
+        assert attrs["file_type"] == ".pdf"
+
+    def test_sensitivity_numeric_mapping(self):
+        """Each sensitivity level maps to the correct integer."""
+        exporter = MetadataExporter()
+
+        for level, expected in [("public", 0), ("internal", 1), ("confidential", 2), ("restricted", 3)]:
+            chunk = {
+                "sensitivity_level": level,
+                "allowed_groups": [],
+                "document_id": "",
+                "chunk_id": "",
+                "source_s3_key": "",
+                "s3_prefix": "",
+                "custom_filters": {},
+                "metadata": {},
+            }
+            result = exporter.export_chunk_metadata(chunk)
+            assert result["metadataAttributes"]["sensitivity_level_numeric"] == expected
+
+    def test_missing_fields_default_safely(self):
+        """Missing chunk fields produce safe defaults."""
+        exporter = MetadataExporter()
+        chunk = {"metadata": {}}  # Minimal chunk
+
+        result = exporter.export_chunk_metadata(chunk)
+        attrs = result["metadataAttributes"]
+
+        assert attrs["allowed_groups"] == []
+        assert attrs["sensitivity_level"] == ""
+        assert attrs["sensitivity_level_numeric"] == 0
+        assert attrs["document_id"] == ""
+
+    def test_export_batch_produces_list(self):
+        """Batch export returns a list of (chunk_text, metadata_dict) tuples."""
+        exporter = MetadataExporter()
+        chunks = [
+            {
+                "text": "Chunk 1 text.",
+                "chunk_id": "a_0",
+                "document_id": "a",
+                "source_s3_key": "source/a.pdf",
+                "allowed_groups": ["grp-1"],
+                "sensitivity_level": "internal",
+                "s3_prefix": "source/",
+                "custom_filters": {},
+                "metadata": {},
+            },
+            {
+                "text": "Chunk 2 text.",
+                "chunk_id": "b_0",
+                "document_id": "b",
+                "source_s3_key": "source/b.pdf",
+                "allowed_groups": ["grp-2"],
+                "sensitivity_level": "confidential",
+                "s3_prefix": "source/",
+                "custom_filters": {},
+                "metadata": {},
+            },
+        ]
+
+        results = exporter.export_batch(chunks)
+        assert len(results) == 2
+        assert results[0][0] == "Chunk 1 text."
+        assert results[0][1]["metadataAttributes"]["chunk_id"] == "a_0"
+        assert results[1][0] == "Chunk 2 text."
+        assert results[1][1]["metadataAttributes"]["sensitivity_level_numeric"] == 2

@@ -79,6 +79,11 @@ def handler(event: dict, context: object) -> dict:
             results["quarantined"] += 1
             continue
 
+        # Inject permission metadata for twin builder
+        perm_metadata = perm_tagger.get_permission_metadata(s3_key)
+        if perm_metadata:
+            doc["permissions"] = perm_metadata
+
         try:
             if strategy == "textract-direct":
                 _handle_textract(textract, registry, s3_bucket, s3_key)

@@ -49,14 +49,16 @@ def _textract_result():
 
 
 class TestTextractCompleteHandler:
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_successful_job_builds_twin(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockTextract.return_value.get_document_analysis.return_value = _textract_result()
         MockRegistry.return_value.get_document.return_value = _sample_doc()
         MockBuilder.return_value.build_twin_from_textract.return_value = {"twin": True}
@@ -73,14 +75,16 @@ class TestTextractCompleteHandler:
         MockBuilder.return_value.build_twin_from_textract.assert_called_once()
         MockS3.return_value.upload_json_twin.assert_called_once()
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_updates_registry_on_success(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockTextract.return_value.get_document_analysis.return_value = _textract_result()
         MockRegistry.return_value.get_document.return_value = _sample_doc()
         MockBuilder.return_value.build_twin_from_textract.return_value = {"twin": True}
@@ -94,13 +98,14 @@ class TestTextractCompleteHandler:
             job_id="job-123", twin_key="extracted/key.json",
         )
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_failed_job_updates_registry(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
         from textract_complete import handler
         result = handler(_sns_event("job-fail", "FAILED"), None)
@@ -115,13 +120,14 @@ class TestTextractCompleteHandler:
         # Should NOT attempt to get Textract results
         MockTextract.return_value.get_document_analysis.assert_not_called()
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_missing_registry_entry(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
         MockRegistry.return_value.get_document.return_value = None
 
@@ -133,18 +139,22 @@ class TestTextractCompleteHandler:
         assert body["twins_built"] == 0
         MockTextract.return_value.get_document_analysis.assert_not_called()
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_carries_source_tags(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockTextract.return_value.get_document_analysis.return_value = _textract_result()
         MockRegistry.return_value.get_document.return_value = _sample_doc()
         MockBuilder.return_value.build_twin_from_textract.return_value = {}
         MockMapper.return_value.to_s3_extracted_key.return_value = "extracted/key.json"
+        # _sanitize_tag_value is a static method — make mock pass values through
+        MockMapper._sanitize_tag_value.side_effect = lambda v: v
 
         from textract_complete import handler
         handler(_sns_event("job-123", "SUCCEEDED"), None)
@@ -154,14 +164,16 @@ class TestTextractCompleteHandler:
         assert "sp-library" in tags
         assert tags["sp-library"] == "HR"
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_textract_retrieval_error_marks_failed(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockRegistry.return_value.get_document.return_value = _sample_doc()
         MockTextract.return_value.get_document_analysis.side_effect = RuntimeError("API error")
 
@@ -175,14 +187,16 @@ class TestTextractCompleteHandler:
             "source/Dynamo/HR/doc.pdf", "failed",
         )
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_twin_upload_error_marks_failed(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockTextract.return_value.get_document_analysis.return_value = _textract_result()
         MockRegistry.return_value.get_document.return_value = _sample_doc()
         MockBuilder.return_value.build_twin_from_textract.return_value = {}
@@ -195,14 +209,16 @@ class TestTextractCompleteHandler:
         body = json.loads(result["body"])
         assert body["errors"] == 1
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_multiple_records(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockTextract.return_value.get_document_analysis.return_value = _textract_result()
         MockRegistry.return_value.get_document.return_value = _sample_doc()
         MockBuilder.return_value.build_twin_from_textract.return_value = {}
@@ -227,14 +243,16 @@ class TestTextractCompleteHandler:
         body = json.loads(result["body"])
         assert body["twins_built"] == 2
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_mixed_success_and_failure(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockTextract.return_value.get_document_analysis.return_value = _textract_result()
         MockRegistry.return_value.get_document.return_value = _sample_doc()
         MockBuilder.return_value.build_twin_from_textract.return_value = {}
@@ -260,13 +278,14 @@ class TestTextractCompleteHandler:
         assert body["twins_built"] == 1
         assert body["failed"] == 1
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_empty_event(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
         from textract_complete import handler
         result = handler({"Records": []}, None)
@@ -274,15 +293,17 @@ class TestTextractCompleteHandler:
         body = json.loads(result["body"])
         assert body == {"twins_built": 0, "failed": 0, "errors": 0}
 
+    @patch("textract_complete.boto3")
     @patch("textract_complete.PathMapper")
     @patch("textract_complete.DigitalTwinBuilder")
     @patch("textract_complete.DocumentRegistry")
     @patch("textract_complete.S3Client")
     @patch("textract_complete.TextractClient")
     def test_error_in_one_record_does_not_crash_others(
-        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper,
+        self, MockTextract, MockS3, MockRegistry, MockBuilder, MockMapper, MockBoto3,
     ):
         """First record throws, second should still succeed."""
+        MockBoto3.client.return_value.get_object_tagging.return_value = {"TagSet": []}
         MockTextract.return_value.get_document_analysis.side_effect = [
             RuntimeError("boom"),
             _textract_result(),

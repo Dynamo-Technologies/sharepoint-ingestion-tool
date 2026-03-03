@@ -10,6 +10,8 @@ Failed Textract jobs are recorded with ``textract_status = "failed"``.
 import json
 import logging
 
+import boto3
+
 from config import config
 from textract_client import TextractClient
 from s3_client import S3Client
@@ -73,6 +75,25 @@ def handler(event: dict, context: object) -> dict:
                 )
                 results["errors"] += 1
                 continue
+
+            # ----------------------------------------------------------
+            # Read permission tags from the source S3 object
+            # ----------------------------------------------------------
+            try:
+                _s3_client = boto3.client("s3", region_name=config.aws_region)
+                tag_resp = _s3_client.get_object_tagging(
+                    Bucket=config.s3_bucket, Key=s3_key,
+                )
+                s3_tags = {t["Key"]: t["Value"] for t in tag_resp.get("TagSet", [])}
+                if "allowed_groups" in s3_tags:
+                    doc["permissions"] = {
+                        "allowed_groups": s3_tags["allowed_groups"].split(",") if s3_tags["allowed_groups"] else [],
+                        "sensitivity_level": s3_tags.get("sensitivity_level", ""),
+                        "s3_prefix": s3_tags.get("matched_prefix", ""),
+                        "custom_filters": {},
+                    }
+            except Exception:
+                logger.warning("Could not read permission tags for %s", s3_key)
 
             # ----------------------------------------------------------
             # Retrieve full Textract results

@@ -167,6 +167,12 @@ def _assemble_twin(
         "pages": pages,
         "tables": tables,
         "extraction_metadata": extraction_metadata,
+        "permissions": {
+            "allowed_groups": source_metadata.get("permissions", {}).get("allowed_groups", []),
+            "sensitivity_level": source_metadata.get("permissions", {}).get("sensitivity_level", ""),
+            "s3_prefix": source_metadata.get("permissions", {}).get("s3_prefix", ""),
+            "custom_filters": source_metadata.get("permissions", {}).get("custom_filters", {}),
+        },
     }
 
 

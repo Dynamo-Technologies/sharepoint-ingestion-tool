@@ -559,7 +559,7 @@ class TestTwinStructureIntegrity:
         "schema_version", "document_id", "source_s3_key",
         "source_sharepoint_url", "filename", "file_type",
         "content_type", "metadata", "extracted_text",
-        "pages", "tables", "extraction_metadata",
+        "pages", "tables", "extraction_metadata", "permissions",
     }
 
     EXPECTED_META_KEYS = {
@@ -600,3 +600,68 @@ class TestTwinStructureIntegrity:
             {"Blocks": []}, meta,
         )
         assert twin["filename"] == "handbook.pdf"
+
+
+# ===================================================================
+# Permission metadata in twin
+# ===================================================================
+
+class TestPermissionMetadataInTwin:
+    def test_twin_includes_permissions_from_source_metadata(self):
+        from digital_twin import DigitalTwinBuilder
+        builder = DigitalTwinBuilder()
+        source_meta = {
+            "s3_source_key": "source/Dynamo/HR/doc.pdf",
+            "sp_library": "HR",
+            "sp_path": "/HR/doc.pdf",
+            "file_type": ".pdf",
+            "size_bytes": 1024,
+            "permissions": {
+                "allowed_groups": ["grp-hr-1", "grp-hr-2"],
+                "sensitivity_level": "confidential",
+                "s3_prefix": "source/Dynamo/HR",
+                "custom_filters": {},
+            },
+        }
+        twin = builder.build_twin_from_textract(
+            {"Blocks": [{"BlockType": "LINE", "Text": "Hello", "Page": 1, "Id": "1"}]},
+            source_meta,
+        )
+        assert "permissions" in twin
+        assert twin["permissions"]["allowed_groups"] == ["grp-hr-1", "grp-hr-2"]
+        assert twin["permissions"]["sensitivity_level"] == "confidential"
+        assert twin["permissions"]["s3_prefix"] == "source/Dynamo/HR"
+
+    def test_twin_permissions_default_when_absent(self):
+        from digital_twin import DigitalTwinBuilder
+        builder = DigitalTwinBuilder()
+        source_meta = {
+            "s3_source_key": "source/Dynamo/doc.pdf",
+            "sp_library": "General",
+            "file_type": ".pdf",
+            "size_bytes": 1024,
+        }
+        twin = builder.build_twin_from_direct_extract("text", [], source_meta)
+        assert "permissions" in twin
+        assert twin["permissions"]["allowed_groups"] == []
+        assert twin["permissions"]["sensitivity_level"] == ""
+        assert twin["permissions"]["s3_prefix"] == ""
+        assert twin["permissions"]["custom_filters"] == {}
+
+    def test_permissions_in_textract_path(self):
+        from digital_twin import DigitalTwinBuilder
+        builder = DigitalTwinBuilder()
+        source_meta = {
+            "s3_source_key": "source/Dynamo/Finance/report.pdf",
+            "sp_library": "Finance",
+            "file_type": ".pdf",
+            "size_bytes": 2048,
+            "permissions": {
+                "allowed_groups": ["grp-fin-1"],
+                "sensitivity_level": "restricted",
+                "s3_prefix": "source/Dynamo/Finance",
+                "custom_filters": {"contract_id": "C-100"},
+            },
+        }
+        twin = builder.build_twin_from_textract({"Blocks": []}, source_meta)
+        assert twin["permissions"]["custom_filters"] == {"contract_id": "C-100"}

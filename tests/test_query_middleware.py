@@ -1,7 +1,6 @@
 """Tests for the permission-filtered query middleware."""
 
-from unittest.mock import MagicMock, patch
-from dataclasses import dataclass, field
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -45,6 +44,7 @@ class TestGroupResolver:
             mock_client.get_user_groups.return_value = _make_user_group_result(
                 cache_hit=False, groups=[]
             )
+        mock_client.get_user_sensitivity_ceiling.return_value = "internal"
         resolver = GroupResolver(permission_client=mock_client)
         return resolver, mock_client
 
@@ -125,3 +125,13 @@ class TestGroupResolver:
         result = resolver.resolve("user-001", saml_groups=[])
 
         assert result.custom_attributes == {"ext_ClearanceLevel": "confidential"}
+
+    def test_sensitivity_ceiling_from_permission_client(self):
+        """Sensitivity ceiling is fetched from PermissionClient."""
+        resolver, mock_client = self._make_resolver(
+            cache_result=_make_user_group_result(cache_hit=True)
+        )
+        mock_client.get_user_sensitivity_ceiling.return_value = "confidential"
+        result = resolver.resolve("user-001", saml_groups=[])
+
+        assert result.sensitivity_ceiling == "confidential"

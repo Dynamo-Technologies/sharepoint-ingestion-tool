@@ -125,3 +125,99 @@ class TestDescribeUser:
         )
         with pytest.raises(ClientError):
             client.describe_user("u1")
+
+
+from lib.identity_store.group_flattener import GroupFlattener
+
+
+def _make_flattener(groups, memberships_by_group):
+    """Helper: build a GroupFlattener with a mocked IdentityStoreClient."""
+    mock_client = MagicMock()
+    mock_client.list_groups.return_value = iter(groups)
+    mock_client.list_group_memberships.side_effect = (
+        lambda gid: iter(memberships_by_group.get(gid, []))
+    )
+    return GroupFlattener(mock_client)
+
+
+class TestGroupFlattener:
+    def test_flat_groups_no_nesting(self):
+        """Users directly in groups, no nesting."""
+        flattener = _make_flattener(
+            groups=[{"GroupId": "g1"}, {"GroupId": "g2"}],
+            memberships_by_group={
+                "g1": [{"MemberId": {"UserId": "u1"}}, {"MemberId": {"UserId": "u2"}}],
+                "g2": [{"MemberId": {"UserId": "u2"}}],
+            },
+        )
+        result = flattener.flatten_all()
+        assert result["u1"] == {"g1"}
+        assert result["u2"] == {"g1", "g2"}
+
+    def test_two_level_nesting(self):
+        """User in child group, child group in parent group."""
+        flattener = _make_flattener(
+            groups=[{"GroupId": "parent"}, {"GroupId": "child"}],
+            memberships_by_group={
+                "parent": [{"MemberId": {"GroupId": "child"}}],
+                "child": [{"MemberId": {"UserId": "u1"}}],
+            },
+        )
+        result = flattener.flatten_all()
+        assert result["u1"] == {"child", "parent"}
+
+    def test_three_level_nesting(self):
+        """3-level: user -> child -> mid -> top."""
+        flattener = _make_flattener(
+            groups=[
+                {"GroupId": "top"}, {"GroupId": "mid"}, {"GroupId": "child"},
+            ],
+            memberships_by_group={
+                "top": [{"MemberId": {"GroupId": "mid"}}],
+                "mid": [{"MemberId": {"GroupId": "child"}}],
+                "child": [{"MemberId": {"UserId": "u1"}}],
+            },
+        )
+        result = flattener.flatten_all()
+        assert result["u1"] == {"child", "mid", "top"}
+
+    def test_circular_reference(self):
+        """Groups referencing each other — must not infinite loop."""
+        flattener = _make_flattener(
+            groups=[{"GroupId": "gA"}, {"GroupId": "gB"}],
+            memberships_by_group={
+                "gA": [
+                    {"MemberId": {"GroupId": "gB"}},
+                    {"MemberId": {"UserId": "u1"}},
+                ],
+                "gB": [{"MemberId": {"GroupId": "gA"}}],
+            },
+        )
+        result = flattener.flatten_all()
+        assert result["u1"] == {"gA", "gB"}
+
+    def test_empty_groups(self):
+        """No users in any group."""
+        flattener = _make_flattener(
+            groups=[{"GroupId": "g1"}],
+            memberships_by_group={"g1": []},
+        )
+        assert flattener.flatten_all() == {}
+
+    def test_user_in_multiple_nested_paths(self):
+        """User reaches top group via two different paths."""
+        flattener = _make_flattener(
+            groups=[
+                {"GroupId": "top"}, {"GroupId": "left"}, {"GroupId": "right"},
+            ],
+            memberships_by_group={
+                "top": [
+                    {"MemberId": {"GroupId": "left"}},
+                    {"MemberId": {"GroupId": "right"}},
+                ],
+                "left": [{"MemberId": {"UserId": "u1"}}],
+                "right": [{"MemberId": {"UserId": "u1"}}],
+            },
+        )
+        result = flattener.flatten_all()
+        assert result["u1"] == {"left", "right", "top"}

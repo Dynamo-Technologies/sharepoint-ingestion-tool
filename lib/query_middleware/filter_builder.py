@@ -82,6 +82,7 @@ class FilterBuilder:
 
         Uses ``lessThanOrEquals`` on ``sensitivity_level_numeric``.
         """
+        ceiling = ceiling or "public"
         numeric = SENSITIVITY_MAP.get(ceiling.lower(), 0)
         return {
             "lessThanOrEquals": {

@@ -5,6 +5,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from lib.query_middleware.group_resolver import GroupResolver
+from lib.query_middleware.filter_builder import FilterBuilder
 
 
 # ===================================================================
@@ -135,3 +136,97 @@ class TestGroupResolver:
         result = resolver.resolve("user-001", saml_groups=[])
 
         assert result.sensitivity_ceiling == "confidential"
+
+
+# ===================================================================
+# FilterBuilder tests
+# ===================================================================
+
+class TestFilterBuilder:
+    def test_single_group_produces_list_contains(self):
+        """One group → single listContains (no orAll wrapper needed)."""
+        builder = FilterBuilder()
+        f = builder.build_filter(groups=["grp-hr-1"], sensitivity_ceiling="confidential")
+
+        # Should have andAll with group filter + sensitivity filter
+        assert "andAll" in f
+        conditions = f["andAll"]
+        assert len(conditions) == 2
+
+    def test_multiple_groups_produces_or_all(self):
+        """Multiple groups → orAll of listContains entries."""
+        builder = FilterBuilder()
+        f = builder.build_filter(
+            groups=["grp-hr-1", "grp-finance-1"],
+            sensitivity_ceiling="confidential",
+        )
+
+        and_conditions = f["andAll"]
+        # First condition is the group filter (orAll)
+        group_filter = and_conditions[0]
+        assert "orAll" in group_filter
+        list_contains = group_filter["orAll"]
+        assert len(list_contains) == 2
+
+        # Each should be a listContains
+        for lc in list_contains:
+            assert "listContains" in lc
+            assert lc["listContains"]["key"] == "allowed_groups"
+
+        values = {lc["listContains"]["value"] for lc in list_contains}
+        assert values == {"grp-hr-1", "grp-finance-1"}
+
+    def test_sensitivity_ceiling_maps_to_numeric(self):
+        """Sensitivity ceiling is converted to numeric for lessThanOrEquals."""
+        builder = FilterBuilder()
+
+        for level, expected_num in [
+            ("public", 0),
+            ("internal", 1),
+            ("confidential", 2),
+            ("restricted", 3),
+        ]:
+            f = builder.build_filter(groups=["grp-a"], sensitivity_ceiling=level)
+            sensitivity_filter = f["andAll"][1]
+            assert sensitivity_filter["lessThanOrEquals"]["key"] == "sensitivity_level_numeric"
+            assert sensitivity_filter["lessThanOrEquals"]["value"] == expected_num
+
+    def test_combined_filter_structure(self):
+        """Full filter has andAll wrapping [group_filter, sensitivity_filter]."""
+        builder = FilterBuilder()
+        f = builder.build_filter(
+            groups=["grp-hr-1", "grp-finance-1"],
+            sensitivity_ceiling="confidential",
+        )
+
+        assert "andAll" in f
+        assert len(f["andAll"]) == 2
+
+        # Group filter
+        group_filter = f["andAll"][0]
+        assert "orAll" in group_filter
+
+        # Sensitivity filter
+        sens_filter = f["andAll"][1]
+        assert "lessThanOrEquals" in sens_filter
+        assert sens_filter["lessThanOrEquals"]["value"] == 2
+
+    def test_empty_groups_returns_impossible_filter(self):
+        """No groups → filter that matches nothing (empty orAll)."""
+        builder = FilterBuilder()
+        f = builder.build_filter(groups=[], sensitivity_ceiling="internal")
+
+        # With no groups, the group filter should ensure nothing matches.
+        # We use a listContains with a UUID that no document will have.
+        and_conditions = f["andAll"]
+        group_filter = and_conditions[0]
+        assert "listContains" in group_filter
+        assert group_filter["listContains"]["value"] == "__no_access__"
+
+    def test_unknown_sensitivity_defaults_to_public(self):
+        """Unknown sensitivity string defaults to public (0)."""
+        builder = FilterBuilder()
+        f = builder.build_filter(groups=["grp-a"], sensitivity_ceiling="unknown_level")
+
+        sens_filter = f["andAll"][1]
+        assert sens_filter["lessThanOrEquals"]["value"] == 0

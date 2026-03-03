@@ -10,6 +10,7 @@ import pytest
 from lib.query_middleware.group_resolver import GroupResolver
 from lib.query_middleware.filter_builder import FilterBuilder
 from lib.query_middleware.audit_logger import AuditLogger
+from lib.query_middleware.response_handler import ResponseHandler
 
 
 # ===================================================================
@@ -340,3 +341,71 @@ class TestAuditLogger:
         # Should not raise
         entry = json.loads(caplog.records[0].message)
         assert isinstance(entry, dict)
+
+
+# ===================================================================
+# ResponseHandler tests
+# ===================================================================
+
+class TestResponseHandler:
+    def test_success_response_includes_citations(self):
+        """Successful response includes text and citations."""
+        handler = ResponseHandler()
+        chunks = [
+            {
+                "content": {"text": "PTO policy allows 15 days..."},
+                "metadata": {
+                    "chunk_id": "abc_0",
+                    "document_id": "abc",
+                    "source_s3_key": "source/Dynamo/HR/handbook.pdf",
+                    "sensitivity_level": "confidential",
+                },
+                "score": 0.92,
+            },
+        ]
+
+        result = handler.format_success(
+            llm_response_text="Based on the handbook, PTO is 15 days...",
+            chunks=chunks,
+        )
+
+        assert result["result_type"] == "success"
+        assert result["response_text"] == "Based on the handbook, PTO is 15 days..."
+        assert len(result["citations"]) == 1
+        assert result["citations"][0]["chunk_id"] == "abc_0"
+        assert result["citations"][0]["score"] == 0.92
+        assert result["chunks_retrieved"] == 1
+
+    def test_no_results_returns_safe_message(self):
+        """No-results response is helpful and privacy-safe."""
+        handler = ResponseHandler()
+        result = handler.format_no_results()
+
+        assert result["result_type"] == "no_results"
+        assert result["chunks_retrieved"] == 0
+        assert result["citations"] == []
+        assert len(result["response_text"]) > 0
+
+    def test_denial_does_not_reveal_restricted_content(self):
+        """The no-results message must NOT hint at restricted documents."""
+        handler = ResponseHandler()
+        result = handler.format_no_results()
+
+        text = result["response_text"].lower()
+        forbidden_words = [
+            "restricted", "access", "permission", "denied", "unauthorized",
+            "forbidden", "classified", "blocked", "filtered",
+        ]
+        for word in forbidden_words:
+            assert word not in text, f"Response contains forbidden word: '{word}'"
+
+    def test_success_response_structure(self):
+        """Success response has required top-level keys."""
+        handler = ResponseHandler()
+        result = handler.format_success(
+            llm_response_text="Answer here.",
+            chunks=[],
+        )
+
+        required_keys = {"response_text", "citations", "result_type", "chunks_retrieved"}
+        assert required_keys == set(result.keys())

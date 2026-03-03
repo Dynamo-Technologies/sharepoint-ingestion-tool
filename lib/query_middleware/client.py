@@ -53,6 +53,8 @@ class QueryMiddleware:
         bedrock_agent_client: Any | None = None,
         bedrock_runtime_client: Any | None = None,
         num_results: int = _DEFAULT_NUM_RESULTS,
+        guardrail_id: str | None = None,
+        guardrail_version: str | None = None,
     ) -> None:
         self._kb_id = knowledge_base_id
         self._model_id = model_id
@@ -63,6 +65,8 @@ class QueryMiddleware:
         self._filter_builder = FilterBuilder()
         self._response_handler = ResponseHandler()
         self._audit = AuditLogger()
+        self._guardrail_id = guardrail_id
+        self._guardrail_version = guardrail_version
 
     def query(
         self,
@@ -180,11 +184,17 @@ class QueryMiddleware:
             "messages": [{"role": "user", "content": prompt}],
         })
 
-        response = self._bedrock_runtime.invoke_model(
-            modelId=self._model_id,
-            body=body,
-            contentType="application/json",
-        )
+        invoke_kwargs: dict[str, Any] = {
+            "modelId": self._model_id,
+            "body": body,
+            "contentType": "application/json",
+        }
+
+        if self._guardrail_id:
+            invoke_kwargs["guardrailIdentifier"] = self._guardrail_id
+            invoke_kwargs["guardrailVersion"] = self._guardrail_version or "DRAFT"
+
+        response = self._bedrock_runtime.invoke_model(**invoke_kwargs)
 
         response_body = json.loads(response["body"].read())
         content_blocks = response_body.get("content", [])

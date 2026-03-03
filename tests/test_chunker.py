@@ -126,6 +126,7 @@ class TestChunkDocumentStructure:
         expected_keys = {
             "chunk_id", "document_id", "source_s3_key", "filename",
             "chunk_index", "total_chunks", "text", "metadata",
+            "allowed_groups", "sensitivity_level", "s3_prefix", "custom_filters",
         }
         assert set(chunks[0].keys()) == expected_keys
 
@@ -776,3 +777,45 @@ class TestRealisticDocument:
             assert original["chunk_id"] == loaded_chunk["chunk_id"]
             assert original["text"] == loaded_chunk["text"]
             assert original["metadata"] == loaded_chunk["metadata"]
+
+
+# ===================================================================
+# chunk_document — permission metadata
+# ===================================================================
+
+class TestChunkPermissionMetadata:
+    def test_chunk_includes_permission_fields(self):
+        chunker = DocumentChunker()
+        twin = _make_twin(text="Some text.")
+        twin["permissions"] = {
+            "allowed_groups": ["grp-hr-1", "grp-hr-2"],
+            "sensitivity_level": "confidential",
+            "s3_prefix": "source/Dynamo/HR",
+            "custom_filters": {"project_code": "P001"},
+        }
+        chunks = chunker.chunk_document(twin)
+        assert len(chunks) >= 1
+
+        chunk = chunks[0]
+        assert chunk["allowed_groups"] == ["grp-hr-1", "grp-hr-2"]
+        assert chunk["sensitivity_level"] == "confidential"
+        assert chunk["s3_prefix"] == "source/Dynamo/HR"
+        assert chunk["custom_filters"] == {"project_code": "P001"}
+
+    def test_chunk_permissions_default_when_absent(self):
+        chunker = DocumentChunker()
+        twin = _make_twin(text="Some text.")
+        # No permissions section in twin
+        chunks = chunker.chunk_document(twin)
+
+        chunk = chunks[0]
+        assert chunk["allowed_groups"] == []
+        assert chunk["sensitivity_level"] == ""
+        assert chunk["s3_prefix"] == ""
+        assert chunk["custom_filters"] == {}
+
+    def test_document_id_is_top_level(self):
+        chunker = DocumentChunker()
+        twin = _make_twin(text="Some text.")
+        chunks = chunker.chunk_document(twin)
+        assert chunks[0]["document_id"] == twin["document_id"]

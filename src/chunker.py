@@ -76,6 +76,14 @@ class DocumentChunker:
         file_type = twin_json.get("file_type", "")
         twin_meta = twin_json.get("metadata", {})
 
+        permissions = twin_json.get("permissions", {})
+        perm_fields = {
+            "allowed_groups": permissions.get("allowed_groups", []),
+            "sensitivity_level": permissions.get("sensitivity_level", ""),
+            "s3_prefix": permissions.get("s3_prefix", ""),
+            "custom_filters": permissions.get("custom_filters", {}),
+        }
+
         base_metadata = {
             "sp_site": twin_meta.get("sp_site", ""),
             "sp_library": twin_meta.get("sp_library", ""),
@@ -128,10 +136,11 @@ class DocumentChunker:
                 metadata=meta,
             ))
 
-        # Back-fill total_chunks now that we know the final count.
+        # Back-fill total_chunks and permission fields.
         total = len(chunks)
         for chunk in chunks:
             chunk["total_chunks"] = total
+            chunk.update(perm_fields)
 
         return chunks
 

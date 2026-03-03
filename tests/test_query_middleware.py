@@ -560,3 +560,169 @@ class TestQueryMiddleware:
         mock_resolver.resolve.assert_called_once_with(
             "user-001", saml_groups=["grp-a", "grp-b"]
         )
+
+
+# ===================================================================
+# Validation test users — permission tier tests
+# ===================================================================
+
+class TestPermissionTierUsers:
+    """Validation tests per the Prompt 5 checklist.
+
+    Test users:
+    - test_finance_user — SG-Finance only
+    - test_hr_user — SG-HR only
+    - test_contracts_finance_user — SG-Contracts + SG-Finance
+    - test_executive_user — SG-Executive + SG-Finance + SG-HR
+    - test_general_user — SG-AllStaff only
+    """
+
+    def _make_middleware_for_user(self, groups, ceiling="internal", chunks=None):
+        """Create middleware with mocked resolver for a specific user."""
+        resolved = MagicMock()
+        resolved.user_id = "test-user"
+        resolved.groups = groups
+        resolved.upn = "test@dynamo.com"
+        resolved.custom_attributes = {}
+        resolved.sensitivity_ceiling = ceiling
+        resolved.cache_hit = True
+        resolved.cache_expired = False
+
+        mock_resolver = MagicMock()
+        mock_resolver.resolve.return_value = resolved
+
+        mock_bedrock_agent = MagicMock()
+        if chunks is None:
+            chunks = []
+        mock_bedrock_agent.retrieve.return_value = {"retrievalResults": chunks}
+
+        mock_bedrock_runtime = MagicMock()
+        mock_bedrock_runtime.invoke_model.return_value = {
+            "body": MagicMock(
+                read=MagicMock(return_value=b'{"content": [{"text": "Answer."}]}')
+            ),
+        }
+
+        middleware = QueryMiddleware(
+            knowledge_base_id="test-kb",
+            group_resolver=mock_resolver,
+            bedrock_agent_client=mock_bedrock_agent,
+            bedrock_runtime_client=mock_bedrock_runtime,
+        )
+
+        return middleware, mock_bedrock_agent
+
+    def test_finance_user_filter(self):
+        """Finance user → filter includes SG-Finance group."""
+        middleware, mock_agent = self._make_middleware_for_user(
+            groups=["SG-Finance"], ceiling="confidential"
+        )
+        middleware.query("financial data", "finance-user", ["SG-Finance"])
+
+        call_kwargs = mock_agent.retrieve.call_args[1]
+        f = call_kwargs["retrievalConfiguration"]["vectorSearchConfiguration"]["filter"]
+
+        # Group filter should contain SG-Finance
+        group_filter = f["andAll"][0]
+        assert group_filter["listContains"]["value"] == "SG-Finance"
+
+    def test_general_user_no_finance_results(self):
+        """General user with no Finance chunks → no_results."""
+        middleware, _ = self._make_middleware_for_user(
+            groups=["SG-AllStaff"], ceiling="internal"
+        )
+        result = middleware.query("financial data", "general-user", ["SG-AllStaff"])
+
+        assert result["result_type"] == "no_results"
+        assert result["chunks_retrieved"] == 0
+
+    def test_general_user_denial_is_safe(self):
+        """General user denial message does NOT reveal restricted content."""
+        middleware, _ = self._make_middleware_for_user(
+            groups=["SG-AllStaff"], ceiling="internal"
+        )
+        result = middleware.query("financial data", "general-user", ["SG-AllStaff"])
+
+        text = result["response_text"].lower()
+        for word in ["restricted", "access", "permission", "denied", "filtered"]:
+            assert word not in text
+
+    def test_hr_user_filter(self):
+        """HR user → filter includes SG-HR group."""
+        middleware, mock_agent = self._make_middleware_for_user(
+            groups=["SG-HR"], ceiling="confidential"
+        )
+        middleware.query("HR personnel data", "hr-user", ["SG-HR"])
+
+        call_kwargs = mock_agent.retrieve.call_args[1]
+        f = call_kwargs["retrievalConfiguration"]["vectorSearchConfiguration"]["filter"]
+        group_filter = f["andAll"][0]
+        assert group_filter["listContains"]["value"] == "SG-HR"
+
+    def test_contracts_finance_user_filter(self):
+        """Contracts+Finance user → filter includes both groups in orAll."""
+        middleware, mock_agent = self._make_middleware_for_user(
+            groups=["SG-Contracts", "SG-Finance"], ceiling="confidential"
+        )
+        middleware.query("awarded contracts", "cf-user", ["SG-Contracts", "SG-Finance"])
+
+        call_kwargs = mock_agent.retrieve.call_args[1]
+        f = call_kwargs["retrievalConfiguration"]["vectorSearchConfiguration"]["filter"]
+        group_filter = f["andAll"][0]
+        assert "orAll" in group_filter
+
+        values = {lc["listContains"]["value"] for lc in group_filter["orAll"]}
+        assert values == {"SG-Contracts", "SG-Finance"}
+
+    def test_executive_user_filter(self):
+        """Executive user → filter includes all 3 groups."""
+        middleware, mock_agent = self._make_middleware_for_user(
+            groups=["SG-Executive", "SG-Finance", "SG-HR"], ceiling="restricted"
+        )
+        middleware.query("executive summary", "exec-user", ["SG-Executive", "SG-Finance", "SG-HR"])
+
+        call_kwargs = mock_agent.retrieve.call_args[1]
+        f = call_kwargs["retrievalConfiguration"]["vectorSearchConfiguration"]["filter"]
+
+        group_filter = f["andAll"][0]
+        assert "orAll" in group_filter
+        values = {lc["listContains"]["value"] for lc in group_filter["orAll"]}
+        assert values == {"SG-Executive", "SG-Finance", "SG-HR"}
+
+        # Sensitivity ceiling = restricted (3)
+        sens_filter = f["andAll"][1]
+        assert sens_filter["lessThanOrEquals"]["value"] == 3
+
+    def test_executive_sensitivity_ceiling(self):
+        """Executive user with restricted ceiling can see all sensitivity levels."""
+        middleware, mock_agent = self._make_middleware_for_user(
+            groups=["SG-Executive"], ceiling="restricted"
+        )
+        middleware.query("test", "exec-user", [])
+
+        call_kwargs = mock_agent.retrieve.call_args[1]
+        f = call_kwargs["retrievalConfiguration"]["vectorSearchConfiguration"]["filter"]
+        sens_filter = f["andAll"][1]
+        assert sens_filter["lessThanOrEquals"]["value"] == 3  # restricted = max
+
+    def test_finance_user_with_chunks_returns_success(self):
+        """Finance user gets chunks → success response."""
+        finance_chunk = {
+            "content": {"text": "Q3 revenue was $10M..."},
+            "metadata": {
+                "chunk_id": "fin_0",
+                "document_id": "fin-doc",
+                "source_s3_key": "source/Dynamo/Finance/q3-report.pdf",
+                "sensitivity_level": "confidential",
+            },
+            "score": 0.88,
+        }
+
+        middleware, _ = self._make_middleware_for_user(
+            groups=["SG-Finance"], ceiling="confidential", chunks=[finance_chunk]
+        )
+        result = middleware.query("financial data", "finance-user", ["SG-Finance"])
+
+        assert result["result_type"] == "success"
+        assert result["chunks_retrieved"] == 1
+        assert result["citations"][0]["chunk_id"] == "fin_0"

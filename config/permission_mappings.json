@@ -1,0 +1,5369 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-03-03T01:27:55.845660+00:00",
+  "stats": {
+    "total_groups": 421,
+    "mapped_groups": 49,
+    "unmapped_groups": 372,
+    "total_users": 572,
+    "users_with_tag_assignments": 124,
+    "unique_tags_assigned": 8
+  },
+  "group_mappings": [
+    {
+      "group_id": "05488ded-e41a-488e-9d14-452dea5129fa",
+      "group_name": "DOD DHS LE Managers",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag",
+      "member_count": 14
+    },
+    {
+      "group_id": "0ab3955a-daf3-4b98-b066-79a445110394",
+      "group_name": "DG - Technical CoP",
+      "group_type": "Security",
+      "access_tags": [
+        "engineering"
+      ],
+      "rule": "Technical groups → engineering tag",
+      "member_count": 64
+    },
+    {
+      "group_id": "211d5ec3-e3e7-43c5-a35d-e07408f21c69",
+      "group_name": "BD PROPOSAL TEST",
+      "group_type": "Unified",
+      "access_tags": [
+        "bd",
+        "capture"
+      ],
+      "rule": "BD groups → bd + capture tags",
+      "member_count": 1
+    },
+    {
+      "group_id": "23da898d-517a-40b3-810a-04c3bf793c22",
+      "group_name": "Leadership",
+      "group_type": "Unified",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Leadership groups → leadership tag",
+      "member_count": 12
+    },
+    {
+      "group_id": "24cbf7cb-c995-4aaa-91a3-c447f8573a4f",
+      "group_name": "SG - Women In Technology",
+      "group_type": "Security",
+      "access_tags": [
+        "engineering"
+      ],
+      "rule": "Technology groups → engineering tag",
+      "member_count": 4
+    },
+    {
+      "group_id": "2968df35-c091-4fc7-936d-521ea558bf22",
+      "group_name": "Dynamo Contracts Activity Status",
+      "group_type": "Unified",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Contracts groups → contracts tag",
+      "member_count": 28
+    },
+    {
+      "group_id": "2d141f9f-3494-471b-9eca-d58638aa3915",
+      "group_name": "Managers",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag",
+      "member_count": 46
+    },
+    {
+      "group_id": "2d5d9a60-4287-44fd-b6f2-652c7ffc0be3",
+      "group_name": "Dynamo Recruiting Distro",
+      "group_type": "Security",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "Recruiting groups → hr tag",
+      "member_count": 3
+    },
+    {
+      "group_id": "310f8c62-3aa6-4f0a-9efa-b9a6d09b3d0e",
+      "group_name": "Dynamo Technology Community of Interest (COI)",
+      "group_type": "Unified",
+      "access_tags": [
+        "engineering"
+      ],
+      "rule": "Technology groups → engineering tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "3486eb2a-2e85-4845-9e11-16c944a204a6",
+      "group_name": "Finance",
+      "group_type": "Unified",
+      "access_tags": [
+        "finance"
+      ],
+      "rule": "Finance groups → finance tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "460a236a-c01d-41ba-96d9-fe8d3be5a594",
+      "group_name": "HR Case",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "HR groups → hr tag",
+      "member_count": 4
+    },
+    {
+      "group_id": "478c0853-b903-417c-bf2b-652dd3c26c28",
+      "group_name": "SG - Legal",
+      "group_type": "Security",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Legal security group → contracts tag",
+      "member_count": 6
+    },
+    {
+      "group_id": "4adb28fd-b8c9-46f5-9c58-37bf1d26c4c0",
+      "group_name": "Technical CoE",
+      "group_type": "Unified",
+      "access_tags": [
+        "engineering"
+      ],
+      "rule": "Technical groups → engineering tag",
+      "member_count": 6
+    },
+    {
+      "group_id": "4f17786a-b9b0-4f17-ad19-6e4e1ac225bf",
+      "group_name": "SG - jira-accounting-members",
+      "group_type": "Security",
+      "access_tags": [
+        "finance"
+      ],
+      "rule": "Accounting groups → finance tag",
+      "member_count": 5
+    },
+    {
+      "group_id": "517d1ef2-f45b-4b83-b5b6-1cfa378518e8",
+      "group_name": "Fed Civ Managers",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag",
+      "member_count": 6
+    },
+    {
+      "group_id": "564061d4-6285-4a09-8a47-e12dd28ea73c",
+      "group_name": "Recruiting",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "Recruiting groups → hr tag",
+      "member_count": 1
+    },
+    {
+      "group_id": "5ae77fc3-2fcb-4e14-b196-bed4a09b53ce",
+      "group_name": "HRCASE Management",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "HR groups → hr tag",
+      "member_count": 1
+    },
+    {
+      "group_id": "5dda6ca5-e62a-4314-99f6-1e3a65ec3a3e",
+      "group_name": "Business Development",
+      "group_type": "Security",
+      "access_tags": [
+        "bd",
+        "capture"
+      ],
+      "rule": "Business Development → bd + capture tags",
+      "member_count": 11
+    },
+    {
+      "group_id": "64373906-9e61-4aae-9830-302804e6c454",
+      "group_name": "BD Lessons Learned",
+      "group_type": "Unified",
+      "access_tags": [
+        "bd",
+        "capture"
+      ],
+      "rule": "BD groups → bd + capture tags",
+      "member_count": 5
+    },
+    {
+      "group_id": "685a936f-69ec-4750-b20d-af403b9f15dc",
+      "group_name": "Finance",
+      "group_type": "Security",
+      "access_tags": [
+        "finance"
+      ],
+      "rule": "Finance groups → finance tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "770c5942-7be3-425b-b309-857f255dc236",
+      "group_name": "ISO Leadership",
+      "group_type": "Unified",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Leadership groups → leadership tag",
+      "member_count": 11
+    },
+    {
+      "group_id": "7d04add7-81b8-4fb2-afa8-4cf44ebeb67e",
+      "group_name": "2025 TM & Recruiting Goals",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "Recruiting groups → hr tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "8594215b-8174-4092-8d67-0b33f7e311b1",
+      "group_name": "Accounting",
+      "group_type": "Unified",
+      "access_tags": [
+        "finance"
+      ],
+      "rule": "Accounting groups → finance tag",
+      "member_count": 6
+    },
+    {
+      "group_id": "88543fd9-81ac-48d4-9914-043f1467be44",
+      "group_name": "SG - Account Managers",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag",
+      "member_count": 8
+    },
+    {
+      "group_id": "8b58cb38-5d35-4fb2-812d-ee9e6ded0bb3",
+      "group_name": "Business Development - Archive DO NOT USE",
+      "group_type": "Unified",
+      "access_tags": [
+        "bd",
+        "capture"
+      ],
+      "rule": "Business Development → bd + capture tags",
+      "member_count": 16
+    },
+    {
+      "group_id": "8b74454e-9145-44cb-aece-b28a9bb01c7c",
+      "group_name": "HR CASE",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "HR groups → hr tag",
+      "member_count": 3
+    },
+    {
+      "group_id": "8c2d9aef-9cdb-4b95-b147-f15bfd33ff8e",
+      "group_name": "SG - jira-recruiting-members",
+      "group_type": "Security",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "Recruiting groups → hr tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "8e1b50d3-ba70-47f3-9ede-67fa67b52505",
+      "group_name": "Technology",
+      "group_type": "Unified",
+      "access_tags": [
+        "engineering"
+      ],
+      "rule": "Technology groups → engineering tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "8facdb07-3b5f-4f27-81a7-82e0049b2533",
+      "group_name": "Contracts",
+      "group_type": "Unified",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Contracts groups → contracts tag",
+      "member_count": 19
+    },
+    {
+      "group_id": "9278b549-8f5c-4e83-8b74-704446af63f8",
+      "group_name": "SG - jira-contracts-members",
+      "group_type": "Security",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Contracts groups → contracts tag",
+      "member_count": 3
+    },
+    {
+      "group_id": "9640d3b1-2184-4db0-9961-fe53ca2f9304",
+      "group_name": "Emerging Technology",
+      "group_type": "Unified",
+      "access_tags": [
+        "engineering"
+      ],
+      "rule": "Technology groups → engineering tag",
+      "member_count": 3
+    },
+    {
+      "group_id": "98ab271e-8b4b-4d2e-8421-9c2d3e67c0bb",
+      "group_name": "Cloud Adoption & Solution Engineering",
+      "group_type": "Unified",
+      "access_tags": [
+        "engineering"
+      ],
+      "rule": "Engineering groups → engineering tag",
+      "member_count": 3
+    },
+    {
+      "group_id": "9af1efe7-f067-4b35-b961-fa0b9a36ba84",
+      "group_name": "SG - jira-leadership-members",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Leadership groups → leadership tag",
+      "member_count": 11
+    },
+    {
+      "group_id": "9f732d3a-516d-42d1-b40b-386deedfc788",
+      "group_name": "Contracts Team Initiatives 2025",
+      "group_type": "Unified",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Contracts groups → contracts tag",
+      "member_count": 3
+    },
+    {
+      "group_id": "a9915fe3-ceef-48a5-9a91-3e124235ad97",
+      "group_name": "Delivery Managers",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag; Delivery Managers → leadership tag",
+      "member_count": 32
+    },
+    {
+      "group_id": "b3e7019c-c62b-4ad1-a8c8-a9af32fd3a49",
+      "group_name": "Contracts Test",
+      "group_type": "Unified",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Contracts groups → contracts tag",
+      "member_count": 1
+    },
+    {
+      "group_id": "b54fe09b-41df-4cd7-827c-519670b807d4",
+      "group_name": "BD Events",
+      "group_type": "Unified",
+      "access_tags": [
+        "bd",
+        "capture"
+      ],
+      "rule": "BD groups → bd + capture tags",
+      "member_count": 1
+    },
+    {
+      "group_id": "c3b31f36-46a3-4707-9b16-a1235cf7fe79",
+      "group_name": "SG - FSO Security Team",
+      "group_type": "Security",
+      "access_tags": [
+        "all-staff"
+      ],
+      "rule": "FSO Security → all-staff tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "c66580d0-eaa2-420e-a961-26fc3c848523",
+      "group_name": "Human Capital and Transformation Management COP",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "Human Capital groups → hr tag",
+      "member_count": 1
+    },
+    {
+      "group_id": "d068195c-a034-4a25-91a8-930f1a710042",
+      "group_name": "HR Transitions",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "HR groups → hr tag",
+      "member_count": 5
+    },
+    {
+      "group_id": "de20de7e-16da-4379-a8f8-5d3fc759bb66",
+      "group_name": "Security",
+      "group_type": "Unified",
+      "access_tags": [
+        "all-staff"
+      ],
+      "rule": "Security team → all-staff tag",
+      "member_count": 5
+    },
+    {
+      "group_id": "e00b80d9-09ff-43f3-8e16-30dfe529fa6b",
+      "group_name": "BD Pipeline Test",
+      "group_type": "Unified",
+      "access_tags": [
+        "bd",
+        "capture"
+      ],
+      "rule": "BD groups → bd + capture tags",
+      "member_count": 1
+    },
+    {
+      "group_id": "e964a045-9318-4ad1-9c5e-4cbddc5f2cdc",
+      "group_name": "Dynamo Managers",
+      "group_type": "Unified",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag",
+      "member_count": 12
+    },
+    {
+      "group_id": "ef6b0983-06b8-4546-93ad-50e1b08ca811",
+      "group_name": "Contracts",
+      "group_type": "Security",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Contracts groups → contracts tag",
+      "member_count": 3
+    },
+    {
+      "group_id": "f4e16103-ba27-48e5-8516-c742c7494100",
+      "group_name": "Contracts Team Initiatives",
+      "group_type": "Unified",
+      "access_tags": [
+        "contracts"
+      ],
+      "rule": "Contracts groups → contracts tag",
+      "member_count": 2
+    },
+    {
+      "group_id": "f873466f-f840-49f3-98f8-1895c5105e98",
+      "group_name": "Dynamo Leadership",
+      "group_type": "Unified",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Leadership groups → leadership tag",
+      "member_count": 10
+    },
+    {
+      "group_id": "fc263e32-caf1-4981-a7b7-d0e415f42075",
+      "group_name": "USCG Managers",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag",
+      "member_count": 6
+    },
+    {
+      "group_id": "fc6ed89b-0114-4b37-825d-4ff680403420",
+      "group_name": "USDA Managers",
+      "group_type": "Security",
+      "access_tags": [
+        "leadership"
+      ],
+      "rule": "Manager groups → leadership tag",
+      "member_count": 12
+    },
+    {
+      "group_id": "fcd55dc4-4fe9-4388-9934-079da31f4989",
+      "group_name": "Recruiting",
+      "group_type": "Unified",
+      "access_tags": [
+        "hr"
+      ],
+      "rule": "Recruiting groups → hr tag",
+      "member_count": 7
+    }
+  ],
+  "user_permissions": [
+    {
+      "user_id": "",
+      "display_name": "(no members)",
+      "upn": "",
+      "department": "",
+      "job_title": "",
+      "user_type": "Unknown",
+      "groups": [
+        "BD Events",
+        "Human Capital and Transformation Management COP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "86765f5a-ff01-4803-b5a8-82731e7e1595",
+      "display_name": "Accounting - Dynamo Technologies",
+      "upn": "accounting@dynamotechnologies.com",
+      "department": "",
+      "job_title": "",
+      "user_type": "Member",
+      "groups": [
+        "HR Transitions"
+      ],
+      "access_tags": [
+        "all-staff",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "163b6c05-f512-48de-933c-d6d0aae820e2",
+      "display_name": "Alex Duan",
+      "upn": "alex@dynamo.works",
+      "department": "",
+      "job_title": "Chief Executive Officer",
+      "user_type": "Member",
+      "groups": [
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "DG - Technical CoP",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Leadership",
+        "Dynamo Managers",
+        "Dynamo Technology Community of Interest (COI)",
+        "Emerging Technology",
+        "Finance",
+        "HR CASE",
+        "HR Case",
+        "HR Transitions",
+        "ISO Leadership",
+        "Leadership",
+        "Managers",
+        "SG - Legal",
+        "SG - jira-leadership-members",
+        "Technology"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "engineering",
+        "finance",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "13854acf-864d-4f77-8db2-ff77b04e482e",
+      "display_name": "Alex Duan [GA]",
+      "upn": "alex-a@dynamo.works",
+      "department": "Administrator",
+      "job_title": "Administrator",
+      "user_type": "Member",
+      "groups": [
+        "Cloud Adoption & Solution Engineering",
+        "SG - jira-leadership-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "97c3a31e-4706-4005-b793-cdd97060beea",
+      "display_name": "Alex Schneller",
+      "upn": "alex.schneller@dynamo.works",
+      "department": "Business Development",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "Dynamo Contracts Activity Status"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "39ff4252-9ce1-4aab-8e14-4ad5f42b5940",
+      "display_name": "Amanda LeMaire",
+      "upn": "Amanda.LeMaire@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Delivery Managers",
+        "Managers",
+        "USCG Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "e83aa32b-3c84-47da-b070-f840609e3b57",
+      "display_name": "Amy Williams",
+      "upn": "amy.williams@dynamo.works",
+      "department": "AFMC EPASS",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "3dea4cac-0cd7-49d0-aafb-80c3c9de478d",
+      "display_name": "Anh (Nicky) Nguyen",
+      "upn": "anh.nguyen@dynamo.works",
+      "department": "",
+      "job_title": "Accountant",
+      "user_type": "Member",
+      "groups": [
+        "Accounting",
+        "Contracts",
+        "Finance",
+        "SG - jira-accounting-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "finance"
+      ]
+    },
+    {
+      "user_id": "865db937-a5dc-4180-b24a-cbc220b58c2f",
+      "display_name": "Anthony Egbujor",
+      "upn": "anthony.egbujor@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "6c92268e-f9c9-44a7-b907-4ce92610fc3b",
+      "display_name": "Antonio Rodriguez-Long",
+      "upn": "antonio.rodriguezlong@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "38ade312-bd25-4540-b3b4-97d47702d5cf",
+      "display_name": "Ben Esser",
+      "upn": "benjamin.esser@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "Business Development - Archive DO NOT USE",
+        "Dynamo Contracts Activity Status"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "a81bbce3-d52e-48fd-a8ce-1d264bd743f2",
+      "display_name": "Benjamin Hyde",
+      "upn": "benjamin.hyde@dynamo.works",
+      "department": "USDA ARS NAL",
+      "job_title": "Practice Lead",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "HR Case",
+        "Technical CoE"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "b2d1d99e-f4c2-4492-a1a6-ab88532433a0",
+      "display_name": "Betsy Adams",
+      "upn": "betsy.adams@dynamo.works",
+      "department": "",
+      "job_title": "Principal Recruiter",
+      "user_type": "Member",
+      "groups": [
+        "Dynamo Recruiting Distro",
+        "Recruiting",
+        "SG - jira-recruiting-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "33eacd71-47e9-4cd8-b35e-5ebdbae141df",
+      "display_name": "Brent Yoder",
+      "upn": "brent.yoder@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "ea94898a-4e03-4c06-91a9-62e13442788c",
+      "display_name": "Brian Coons",
+      "upn": "brian.coons@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "fc609bf9-bf37-4a4b-ab26-9e5b03e0ce76",
+      "display_name": "Brittany Smolka",
+      "upn": "brittany.smolka@dynamo.works",
+      "department": "",
+      "job_title": "Senior Talent Acquisition and Services Manager",
+      "user_type": "Member",
+      "groups": [
+        "Dynamo Managers",
+        "Dynamo Recruiting Distro",
+        "Managers",
+        "Recruiting",
+        "SG - Women In Technology",
+        "SG - jira-recruiting-members",
+        "Security",
+        "Technology"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "ed90352c-a04d-4902-a788-ecc48ab037aa",
+      "display_name": "Brittany Westbrook",
+      "upn": "brittany.westbrook@dynamo.works",
+      "department": "Operations",
+      "job_title": "Senior Compliance Analyst",
+      "user_type": "Member",
+      "groups": [
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "Dynamo Contracts Activity Status",
+        "ISO Leadership"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "1d6bc50c-d9a9-4443-82c1-e6bc63b0c2e8",
+      "display_name": "Broderick Mayes",
+      "upn": "broderick.mayes@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Managers",
+        "USCG Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "ed55708e-ee70-45cb-90b5-b47dff379845",
+      "display_name": "Candice Kern",
+      "upn": "candice.kern@dynamo.works",
+      "department": "DHS ICE SEVP",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "04f0efda-33b5-49f2-ae4a-9f7fbc7d08e5",
+      "display_name": "Carl Mobley",
+      "upn": "carl.mobley@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "e26f2aab-c281-4e53-ad79-53a8830118ad",
+      "display_name": "Cathleen Ebner",
+      "upn": "cathleen.ebner@dynamo.works",
+      "department": "",
+      "job_title": "Vice President",
+      "user_type": "Member",
+      "groups": [
+        "BD Lessons Learned",
+        "Business Development",
+        "Business Development - Archive DO NOT USE",
+        "Cloud Adoption & Solution Engineering",
+        "Contracts",
+        "Delivery Managers",
+        "Dynamo Leadership",
+        "Dynamo Managers",
+        "ISO Leadership",
+        "Leadership",
+        "Managers",
+        "Recruiting",
+        "SG - Account Managers",
+        "SG - Women In Technology",
+        "SG - jira-leadership-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "engineering",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "ac63faa1-24e3-4dfe-8a3c-3c0024081e38",
+      "display_name": "Charolette Coffey",
+      "upn": "charolette.coffey@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Contracts",
+        "Contracts Team Initiatives 2025",
+        "Dynamo Contracts Activity Status",
+        "SG - Legal",
+        "SG - jira-contracts-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "006bb281-6606-4aa2-9f96-74358dbcb596",
+      "display_name": "Chloi Treadwell-Brooks",
+      "upn": "chloi.treadwell@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "f50ab17d-09d2-4618-b31c-da45e0a780a4",
+      "display_name": "Christopher Carlevato",
+      "upn": "Christopher.Carlevato@dynamo.works",
+      "department": "",
+      "job_title": "Practice Lead",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "02b04ec7-cc6b-403b-a65a-19aaf1605251",
+      "display_name": "Christopher Landers",
+      "upn": "christopher.landers@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Managers",
+        "USCG Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "d0e95809-cbe0-4913-8da1-fd0081b8024f",
+      "display_name": "Christopher West",
+      "upn": "christopher.west@dynamo.works",
+      "department": "USCG ALC SETS",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Managers",
+        "USCG Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "2f7a087a-6673-4b50-847a-28eed2fff2e3",
+      "display_name": "Connor Carson",
+      "upn": "connor.carson@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "481a6d90-7671-43a6-abc9-5f4478a3f185",
+      "display_name": "Daniel Rodrigues",
+      "upn": "Daniel.Rodrigues@dynamo.works",
+      "department": "USDA FS ADAS - ELMS",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "c3c26408-04a3-4954-8db4-723e51a039ae",
+      "display_name": "Danny McKeen",
+      "upn": "Norval.McKeen@dynamo.works",
+      "department": "Contracts",
+      "job_title": "Director of Contracts",
+      "user_type": "Member",
+      "groups": [
+        "Contracts",
+        "Contracts Team Initiatives",
+        "Contracts Team Initiatives 2025",
+        "Dynamo Contracts Activity Status",
+        "Leadership",
+        "Managers",
+        "SG - Legal",
+        "SG - jira-contracts-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "e402c71d-5069-4c0d-a591-d40728831838",
+      "display_name": "Danny Mendoza",
+      "upn": "daniel.mendoza@dynamo.works",
+      "department": "Information Technology",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "HR Transitions",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "c5841779-2b84-4eee-b9bb-509318062cb3",
+      "display_name": "Darren Koraganie",
+      "upn": "darren.koraganie@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Fed Civ Managers",
+        "HR CASE",
+        "HR Case",
+        "Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "engineering",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "af9ae3bd-912f-429e-8efd-baba2d682fad",
+      "display_name": "David 'DK' Kang",
+      "upn": "HiWoon.Kang@dynamo.works",
+      "department": "Leadership",
+      "job_title": "Executive Vice President",
+      "user_type": "Member",
+      "groups": [
+        "Leadership"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "963ede1c-6135-4501-af24-40b5ddc46f7d",
+      "display_name": "David Berget",
+      "upn": "david.berget@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "a93b7109-110c-435a-b025-6a19cbe13fea",
+      "display_name": "David Pack",
+      "upn": "david.pack@dynamo.works",
+      "department": "",
+      "job_title": "Controller",
+      "user_type": "Member",
+      "groups": [
+        "Accounting",
+        "Contracts",
+        "Dynamo Leadership",
+        "Dynamo Managers",
+        "Finance",
+        "ISO Leadership",
+        "Leadership",
+        "Managers",
+        "SG - jira-accounting-members",
+        "SG - jira-leadership-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "finance",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "b63d517f-b5cf-41cb-956d-7cf801b7adf8",
+      "display_name": "Dayton Williams",
+      "upn": "dayton.williams@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "8d43badd-f3e8-41ab-9b9a-8523e61cc7b4",
+      "display_name": "Dhara Mehta",
+      "upn": "dhara.mehta@dynamo.works",
+      "department": "Army Biometrics PMOSE",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers",
+        "SG - Women In Technology"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "ae805a67-969a-4907-b42a-a98f119c980e",
+      "display_name": "Dietrich Szustak",
+      "upn": "dietrich.szustak@dynamo.works",
+      "department": "USDA FS ADAS",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "f0af2f49-9877-4e66-90a2-442dc79b89d6",
+      "display_name": "Doran Yilla",
+      "upn": "doran.yilla@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "1ce32c8d-b784-43bd-a1c6-77b926842a21",
+      "display_name": "Elmo Jackson",
+      "upn": "elmo.jackson@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "780efa3e-f537-4f88-a5d4-d6ce2a352970",
+      "display_name": "Eric Eberl",
+      "upn": "eric.eberl@dynamo.works",
+      "department": "",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "329ba8f7-7f4a-44da-acb1-5999fcab23dc",
+      "display_name": "Eric Farnum",
+      "upn": "eric.farnum@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "e0884443-69ad-4ddb-ae29-76791110558f",
+      "display_name": "Eric Fetzer",
+      "upn": "eric.fetzer@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "c86e38e7-be98-4b86-a2cb-53bb30392680",
+      "display_name": "Eric Hong",
+      "upn": "eric.hong@dynamo.works",
+      "department": "EVP of Compliance",
+      "job_title": "Executive Vice President",
+      "user_type": "Member",
+      "groups": [
+        "Accounting",
+        "BD Lessons Learned",
+        "BD PROPOSAL TEST",
+        "BD Pipeline Test",
+        "Business Development - Archive DO NOT USE",
+        "Cloud Adoption & Solution Engineering",
+        "Contracts",
+        "Contracts Test",
+        "DG - Technical CoP",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Leadership",
+        "Dynamo Managers",
+        "Emerging Technology",
+        "ISO Leadership",
+        "Managers",
+        "Recruiting",
+        "SG - Legal",
+        "SG - jira-leadership-members",
+        "Security"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "engineering",
+        "finance",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "f0bf13ad-d538-4ec8-8bec-d8ce03e41ee7",
+      "display_name": "Eric Hong [GA]",
+      "upn": "eric-a@dynamo.works",
+      "department": "Administrator",
+      "job_title": "Administrator",
+      "user_type": "Member",
+      "groups": [
+        "SG - jira-leadership-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "848b2dd1-3a96-47cd-9e7b-ce35afd45ae3",
+      "display_name": "Evan Hopkins",
+      "upn": "evan.hopkins@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "64059f13-e95b-46c6-b170-3efa86c38612",
+      "display_name": "Gary Griffin",
+      "upn": "gary.griffin@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "Contracts",
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers",
+        "SG - Account Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "4e499a34-6be4-4fda-86b4-80468a9232d8",
+      "display_name": "Gerald Soucheray",
+      "upn": "gerald.soucheray@dynamo.works",
+      "department": "MECPL",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "c75a5871-ffe4-4500-b827-28d291c52ab9",
+      "display_name": "Glenn Andrews",
+      "upn": "glenn.andrews@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "3f4dda6d-a24f-42b8-b5c3-a61d7e0d1ce2",
+      "display_name": "Gregg Haneklau",
+      "upn": "gregg.haneklau@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "ee217911-54f6-4484-ac9f-9b8e38286d99",
+      "display_name": "Isaiah Mathis",
+      "upn": "isaiah.mathis@dynamo.works",
+      "department": "",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "f0abcc8c-8d1b-4706-bd94-753ad1fb4055",
+      "display_name": "James 'Anthony' Prince",
+      "upn": "james.prince@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "Delivery Managers",
+        "Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "bbc8c9ed-e0a4-4025-aa16-1d863c792381",
+      "display_name": "James Cipolloni",
+      "upn": "james.cipolloni@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "a5630de9-534b-4729-a257-1b2afe00006e",
+      "display_name": "James Kennedy",
+      "upn": "james.kennedy@dynamo.works",
+      "department": "USDA FS CIO ADAS",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "6f687928-c339-4f7d-a554-9240545c27a9",
+      "display_name": "Jared Gongloff",
+      "upn": "jared.gongloff@dynamo.works",
+      "department": "Army Biometrics PMOSE",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Managers",
+        "Technical CoE"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "f893e02b-7084-493f-8030-a07242c7db10",
+      "display_name": "Jeffrey Lawrence",
+      "upn": "jeffrey.lawrence@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "97b2a841-c1ec-412a-b201-d2690c1c089e",
+      "display_name": "Jennifer Franklin",
+      "upn": "jennifer.franklin@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "1de869e4-b537-49bc-9795-19d9152f0b21",
+      "display_name": "Jon Cote",
+      "upn": "jon.cote@dynamo.works",
+      "department": "Security",
+      "job_title": "Compliance and Security Specialist",
+      "user_type": "Member",
+      "groups": [
+        "SG - FSO Security Team",
+        "Security"
+      ],
+      "access_tags": [
+        "all-staff"
+      ]
+    },
+    {
+      "user_id": "e7d42838-8d0e-406c-80e0-62401eba0df5",
+      "display_name": "Jonathan Teitelbaum",
+      "upn": "jonathan.teitelbaum@dynamo.works",
+      "department": "Internal",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Fed Civ Managers",
+        "Managers",
+        "SG - Account Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "40389af4-33f5-4f0b-95be-7da06dccc458",
+      "display_name": "Jonathon Crosier",
+      "upn": "Jonathon.Crosier@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "Contracts",
+        "SG - FSO Security Team",
+        "Security"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "b78c1d57-be76-4c46-821c-5a2a2ff20152",
+      "display_name": "Joshua Stedham",
+      "upn": "joshua.stedham@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Dynamo Recruiting Distro",
+        "Recruiting"
+      ],
+      "access_tags": [
+        "all-staff",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "d665da1d-2ee4-4263-8354-8e71ffb94740",
+      "display_name": "Julene Amerson",
+      "upn": "julene.amerson@dynamo.works",
+      "department": "",
+      "job_title": "Deputy Program and Resource Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Fed Civ Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "d077040d-9041-40ff-baa9-5643f55f4f4e",
+      "display_name": "Justin Christoffersen",
+      "upn": "justin.christoffersen@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "095a991d-966f-42f7-bd7a-a936efa01cd1",
+      "display_name": "Katherine Bhat",
+      "upn": "katherine.bhat@dynamo.works",
+      "department": "",
+      "job_title": "Director of Human Resources",
+      "user_type": "Member",
+      "groups": [
+        "2025 TM & Recruiting Goals",
+        "Dynamo Leadership",
+        "ISO Leadership",
+        "Leadership",
+        "Managers",
+        "Recruiting",
+        "SG - jira-leadership-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "06511465-f447-4ee7-a4bf-90315bb01752",
+      "display_name": "Kathleen Maurer",
+      "upn": "kathleen.maurer@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "Business Development - Archive DO NOT USE"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture"
+      ]
+    },
+    {
+      "user_id": "b27fd5c0-81a2-4258-83fb-5a4c14fd4f37",
+      "display_name": "Ken Ohnishi",
+      "upn": "ken.ohnishi@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Dynamo Technology Community of Interest (COI)"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "cb3db81e-8d43-48a1-b0e8-3627f8a6a125",
+      "display_name": "Kevin Chard",
+      "upn": "kevin.chard@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "44b425fe-71d7-45c2-bd1e-651f023b2689",
+      "display_name": "Kevin Miller",
+      "upn": "kevin.miller@dynamo.works",
+      "department": "",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "b2c2def2-a570-4da0-807a-107781453788",
+      "display_name": "Kevin Schierholz",
+      "upn": "kevin.schierholz@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "650c7279-2bfb-4b76-82e8-b6ebc2b0e70c",
+      "display_name": "Kode Ebung",
+      "upn": "kode.ebung@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "b5c9a2e2-715d-40d9-8090-410f63cdbf34",
+      "display_name": "Laura Winn",
+      "upn": "laura.winn@dynamo.works",
+      "department": "",
+      "job_title": "Senior Accountant",
+      "user_type": "Member",
+      "groups": [
+        "Accounting",
+        "Finance",
+        "SG - jira-accounting-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "finance"
+      ]
+    },
+    {
+      "user_id": "26080b92-5003-4bf6-8680-e7d9c290a38c",
+      "display_name": "Lauren Shieh",
+      "upn": "lauren.shieh@dynamo.works",
+      "department": "",
+      "job_title": "Senior HR Operations Manager",
+      "user_type": "Member",
+      "groups": [
+        "Dynamo Leadership",
+        "Dynamo Managers",
+        "ISO Leadership",
+        "Leadership"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "5cacb0e4-f915-4bc8-98e1-3e6cc205c994",
+      "display_name": "Lena Ahad",
+      "upn": "lena.ahad@dynamo.works",
+      "department": "Internal",
+      "job_title": "Director of Strategy",
+      "user_type": "Member",
+      "groups": [
+        "BD Lessons Learned",
+        "Business Development",
+        "Business Development - Archive DO NOT USE",
+        "DG - Technical CoP",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Leadership",
+        "Dynamo Managers",
+        "ISO Leadership",
+        "Leadership",
+        "Recruiting",
+        "SG - jira-leadership-members",
+        "Technical CoE"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "engineering",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "5a45c6e2-84f6-4e91-aa13-2f432c0903fb",
+      "display_name": "Linda Martinez",
+      "upn": "herlinda.martinez@dynamo.works",
+      "department": "",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Accounting",
+        "SG - jira-accounting-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "finance"
+      ]
+    },
+    {
+      "user_id": "03c1b1b8-9765-4340-9aee-282043202c66",
+      "display_name": "Lynda Nugent",
+      "upn": "lynda.nugent@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "acea231f-bff0-4a2b-a90b-0392837d9166",
+      "display_name": "Mack McIntosh",
+      "upn": "Mark.McIntosh@dynamo.works",
+      "department": "Leadership",
+      "job_title": "Chief Growth Officer",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Leadership",
+        "ISO Leadership",
+        "Leadership",
+        "Managers",
+        "SG - jira-leadership-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "3857b4b0-1570-4bd5-9b35-6e938e853bea",
+      "display_name": "Mariana Iriarte",
+      "upn": "mariana.iriarte@dynamo.works",
+      "department": "",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "64325299-523f-4449-b8c6-a6c37a562190",
+      "display_name": "Mark Duffer",
+      "upn": "john.duffer@dynamo.works",
+      "department": "Information Technology",
+      "job_title": "Junior JIRA/SharePoint Developer",
+      "user_type": "Member",
+      "groups": [
+        "Contracts",
+        "Dynamo Contracts Activity Status",
+        "Technical CoE"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "c87280d9-0db9-44c1-8134-0b8fc292554d",
+      "display_name": "Mark Duffer [Admin]",
+      "upn": "john-a@dynamo.works",
+      "department": "Information Technology",
+      "job_title": "Administrator",
+      "user_type": "Member",
+      "groups": [
+        "Contracts"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "068602fd-640a-4b78-a2de-2e596640d042",
+      "display_name": "Matt Margolis",
+      "upn": "matt.margolis@dynamo.works",
+      "department": "",
+      "job_title": "",
+      "user_type": "Member",
+      "groups": [
+        "SG - Legal"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "68e33a48-85c0-4494-8186-59ba04bd4669",
+      "display_name": "Matthew Friedlander",
+      "upn": "matthew.friedlander@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "941feace-e390-4426-9f98-b276a3f0407c",
+      "display_name": "Matthew Plishker",
+      "upn": "matthew.plishker@dynamo.works",
+      "department": "",
+      "job_title": "COO",
+      "user_type": "Member",
+      "groups": [
+        "2025 TM & Recruiting Goals",
+        "BD Lessons Learned",
+        "Business Development",
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "Contracts Team Initiatives",
+        "Contracts Team Initiatives 2025",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Leadership",
+        "Dynamo Managers",
+        "Emerging Technology",
+        "ISO Leadership",
+        "Leadership",
+        "Managers",
+        "Recruiting",
+        "SG - Legal",
+        "SG - jira-leadership-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "engineering",
+        "hr",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "fb81db98-fbee-4873-8906-6288c1f30a9d",
+      "display_name": "McLain Wilkinson",
+      "upn": "mclain.wilkinson@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Managers",
+        "Technical CoE"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "83cb3e5c-896f-4d71-b15a-aa9b0cf0c4cd",
+      "display_name": "Megan Farris",
+      "upn": "megan.farris@dynamo.works",
+      "department": "Leadership",
+      "job_title": "Chief Strategy Officer",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "DG - Technical CoP",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Leadership",
+        "ISO Leadership",
+        "Leadership",
+        "Managers",
+        "SG - jira-leadership-members",
+        "Technical CoE"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "1194acb1-da35-4b02-8233-7c37147c2c2d",
+      "display_name": "Melanie Ellis",
+      "upn": "melanie.ellis@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "839394ab-c59d-49bc-8ddb-aa9e4fa2b23f",
+      "display_name": "Michael Hurley",
+      "upn": "michael.hurley@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "b6a16775-baa5-450f-a7bc-bce909e6674b",
+      "display_name": "Michael Perry",
+      "upn": "michael.perry@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "2444a942-2883-454f-83c2-c13e5d675419",
+      "display_name": "Michelle Apicella",
+      "upn": "michelle.apicella@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Fed Civ Managers",
+        "Managers",
+        "SG - Account Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "78ac28f9-1865-46f0-952c-0de24cdf2bd3",
+      "display_name": "Mingdeng Zhong",
+      "upn": "mingdeng.zhong@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "fb46c50f-4655-4804-8c59-7f49571d3040",
+      "display_name": "Myke Garrity",
+      "upn": "michael.garrity@dynamo.works",
+      "department": "Business Development",
+      "job_title": "Director of Capture and Business Development",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "Dynamo Contracts Activity Status",
+        "Leadership"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "514c8ffd-18b4-48ac-9174-505acf3a72e4",
+      "display_name": "Nathan Brewer",
+      "upn": "nathan.brewer@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "ae0adf8e-e403-49c1-888a-c3d79ff560d1",
+      "display_name": "Nathan Welch",
+      "upn": "nathan.welch@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "d5a97657-ddd0-4fa4-a87c-16abaec9a68b",
+      "display_name": "Nicolas Sam",
+      "upn": "nicolas.sam@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "HR CASE",
+        "HR Case"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "626cfa12-8f4d-4773-aed5-13de40d2705a",
+      "display_name": "Nicole Osborne",
+      "upn": "nicole.osborne@dynamo.works",
+      "department": "Business Development",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "DG - Technical CoP",
+        "Dynamo Contracts Activity Status"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "51e1009d-7720-45d2-8e20-01f692786fe8",
+      "display_name": "Nicole Wertz",
+      "upn": "nicole.wertz@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Delivery Managers",
+        "Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "393ccfd1-c2b6-4e8e-8193-33d933ca53ed",
+      "display_name": "Otai Harley",
+      "upn": "otai.harley@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "8a3b0702-a9fc-48bf-b28e-6d591531ad48",
+      "display_name": "Paul Hyland",
+      "upn": "paul.hyland@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "2d5470fe-9ca5-4cce-89b9-cb2b0951ee75",
+      "display_name": "Paula Pearcy",
+      "upn": "paula.pearcy@dynamo.works",
+      "department": "",
+      "job_title": "Senior Manager",
+      "user_type": "Member",
+      "groups": [
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Managers",
+        "SG - Account Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "4718db93-c6dd-452a-b40a-754b98321480",
+      "display_name": "Peter Baxter",
+      "upn": "peter.baxter@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "7e1b7ab8-b1d4-4124-b517-4aca79b2393a",
+      "display_name": "Rajitha Srinath",
+      "upn": "rajitha.srinath@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "428b5124-1734-4638-bf7b-cfbe138db2ff",
+      "display_name": "Randy Davis",
+      "upn": "randy.davis@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "454af674-a702-417f-a928-9bbbbc7c7daa",
+      "display_name": "Ronald Maroria",
+      "upn": "ronald.maroria@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "24be87ec-da96-4bd2-8b76-a030f3679883",
+      "display_name": "Samuel Ball",
+      "upn": "samuel.ball@dynamo.works",
+      "department": "",
+      "job_title": "Senior Security Analyst",
+      "user_type": "Member",
+      "groups": [
+        "Security"
+      ],
+      "access_tags": [
+        "all-staff"
+      ]
+    },
+    {
+      "user_id": "caba76de-1ff4-457d-8e2d-97f72d735b4e",
+      "display_name": "Schasle Bishoff",
+      "upn": "Schasle.Bishoff@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Managers",
+        "Fed Civ Managers",
+        "Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "0d844138-cef2-4c45-9116-1face1616e2d",
+      "display_name": "Shane Morris",
+      "upn": "shane.morris@dynamo.works",
+      "department": "IT",
+      "job_title": "Director",
+      "user_type": "Member",
+      "groups": [
+        "Contracts"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "70be3540-fc5b-4c2e-b96e-6d42c2d4bf4f",
+      "display_name": "Shawn Blackwelder",
+      "upn": "shawn.blackwelder@dynamo.works",
+      "department": "DHS USCIS OCFO FMPSS",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "610384f7-81ef-4896-ae9f-6f9e1aaebb35",
+      "display_name": "Stacy Beckner",
+      "upn": "stacy.beckner@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "b0adde69-f02d-44a8-8ae2-5a4697dbabf3",
+      "display_name": "Stefanie Iwami",
+      "upn": "stefanie.iwami@dynamo.works",
+      "department": "Internal",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "Dynamo Contracts Activity Status",
+        "SG - jira-contracts-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts"
+      ]
+    },
+    {
+      "user_id": "c8367b89-760c-4867-82ec-7c173fbb8794",
+      "display_name": "Stephany Choi",
+      "upn": "stephany.choi@dynamo.works",
+      "department": "",
+      "job_title": "Senior Manager",
+      "user_type": "Member",
+      "groups": [
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Managers",
+        "Managers",
+        "SG - Account Managers",
+        "SG - Women In Technology",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "827bc63f-07f2-463a-9efc-6fb08fd65b79",
+      "display_name": "Stephen Love",
+      "upn": "Stephen.Love@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "Business Development - Archive DO NOT USE",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Managers",
+        "SG - Account Managers",
+        "USCG Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "78cd5529-360d-4280-aadc-017bd93ca0b5",
+      "display_name": "Syed Rizvi",
+      "upn": "syed.rizvi@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "43c65ee6-aa39-49f3-89cc-c9e3af08714b",
+      "display_name": "Talent Management",
+      "upn": "human.resources@dynamotechnologies.com",
+      "department": "",
+      "job_title": "",
+      "user_type": "Member",
+      "groups": [
+        "HR Transitions"
+      ],
+      "access_tags": [
+        "all-staff",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "8b53cd5c-d63b-4c5a-9878-ae08f522b02d",
+      "display_name": "Thomas Ale",
+      "upn": "thomas.ale@dynamo.works",
+      "department": "Business Development",
+      "job_title": "Manager - Growth & Capture",
+      "user_type": "Member",
+      "groups": [
+        "Business Development",
+        "Business Development - Archive DO NOT USE",
+        "Dynamo Contracts Activity Status",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "4f040579-825f-46f0-bd1e-7edbfd7270f0",
+      "display_name": "Thornton Boyd",
+      "upn": "thornton.boyd@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "0b4af0fa-e301-4283-94e8-4c865de39a5b",
+      "display_name": "Timothy Thompson",
+      "upn": "timothy.thompson@dynamo.works",
+      "department": "",
+      "job_title": "Senior Manager",
+      "user_type": "Member",
+      "groups": [
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Managers",
+        "Fed Civ Managers",
+        "Managers",
+        "SG - Account Managers",
+        "USDA Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "c82d8602-ab67-40be-8cb2-ac3ec4765e6c",
+      "display_name": "Tipyan Abdelrahman",
+      "upn": "tipyan.abdelrahman@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "Accounting",
+        "Business Development - Archive DO NOT USE",
+        "Contracts",
+        "SG - jira-accounting-members"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "contracts",
+        "finance"
+      ]
+    },
+    {
+      "user_id": "c3fe6f17-24cd-45f8-af93-09419c6f78ba",
+      "display_name": "Tracy Tran",
+      "upn": "tracy.tran@dynamo.works",
+      "department": "USDA FS CIO ADAS",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "4ead2a6d-c4f9-4b26-9d42-98029f4d27b2",
+      "display_name": "Trevor Holliger",
+      "upn": "trevor.holliger@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "60008344-79a6-4176-8e5c-8631b0bea5d8",
+      "display_name": "Troy Halverson",
+      "upn": "troy.halverson@dynamo.works",
+      "department": "",
+      "job_title": "Senior Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "f6e16060-37cc-4aa3-ab91-1152ad9c0592",
+      "display_name": "Vivek Vick Taneja",
+      "upn": "vick@dynamo.works",
+      "department": "",
+      "job_title": "President",
+      "user_type": "Member",
+      "groups": [
+        "BD Lessons Learned",
+        "Business Development - Archive DO NOT USE",
+        "HRCASE Management"
+      ],
+      "access_tags": [
+        "all-staff",
+        "bd",
+        "capture",
+        "hr"
+      ]
+    },
+    {
+      "user_id": "8e5abbbe-ad7e-4c28-b380-7a7825921841",
+      "display_name": "William Frost",
+      "upn": "william.frost@dynamo.works",
+      "department": "",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DOD DHS LE Managers",
+        "Delivery Managers",
+        "Dynamo Contracts Activity Status",
+        "Dynamo Managers",
+        "Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "contracts",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "c456a8d2-78e5-4c11-8760-61548f8e75f9",
+      "display_name": "William Mills",
+      "upn": "william.mills@dynamo.works",
+      "department": "",
+      "job_title": "Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "ff3aa614-ec31-43c4-9bac-760575072f45",
+      "display_name": "Zachary Millhausen",
+      "upn": "zachary.millhausen@dynamo.works",
+      "department": "USCG",
+      "job_title": "Manager",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP",
+        "Delivery Managers",
+        "Managers",
+        "USCG Managers"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering",
+        "leadership"
+      ]
+    },
+    {
+      "user_id": "3bb79261-2936-4ddd-ba58-743efa5e69f6",
+      "display_name": "Zachary Schuster-Rocafort",
+      "upn": "Zachary.Schuster@dynamo.works",
+      "department": "",
+      "job_title": "Principal Consultant",
+      "user_type": "Member",
+      "groups": [
+        "DG - Technical CoP"
+      ],
+      "access_tags": [
+        "all-staff",
+        "engineering"
+      ]
+    },
+    {
+      "user_id": "f39590e8-ac85-4b45-84cc-6735d59dc2e5",
+      "display_name": "Zaheer Chaudhry",
+      "upn": "Zaheer.Chaudhry@dynamo.works",
+      "department": "Information Technology",
+      "job_title": "IT Support Specialist",
+      "user_type": "Member",
+      "groups": [
+        "HR Transitions"
+      ],
+      "access_tags": [
+        "all-staff",
+        "hr"
+      ]
+    }
+  ],
+  "unmapped_groups": [
+    {
+      "group_id": "00788e97-6a47-4715-9bd4-1cbe2a659cc2",
+      "group_name": "Dynamo Design Team",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Dynamo Design Team"
+    },
+    {
+      "group_id": "00d030bf-6094-480b-b61e-a24e51751f2a",
+      "group_name": "USDA-FS eMNEPA",
+      "group_type": "Unified",
+      "member_count": 11,
+      "description": "Client team supporting eMNEPA"
+    },
+    {
+      "group_id": "012f39ff-58db-49c1-9028-dd94d6dcc410",
+      "group_name": "SG - Power BI Pro",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "SG - Power BI Pro"
+    },
+    {
+      "group_id": "016a7114-917d-4b68-ba8e-bc8c74856d7b",
+      "group_name": "NRM",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "NRM"
+    },
+    {
+      "group_id": "016b8eb3-701a-4fe5-a684-27ea5943771a",
+      "group_name": "Dynamo_DMV_All",
+      "group_type": "Security",
+      "member_count": 20,
+      "description": ""
+    },
+    {
+      "group_id": "029147d7-0e8e-4139-9341-50b62c2fba43",
+      "group_name": "USDA FNS DWOMS -0849 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FNS DWOMS -0849 Ahad"
+    },
+    {
+      "group_id": "02f00408-abdd-4b8c-b36c-a74af3c91a7a",
+      "group_name": "SG - Microsoft 365 Visio Plan 1",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "0362c8bf-3a33-4ff7-b7db-37dacb73efe8",
+      "group_name": "GSA HCaTS 8aP2 IDIQ -0025 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "GSA HCaTS 8aP2 IDIQ -0025 Taneja"
+    },
+    {
+      "group_id": "03c67a5e-6364-4804-9910-c9bd1ba8ce96",
+      "group_name": "SG - Enclave GGCH Users",
+      "group_type": "Security",
+      "member_count": 6,
+      "description": ""
+    },
+    {
+      "group_id": "04108f49-e45a-4bad-b681-74c340644921",
+      "group_name": "Vick Auto-forwarding",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Vick Auto-forwarding"
+    },
+    {
+      "group_id": "048558e5-5441-426c-ba6c-680f99a44aac",
+      "group_name": "DIA SITE III IDIQ -0070 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "\"Solutions for the Information Technology\nEnterprise III (SITE III) to the Defense Intelligence Agen"
+    },
+    {
+      "group_id": "052f3e7a-970c-4a5e-a55c-3523d6089995",
+      "group_name": "Intranet",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Intranet"
+    },
+    {
+      "group_id": "05f65f38-bbc1-474d-8734-bbb7a9dfeb01",
+      "group_name": "DnsAdmins",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DNS Administrators Group"
+    },
+    {
+      "group_id": "07067a9b-fb73-492f-959e-7c4fc6fc74be",
+      "group_name": "OASIS SB P1 IDIQ -1042 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "OASIS SB P1 IDIQ -1042 Plishker"
+    },
+    {
+      "group_id": "07233a74-7550-4c1e-8c22-c10744536aa6",
+      "group_name": "SGWI",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "SGWI"
+    },
+    {
+      "group_id": "07ea5c18-5269-404b-b9ab-22c164541288",
+      "group_name": "USDA FS WSS -0006 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FS WSS -0006 Thompson"
+    },
+    {
+      "group_id": "09a107e6-4ca6-4424-9316-497e1873293a",
+      "group_name": "Supplier Management",
+      "group_type": "Unified",
+      "member_count": 12,
+      "description": "Supplier Management"
+    },
+    {
+      "group_id": "0a93fada-fe65-4c4a-b6c4-e8d033e9c04f",
+      "group_name": "Holokai",
+      "group_type": "Unified",
+      "member_count": 13,
+      "description": "Holokai"
+    },
+    {
+      "group_id": "0abfc229-82fe-408c-a150-f73fe6a4ad30",
+      "group_name": "SG - Atari CR Allowed",
+      "group_type": "Security",
+      "member_count": 17,
+      "description": "Security group for users that are allowed to book the Atari conference room."
+    },
+    {
+      "group_id": "0b210a7d-fb85-46a4-859f-f478c407ac7b",
+      "group_name": "DG - Auto-forward Allowed",
+      "group_type": "Security",
+      "member_count": 5,
+      "description": "DG - Auto-forward Allowed"
+    },
+    {
+      "group_id": "0c96a98c-ef88-458e-b5a5-73a639b49cc2",
+      "group_name": "Modern Workplace Devices-Windows Autopatch-First",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "First production ring for early adopters"
+    },
+    {
+      "group_id": "0cff60b9-e529-4511-873f-5105a91cd50a",
+      "group_name": "OASIS 8(a) P3 IDIQ -8303 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "OASIS 8(a) P3 IDIQ -8303 Plishker"
+    },
+    {
+      "group_id": "0d73b8cb-ebb4-4bad-98ed-c710092691c3",
+      "group_name": "USCG ALC SETS -0060 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG Aviation Logistics Center (ALC) Scientific, Engineering and Technical Services (SETS)"
+    },
+    {
+      "group_id": "0ddad150-65f6-417a-96b1-8a9ee121565a",
+      "group_name": "WHS PM",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "0e88cd6f-d606-4607-bc42-1a10b0e3cff2",
+      "group_name": "HHS HSPD12 PMO AMSS -0029 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "HHS HSPD-12 Program Management Office (PMO) Acquisition Management Support Services"
+    },
+    {
+      "group_id": "1068fa88-ac22-4ea6-810d-5bfed0650092",
+      "group_name": "SG - QMS Software Development Metrics",
+      "group_type": "Security",
+      "member_count": 8,
+      "description": "SG - QMS Software Development Metrics"
+    },
+    {
+      "group_id": "128b7b11-a3a3-456a-8900-348e382a0385",
+      "group_name": "INSCOMGroupDistro",
+      "group_type": "Unified",
+      "member_count": 10,
+      "description": "INSCOMGroupDistro"
+    },
+    {
+      "group_id": "12eb06cb-9a51-4a3b-b0b1-7446aaa72d0d",
+      "group_name": "Account Leads",
+      "group_type": "Security",
+      "member_count": 7,
+      "description": "Account Leads"
+    },
+    {
+      "group_id": "13d06ff0-6909-4aaa-af03-c46925a80bbd",
+      "group_name": "DSIAS",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "This is the project team for the DoS DSIAS Project. \n\nProject Manager - Frank Cinotti"
+    },
+    {
+      "group_id": "1472738e-27f4-4cc5-8b43-31c193f68c73",
+      "group_name": "ABOUT Us CDATDI",
+      "group_type": "Unified",
+      "member_count": 9,
+      "description": "Career Development & Advancement / Technology Development & Innovation Committee"
+    },
+    {
+      "group_id": "158a6a06-61cb-4a7e-93fe-7cabf95f0899",
+      "group_name": "USDA-FS NRM",
+      "group_type": "Unified",
+      "member_count": 6,
+      "description": "Natural Resource Management Business Unit"
+    },
+    {
+      "group_id": "158a7640-88c6-4cbe-b7e5-7baf6e785de8",
+      "group_name": "Operational Activities",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Operational Activities"
+    },
+    {
+      "group_id": "1648a38d-3626-417e-b136-b8193ad1377a",
+      "group_name": "HHS HSPD-12 Acquisition Support",
+      "group_type": "Unified",
+      "member_count": 6,
+      "description": "HHS HSPD-12 Acquisition Support"
+    },
+    {
+      "group_id": "16593bc4-a5f4-4fe0-80ea-eac8711683b8",
+      "group_name": "Drupal",
+      "group_type": "Unified",
+      "member_count": 12,
+      "description": "Team site for Drupal knowledge sharing among project teams at Dynamo."
+    },
+    {
+      "group_id": "16b023a8-8ab1-48cf-84e2-ac99cc8e442a",
+      "group_name": "USDA FS EOS -0114 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USDA FS EOS -0114 Bishoff"
+    },
+    {
+      "group_id": "171bc586-aed9-4f79-ad9c-cea089a3c707",
+      "group_name": "Change Control Board",
+      "group_type": "Unified",
+      "member_count": 6,
+      "description": "Change Control Board"
+    },
+    {
+      "group_id": "17bf1d48-246f-4d36-bdb0-16de39ebf9f5",
+      "group_name": "All Projects Distro",
+      "group_type": "Unified",
+      "member_count": 12,
+      "description": "All Projects Distro"
+    },
+    {
+      "group_id": "18697521-bd34-41d2-8d9e-7be7b3d27669",
+      "group_name": "USDA FS DAITSS BPA -0008 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FS DAITSS BPA -0008 Ahad"
+    },
+    {
+      "group_id": "18759d1b-cfad-4d2d-ac8f-ecf98517c9a8",
+      "group_name": "Windows Autopatch - Devices All",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "All Autopatch devices"
+    },
+    {
+      "group_id": "18c9e3f6-7115-446b-b5c5-dc97d52871e3",
+      "group_name": "Corporate Certifications",
+      "group_type": "Unified",
+      "member_count": 25,
+      "description": "Working folder for corporate certifications such as ISO 27001, 9001, and CMMI-Dev 3"
+    },
+    {
+      "group_id": "1966e013-ac9d-4aca-b4fa-7a8dd9689505",
+      "group_name": "Initiatives",
+      "group_type": "Unified",
+      "member_count": 14,
+      "description": "Repository/Working Folders for Dynamo Initiatives"
+    },
+    {
+      "group_id": "19887129-5a98-457c-9ebb-25f228341410",
+      "group_name": "USAF NC3 A&AS -0096 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF Nuclear Command, Control, Communications (NC3) Integration Directorate (NC), Air Force Nuclear "
+    },
+    {
+      "group_id": "1a1c5eba-09f6-45f9-baf8-2b1425f52ba4",
+      "group_name": "ADSyncOperators",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "ADSyncOperators"
+    },
+    {
+      "group_id": "1b3dc9f7-77e6-45a6-bd3d-42cc17c76754",
+      "group_name": "SG - Microsoft Power Automate Free",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "SG - Microsoft Power Automate Free"
+    },
+    {
+      "group_id": "1c551d76-d372-498b-b421-daffd6c1cd3d",
+      "group_name": "CFPB T&I EDA WASS -0005 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "CFPB Technology and Innovation (T&I) , Enterprise Data and Analytics Team (EDA), Web Analytics Suppo"
+    },
+    {
+      "group_id": "1cdc82ca-41ab-4339-9247-ed9ad05edec9",
+      "group_name": "PNT SETA",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Cool people's"
+    },
+    {
+      "group_id": "202be37d-4f01-4bda-9ef6-712b75279c37",
+      "group_name": "SG - Microsoft 365 Copilot",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "SG - Microsoft 365 Copilot"
+    },
+    {
+      "group_id": "21598f23-4178-49fa-8097-a77cb977368a",
+      "group_name": "DnsAdmins",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DNS Administrators Group"
+    },
+    {
+      "group_id": "21742c3a-ed62-413d-8e29-5c82d96e5554",
+      "group_name": "USDA FNS SOFA",
+      "group_type": "Security",
+      "member_count": 7,
+      "description": "USDA FNS SOFA"
+    },
+    {
+      "group_id": "21978fe7-6ed8-4b3a-92ea-3569d8c7660f",
+      "group_name": "GSA STARS III IDIQ -0636 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "GSA STARS III IDIQ -0636 Taneja"
+    },
+    {
+      "group_id": "259569de-9f34-43fe-b729-076fd6054d5e",
+      "group_name": "GSA OAITS MM -0009 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "GSA OAITS MM -0009 Manager"
+    },
+    {
+      "group_id": "25fce6f2-4dff-432d-b9fc-63f1cda8efe0",
+      "group_name": "SG - Microsoft 365 E3",
+      "group_type": "Security",
+      "member_count": 127,
+      "description": "Licensing group for Microsoft 365 E3"
+    },
+    {
+      "group_id": "26050d3d-d64e-4a8e-b77f-3c58bb174fbf",
+      "group_name": "SG - Microsoft 365 Visio Plan 2",
+      "group_type": "Security",
+      "member_count": 7,
+      "description": "Group for users that require Visio Plan 2."
+    },
+    {
+      "group_id": "27046211-2723-453d-9ece-b695a12631a5",
+      "group_name": "Virginia to Hawaii",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Keeping in touch via TEAMS!"
+    },
+    {
+      "group_id": "286ee793-c8f5-4056-aa48-ff0120d5d5f8",
+      "group_name": "SG - Enterprise Reader",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Global Reader permission"
+    },
+    {
+      "group_id": "2892dba5-2206-4c45-9e69-cbdf35165450",
+      "group_name": "Dynamo Resource Center",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Find useful information and materials relevant to Dynamo Team Members. Policies, procedures, templat"
+    },
+    {
+      "group_id": "28989635-9d96-4129-9561-71101d02c4fe",
+      "group_name": "CBP MSD",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "CBP MSD"
+    },
+    {
+      "group_id": "28e02f74-91e8-4f18-966b-6778d5344a56",
+      "group_name": "SG - Slack Users",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "SG - Slack Users"
+    },
+    {
+      "group_id": "28ff8ebd-a8c4-4c1c-a282-700e11fdce11",
+      "group_name": "SG - Microsoft 365 E3 Developer",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "Developer license"
+    },
+    {
+      "group_id": "295417c0-03cc-424f-9466-464e7efadce3",
+      "group_name": "USDA FNS DSS -0813 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FNS DSS -0813"
+    },
+    {
+      "group_id": "2a30b345-fd3d-41d0-a952-809644fe97d6",
+      "group_name": "CPARS",
+      "group_type": "Security",
+      "member_count": 9,
+      "description": "CPARS"
+    },
+    {
+      "group_id": "2a97a1e6-a267-4b9c-bafd-913b5ffba2c3",
+      "group_name": "DOT-FRA-Grants-Management-Project",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "DOT-FRA-Grants-Management-Project"
+    },
+    {
+      "group_id": "2af6b3b8-dced-4086-abd9-57bc7cbb8e23",
+      "group_name": "Invoices",
+      "group_type": "Unified",
+      "member_count": 6,
+      "description": "Invoices"
+    },
+    {
+      "group_id": "2d0cf0ee-957f-4100-9c6a-6e78dee2f0be",
+      "group_name": "Dhara - Project Management Taskings",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Dhara - Project Management Taskings"
+    },
+    {
+      "group_id": "2d599035-b895-4d7d-98ce-fcc57f414c36",
+      "group_name": "FPISC ICF SCS - 0208 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "FPISC ICF SCS - 0208 Manager"
+    },
+    {
+      "group_id": "2d9dcc3b-7adc-41ec-87ec-dd61316710ed",
+      "group_name": "DLA PEO JETS 2.0 -0021",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DLA PEO JETS 2.0 -0021"
+    },
+    {
+      "group_id": "2e7691c9-12e1-47f7-939a-13c83fbee342",
+      "group_name": "USSF PEX DBEs",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "USSF PEX DBEs"
+    },
+    {
+      "group_id": "301668ee-a822-49eb-bd7c-8fba85e17762",
+      "group_name": "EPASS 74",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "EPASS 74"
+    },
+    {
+      "group_id": "302888a8-7dc1-4377-801d-f6c1d4f97677",
+      "group_name": "USDA ARS WMD - 0332 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA ARS WMD - 0332 Manager"
+    },
+    {
+      "group_id": "33116294-0c95-4cd1-8ed2-4853a5c99e73",
+      "group_name": "SG - Power BI Publish",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Allow Publish to Web permission within the Power BI Admin Portal."
+    },
+    {
+      "group_id": "33b54aeb-3a47-4228-a546-9e3b7d02b70c",
+      "group_name": "Dynamo GSA Schedules",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "36394eae-28a0-450f-abc1-6004c7ad146f",
+      "group_name": "USDA FS RITS -0158 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USDA FS RITS -0158 Bishoff"
+    },
+    {
+      "group_id": "36704539-88e9-4298-a888-8ef1f4532cf2",
+      "group_name": "Payroll",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Payroll"
+    },
+    {
+      "group_id": "3675eeef-4b85-491a-b7d5-dfc9042887d3",
+      "group_name": "Partnerships",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "partnerships@dynamo.works"
+    },
+    {
+      "group_id": "37305265-3a4d-49ef-be3c-1f9b84745196",
+      "group_name": "SG - All Dynamo Contractors",
+      "group_type": "DynamicMembership",
+      "member_count": 11,
+      "description": ""
+    },
+    {
+      "group_id": "3857b2f6-8aa7-4b82-b7d5-c9254f41aa1c",
+      "group_name": "Army PM PNT SETA -0058 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "\"United States Army Project Manager Positioning Navigation and Timing (PM PNT)\nSystems Engineering a"
+    },
+    {
+      "group_id": "3862c6a8-5bb2-45d6-a7a2-83432cf3f0b2",
+      "group_name": "Tanzania list",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Tanzania list"
+    },
+    {
+      "group_id": "38f9e0e0-2f3e-4ab0-981a-6446ba7ad431",
+      "group_name": "SG - Microsoft Purview Admin",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": ""
+    },
+    {
+      "group_id": "3ad9268f-7e5b-4083-9306-9e794a53c27f",
+      "group_name": "HHS-ATM",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "HHS-ATM"
+    },
+    {
+      "group_id": "3be66267-495c-4100-a878-37a426cf07dd",
+      "group_name": "USDA BPA DAITSS",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "USDA BPA DAITSS"
+    },
+    {
+      "group_id": "3bea5dcf-df12-4399-b105-df91c04ae6ed",
+      "group_name": "USSF SpOC CMR PEX -0018 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "United State Space Force (USSF) Space Operations Command (SpOC) Combat Mission Ready (CMR) Patriot E"
+    },
+    {
+      "group_id": "3c53765c-e887-460a-8b72-7c3c5da71d15",
+      "group_name": "OASIS",
+      "group_type": "Unified",
+      "member_count": 13,
+      "description": "OASIS Pursuits"
+    },
+    {
+      "group_id": "3da40ff4-ddad-4f36-af17-87b1bbec7c46",
+      "group_name": "USDA NRM ITSS - Contractors",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "3dd9ae2e-464d-453c-9890-068a39089ea3",
+      "group_name": "USAF SpOC-2 CFSCC -0003 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF SpOC-2 CFSCC -0003 Manager"
+    },
+    {
+      "group_id": "3ec27832-bdac-402e-bd5f-9410d21d07c0",
+      "group_name": "Health & Wellness",
+      "group_type": "Unified",
+      "member_count": 10,
+      "description": "This space is dedicated to the ABOUT Us Health & Wellness committee, which promotes holistic wellnes"
+    },
+    {
+      "group_id": "3eefa9e7-7fee-48c3-94a7-65da1c7b3f67",
+      "group_name": "DOS CISO PMOSS -1571 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "DOS CISO PMOSS -1571 Amerson"
+    },
+    {
+      "group_id": "3f5a7b95-ec3f-4083-9b8f-6bd6ff62be74",
+      "group_name": "SG - Intune Administrator",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": ""
+    },
+    {
+      "group_id": "3f9bf522-1725-4be8-886c-110c6019f19a",
+      "group_name": "DOS Data Analytics Orals Team",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Team Prep for 10/11/2022 Orals Presentation"
+    },
+    {
+      "group_id": "4036ae88-aad8-434a-8bad-9960b4024aa4",
+      "group_name": "COP - Cloud and Infrastructure",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Infrastructure-as-a-Service (IaaS), VMware and traditional phsyical hardware through operating syste"
+    },
+    {
+      "group_id": "415a0d4f-2988-4ac3-a67a-9e772885fd16",
+      "group_name": "Social Media-PR",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "Social Media-PR"
+    },
+    {
+      "group_id": "41eb72c4-7e97-42e6-b2bb-c9f610737867",
+      "group_name": "Design Team",
+      "group_type": "Unified",
+      "member_count": 9,
+      "description": "Design Team"
+    },
+    {
+      "group_id": "43070033-d270-4f56-b6f2-418b3ec628d1",
+      "group_name": "USDA OCIO PMSS -0303 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA OCIO PMO -0303\nUSDA OCIO PMSS -0303"
+    },
+    {
+      "group_id": "432d624f-2809-4d82-9110-7cdd89a44a4f",
+      "group_name": "SG - SharePoint Administrator",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": ""
+    },
+    {
+      "group_id": "436021a8-8ea9-42b1-92a5-0c34ff676a27",
+      "group_name": "Dynamo Office Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "43e6a60d-f1bd-49fb-9d52-9e777e6ff6b2",
+      "group_name": "USAF ACC A2 ATAS -0042",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF ACC A2 ATAS -0042"
+    },
+    {
+      "group_id": "46016510-e64e-4677-9736-0778b094b773",
+      "group_name": "Dynamo DISA Encore III",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "4737ea82-2521-48a4-a74d-fc4925de9bf5",
+      "group_name": "USDA FS ADAS -0176 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FS ADAS -0176 Choi"
+    },
+    {
+      "group_id": "497db628-7dba-42a7-a934-09c2c54f0c66",
+      "group_name": "Modern Workplace Devices-Windows Autopatch-Test",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Immediate ring for device rollout"
+    },
+    {
+      "group_id": "49d0f14a-00f7-441e-9495-b97e22224a3e",
+      "group_name": "LGP Management",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "LGP Management"
+    },
+    {
+      "group_id": "4adfb2e2-e163-4a28-b6ab-be7b17bdcd0c",
+      "group_name": "Projects",
+      "group_type": "Unified",
+      "member_count": 26,
+      "description": "Projects"
+    },
+    {
+      "group_id": "4be8e369-b450-4a5e-918b-406bb352fb10",
+      "group_name": "Parker Planner",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Parker Planner"
+    },
+    {
+      "group_id": "4c7ce419-28cc-452f-8364-fdb52236f2ad",
+      "group_name": "Federal Rail Road Project",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "This site will be used for team collaboration"
+    },
+    {
+      "group_id": "4d6927e1-5df3-48cf-9b05-b15a23b75414",
+      "group_name": "AAD DC Administrators",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "Azure AD Domain Services administrator group"
+    },
+    {
+      "group_id": "4ddf2e1b-423b-44a9-ac7b-f9fcd618ef8d",
+      "group_name": "USCG CG731 DPMSS -0005 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG Office of Boat Forces (CG-731) Document Preparation and Modification Support Services"
+    },
+    {
+      "group_id": "4e708f9a-6b7c-4710-8863-ee52e47d5c07",
+      "group_name": "Delivery & Operations",
+      "group_type": "Unified",
+      "member_count": 19,
+      "description": "Collaboration for Operations and Delivery"
+    },
+    {
+      "group_id": "4e8a3709-a5d7-4e37-933c-1e71fdb09c69",
+      "group_name": "USDA WIC DIGITAL SERVICE BPA RFI....",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "USDA WIC DIGITAL SERVICE BPA RFI...."
+    },
+    {
+      "group_id": "4f7ae19a-9f8d-4034-838f-4b6484641c80",
+      "group_name": "Pricing",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Pricing"
+    },
+    {
+      "group_id": "4ffea9f5-08d3-4f9f-b09a-933673efaad1",
+      "group_name": "NGB DBE-TTX PSS -3304 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Chief, National Guard Bureau (NGB), Discussion Based Exercise (DBE) and Tabletop Exercise (TTX) Prog"
+    },
+    {
+      "group_id": "50489cd5-f9ef-4b81-a240-af8157b30567",
+      "group_name": "Proposals",
+      "group_type": "Security",
+      "member_count": 17,
+      "description": "A rule in place to forward emails coming to proposals@dynamo.works to users requested."
+    },
+    {
+      "group_id": "508a0b2a-d7f4-47dc-98a5-426a222c3048",
+      "group_name": "HHSTest",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "HHS Test Site"
+    },
+    {
+      "group_id": "50e2325b-ecc3-4bf9-83a1-7cd9bd8fe7ba",
+      "group_name": "SG - Exchange Administrator",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Security group for Group Admins. Groups and Users admin permission."
+    },
+    {
+      "group_id": "50eac6a3-e8b2-4fe2-84dc-c0f58afbbfc1",
+      "group_name": "Dynamo IT Admins",
+      "group_type": "Security",
+      "member_count": 6,
+      "description": ""
+    },
+    {
+      "group_id": "50eaf5cd-4b87-4956-8245-d2552481b3bb",
+      "group_name": "SG - Microsoft 365 F3",
+      "group_type": "Security",
+      "member_count": 186,
+      "description": "Group for users that require an F3 license."
+    },
+    {
+      "group_id": "516ce2f8-d96a-451c-95ec-8c77ce9a1b4d",
+      "group_name": "Internal Initiatives",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "The purpose of this team is to store data related to delivery-driven internal initiatives."
+    },
+    {
+      "group_id": "51d7bca5-ba56-40a0-a492-33d1b0ac7cbf",
+      "group_name": "Program Management Communities of Practice",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Dynamo Communities of Practice aligned to Program Management core capabilities and solution offering"
+    },
+    {
+      "group_id": "5249da67-9109-4787-b824-1474802f4451",
+      "group_name": "USGS WMA UFDCA TO3",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "USGS WMA UFDCA TO3"
+    },
+    {
+      "group_id": "52bc8a81-9467-4f01-9b12-a4944bc4c0a8",
+      "group_name": "USCG FOIA",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "USCG FOIA"
+    },
+    {
+      "group_id": "531a1ed3-e409-4182-9c3a-f197ae8ac6a8",
+      "group_name": "USDA NRM",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Discussions pertaining to USDA FS NRM project performance and new pursuits!"
+    },
+    {
+      "group_id": "53d8abe5-319e-419f-a838-0b3cd9389e3f",
+      "group_name": "USCG SFLC MECPL EC -0031 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG Surface Logistics Center (SFLC) Medium Endurance Cutter Product Line (MECPL) Engineering Change"
+    },
+    {
+      "group_id": "5671aaea-88a5-4905-b3d8-5fcd9ae31b77",
+      "group_name": "USCIS Taskings",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "USCIS Taskings"
+    },
+    {
+      "group_id": "56f41e13-f408-4a8c-a595-84cc6600ebca",
+      "group_name": "ADSyncPasswordSet",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "ADSyncPasswordSet"
+    },
+    {
+      "group_id": "57a32b3d-b535-4b58-abe9-32669c3a77cc",
+      "group_name": "HHS ZTA PMO SS -0028 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "HHS ZTA PMO SS -0028 Manager"
+    },
+    {
+      "group_id": "57e5b30d-034a-41c5-9427-144f2680fbf6",
+      "group_name": "USGS WMA SDS IDIQ -0008 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "United States Geological Survey (USGS), Water Mission Area (WMA) Software Development Services (SDS)"
+    },
+    {
+      "group_id": "582f203d-7e87-459d-ba96-7bc49444d1a1",
+      "group_name": "UniversalPrint_43ce7c06-cae8-471f-9ad7-33045297eec0",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DO NOT MODIFY! Universal Print managed security group. Please see documentation for further details."
+    },
+    {
+      "group_id": "5830d23a-fc45-4e59-901c-01b5b2f6c499",
+      "group_name": "Project Sharepoint",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Project Sharepoint"
+    },
+    {
+      "group_id": "589a2a6c-cfd3-4c1c-a822-8b916bce38ef",
+      "group_name": "USGS WMA TO3",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "USGS WMA TO3"
+    },
+    {
+      "group_id": "593b0f66-9426-4b4f-bbeb-b23d6adaeb6b",
+      "group_name": "Paramaribo",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Paramaribo"
+    },
+    {
+      "group_id": "59937991-41f8-4dce-b8bb-e821962a3a76",
+      "group_name": "ADSyncAdmins",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "ADSyncAdmins"
+    },
+    {
+      "group_id": "5a485468-2515-4a86-a855-499cd04d4b9d",
+      "group_name": "Courier Services",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "5b0a583f-bbfe-4790-9d6a-cbc469311965",
+      "group_name": "USAF AFSC",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "USAF AFSC"
+    },
+    {
+      "group_id": "5d333c36-23b1-48da-a633-6ba22742a9e0",
+      "group_name": "SP - Knowledge Mgmt Page",
+      "group_type": "Security",
+      "member_count": 5,
+      "description": "SP - Knowledge Mgmt Page"
+    },
+    {
+      "group_id": "5f47c26a-63cd-4e8f-b27e-e17d78a82fc4",
+      "group_name": "CAPE",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "CAPE"
+    },
+    {
+      "group_id": "5f7ca62e-38b0-4a0b-b8b2-a6c65dcc5661",
+      "group_name": "SG - jira-admins",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": ""
+    },
+    {
+      "group_id": "5ffaa7f7-5bd3-496e-893f-85bd92faf2f5",
+      "group_name": "USGS WMA UFDCA TO2 -0213 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USGS Water Mission Area (WMA), National Water Information System (NWIS), Unified Field Data Collecti"
+    },
+    {
+      "group_id": "60e530cf-a69a-4a06-ae71-c1bc5bbf0f47",
+      "group_name": "Dynamo-AlphaOmega-DAITSS",
+      "group_type": "Security",
+      "member_count": 11,
+      "description": ""
+    },
+    {
+      "group_id": "6109c4e8-5fa7-4358-b87b-698b110c5a91",
+      "group_name": "SG - Entra Local Admin",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "613b7b99-8672-48b0-b1a6-6a9c7c06d7f9",
+      "group_name": "Corporate",
+      "group_type": "Unified",
+      "member_count": 15,
+      "description": "Corporate"
+    },
+    {
+      "group_id": "625d2345-1bb8-48c3-9699-4634665ab819",
+      "group_name": "SG - Microsoft 365 Project & Planner 3",
+      "group_type": "Security",
+      "member_count": 7,
+      "description": "Group for users that require Project & Planner Plan 3."
+    },
+    {
+      "group_id": "630331d8-a589-44c6-ae44-be9d39c3db96",
+      "group_name": "ISO Library",
+      "group_type": "Unified",
+      "member_count": 6,
+      "description": "Provide latest versions of ISO documents"
+    },
+    {
+      "group_id": "63320918-3781-4e45-bdb8-6ae9a09119e2",
+      "group_name": "JETS2",
+      "group_type": "Security",
+      "member_count": 13,
+      "description": "JETS2"
+    },
+    {
+      "group_id": "63d9c624-e753-41e4-a179-a4d54db44991",
+      "group_name": "VSxDynamo",
+      "group_type": "Unified",
+      "member_count": 21,
+      "description": "Group for integration planning and calendar sync."
+    },
+    {
+      "group_id": "63ebae85-dcd3-4797-b397-b41e4cbe17ac",
+      "group_name": "SG - Microsoft Power Automate Premium",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "SG - Microsoft Power Automate Premium"
+    },
+    {
+      "group_id": "64d4d190-b315-46e6-9b31-430ef3aa2f7d",
+      "group_name": "Timesheets",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "64e32444-6485-43a9-86d2-5450ad261a9b",
+      "group_name": "COP - Program and Project Management",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Dynamo Program and Project Management Capability and Solution Team"
+    },
+    {
+      "group_id": "65616647-9b5f-46ee-a448-bf1d91a8ad25",
+      "group_name": "Army PMOSE-0010 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "Army PMOSE-0010 Manager"
+    },
+    {
+      "group_id": "65c3ca64-fe49-4f56-bf41-b1e626181708",
+      "group_name": "FBI CIRG NVLP -1080 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "FBI CIRG/Counter Improvised Explosive Devices (C-IEDS) Vehicle and Property Management Support Servi"
+    },
+    {
+      "group_id": "668b59c7-c913-4dc1-9d1e-b47b38fc1ca9",
+      "group_name": "INSCOM-CDS team",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "Resources pertinent to the team"
+    },
+    {
+      "group_id": "678ea22f-c4ef-4d42-98f6-881294696689",
+      "group_name": "USDA ARS ITSD WMS -0082 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA ARS ITSD WMS -0082 Ahad"
+    },
+    {
+      "group_id": "67a7e16a-051e-4e38-a520-9f3e969c5891",
+      "group_name": "PEX Support",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "PEX Support"
+    },
+    {
+      "group_id": "6a7b9f08-b9ce-4abd-b876-9e2776033fea",
+      "group_name": "USDA FNS FBG WTMA -0001 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FNS FBG WTMA -0001 Ahad"
+    },
+    {
+      "group_id": "6af07959-b410-41f9-aba0-e7bc388625d5",
+      "group_name": "SG - Proposal-SME",
+      "group_type": "Security",
+      "member_count": 5,
+      "description": "Proposal-SME"
+    },
+    {
+      "group_id": "6b060ee4-9d76-4ba9-9246-482099678c67",
+      "group_name": "Dynamo Committees",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Dynamo Committees"
+    },
+    {
+      "group_id": "6b084053-ec64-415a-855e-905ef6161da4",
+      "group_name": "FNS Websites Migration",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "All of our resources are located here. We can keep track of our tasks, work together, share knowledg"
+    },
+    {
+      "group_id": "6b2feae4-0409-4c77-83c5-7eb751773926",
+      "group_name": "USDA FNS ITSS -0507 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USDA FNS ITSS -0507 Choi"
+    },
+    {
+      "group_id": "6d665a6e-4c90-49e7-96ed-3ebc47a2c9d4",
+      "group_name": "Dynamo SBA Alliant 2",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "6d97a911-4de4-435d-aa28-b2a40f418acf",
+      "group_name": "RCA",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "RCA"
+    },
+    {
+      "group_id": "6e080f72-3e70-45a7-a017-341802280396",
+      "group_name": "Steven PM Role",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Steven PM Role"
+    },
+    {
+      "group_id": "6e4b2ef2-0340-4fcc-845e-b3cebfe0fa63",
+      "group_name": "USDA Manager Account - All",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "6f09ad0f-561e-4869-b04c-bad6169b6afb",
+      "group_name": "Dept. of State DSIAS Support Services - Management",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Management folder for DSIAS Support Services"
+    },
+    {
+      "group_id": "6f52921c-d813-4cfb-a15c-10075ccc684b",
+      "group_name": "USAF AFSC LG",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Incumbent capture"
+    },
+    {
+      "group_id": "701b6623-b91b-47e8-be7c-a4b966375118",
+      "group_name": "USDA FAS EAS-0644 -Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USDA FAS EAS-0644"
+    },
+    {
+      "group_id": "707b4b38-c618-4bda-a942-9d621b38c623",
+      "group_name": "DOS CISO Project",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "DOS CISO Project"
+    },
+    {
+      "group_id": "70d95ecd-92d3-4c9d-b6a7-567157557ac5",
+      "group_name": "USAF FTOS2 -0103 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF FTOS2 -0103 Manager"
+    },
+    {
+      "group_id": "715818d4-8e3f-4c18-a5b2-ef12de07dc0b",
+      "group_name": "TM-Administrator",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "71671c36-fc22-4047-81c9-4b0dee62ab2c",
+      "group_name": "USDA FNS PMO IT -0329 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FNS PMO IT -0329 Ahad"
+    },
+    {
+      "group_id": "718236a1-fea8-4bee-af74-345e2aec7bcd",
+      "group_name": "STARS2",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "71b4f6ca-d8af-4ef2-87d8-6acef33b91e7",
+      "group_name": "USDA FS WFS -0409 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USDA FS WFS -0409 Ahad"
+    },
+    {
+      "group_id": "726f22c7-8d0b-4820-9047-7c3e0db058ed",
+      "group_name": "SG - All Dynamo Users",
+      "group_type": "DynamicMembership",
+      "member_count": 377,
+      "description": ""
+    },
+    {
+      "group_id": "72db43ef-60de-494f-b33c-5b7e2b85ecc9",
+      "group_name": "NOAA NMITS BPA -0064C Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "NOAA NMITS BPA -0064 Taneja"
+    },
+    {
+      "group_id": "741857b2-0c8a-4eca-a0fb-2824ddbfcbb0",
+      "group_name": "DnsUpdateProxy",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DNS clients who are permitted to perform dynamic updates on behalf of some other clients (such as DH"
+    },
+    {
+      "group_id": "75f71b48-b252-43fa-aac7-b2f86d0f047a",
+      "group_name": "NRM ITSS (12318718F0254)",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "NRM ITSS Project"
+    },
+    {
+      "group_id": "762c8cd9-c55e-425f-9ded-b0a4dc7062cb",
+      "group_name": "DOD NGA CLOVER IDIQ -0009 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "National Geospatial-Intelligence Agency (NGA) CLOVER, Total Lifecycle Acquisition Management, Strate"
+    },
+    {
+      "group_id": "76bb1583-d0e8-4d3e-bc91-ce1114b84d88",
+      "group_name": "SG - jira-it-members",
+      "group_type": "Security",
+      "member_count": 7,
+      "description": ""
+    },
+    {
+      "group_id": "76dc473e-8b0c-42a6-ad94-f9523221801f",
+      "group_name": "WFS Development",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Channel for AOI<->Dynamo discussions."
+    },
+    {
+      "group_id": "77c097cd-d64e-4b27-8cde-aa4554b01215",
+      "group_name": "TM Department Meetings",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "TM Department Meetings"
+    },
+    {
+      "group_id": "785490b8-2d77-4ebb-b3b9-8275bd0be353",
+      "group_name": "USDA FS eMNEPA -0090 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USDA FS eMNEPA -0090 Bishoff"
+    },
+    {
+      "group_id": "7938c5de-d082-4315-a69d-8ca8c071ad95",
+      "group_name": "USAF AFMC EPASS67 -0001 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Headquarters Air Force Materiel Command, Engineering, Professional and Administrative Support Servic"
+    },
+    {
+      "group_id": "7964c4f9-bc63-4dce-bf8f-03a2ef428851",
+      "group_name": "SG - Microsoft Fabric Free",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": ""
+    },
+    {
+      "group_id": "7bf33a10-ddae-469a-a396-75749f6f0a7e",
+      "group_name": "DMV Dynamo Team Only",
+      "group_type": "Security",
+      "member_count": 56,
+      "description": "Happy hour evite invitation from Dynamo Technologies"
+    },
+    {
+      "group_id": "7caffa0c-5354-4873-9f7b-c340d3e3c5fa",
+      "group_name": "Dynamo Intranet",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "For Sharepoint"
+    },
+    {
+      "group_id": "7dc8f8ba-e0a5-42d1-b17b-375cbdb83781",
+      "group_name": "Mark's Sandbox/POC site",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Site for Mark to create proofs and test SharePoint Capabilities"
+    },
+    {
+      "group_id": "7f3afcd7-5b39-46ea-a4ae-78b0c0f4e481",
+      "group_name": "USDA Ninjas",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "USDA Ninjas"
+    },
+    {
+      "group_id": "7f4654e2-bfc7-493b-9f86-672dbe75aaa4",
+      "group_name": "Building Access",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Danielle Ticket IT-1092"
+    },
+    {
+      "group_id": "7fb5f362-d19f-404c-ae99-677a4cf56d2c",
+      "group_name": "USDA FS CIO Web Services Support (WSS)",
+      "group_type": "Unified",
+      "member_count": 8,
+      "description": "Manage tasks, share documents, conduct project meetings and document risks and decisions with this t"
+    },
+    {
+      "group_id": "801772bf-27d6-47cf-8d02-ec21860dca02",
+      "group_name": "FPISC ICF WDS -6251 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "FPISC ICF WDS -6251 Manager"
+    },
+    {
+      "group_id": "8152a591-23d7-41f4-a927-511317166779",
+      "group_name": "USCG ALC SETS -0039 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USCG ALC SETS -0039 Manager"
+    },
+    {
+      "group_id": "82a08992-a686-4526-ad24-c91c3900eb4c",
+      "group_name": "DHS ICE SEVP POSS -0019 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "DHS ICE SEVP POSS -0019"
+    },
+    {
+      "group_id": "82e13757-7cff-46f2-a3cf-d5d7aed11b08",
+      "group_name": "Master Tracker",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Master Tracker"
+    },
+    {
+      "group_id": "83d1f3f2-0bdf-44ca-8a29-6ce556dd8ac2",
+      "group_name": "SG - Perplexity Users",
+      "group_type": "Security",
+      "member_count": 22,
+      "description": "Security Group for Perplexity users."
+    },
+    {
+      "group_id": "8472d680-f121-437a-976f-7d2bd3eb45a5",
+      "group_name": "Department Notification",
+      "group_type": "Security",
+      "member_count": 5,
+      "description": "New hires and departures department notifications distro group."
+    },
+    {
+      "group_id": "84bd527f-98d2-475d-800b-398b716daf8d",
+      "group_name": "SG - Intune Autopilot Devices",
+      "group_type": "DynamicMembership",
+      "member_count": 102,
+      "description": "Group for devices registered during Autopilot process."
+    },
+    {
+      "group_id": "8549ab16-bb43-4ec9-b9bd-7e366b17b16d",
+      "group_name": "USDA FNS FBG IWT -0001 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USDA FNS Operations, Maintenance, and Enhancements Food Buying Guide (FBG) Interactive Web Tool and "
+    },
+    {
+      "group_id": "855a86dc-57a1-4b0d-9b39-bc5a4488e835",
+      "group_name": "DHS CBP MSD -1086 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "\"Department of Homeland Security (DHS) U.S. Customs and Border Protection (CBP) Mission Support Dire"
+    },
+    {
+      "group_id": "8606cf8e-5b12-40d7-92fa-2d28c389dd9f",
+      "group_name": "USDA FS ADAS",
+      "group_type": "Unified",
+      "member_count": 12,
+      "description": "Team collaboration site for the USDA FS Application Development Application Services (ADAS) Support "
+    },
+    {
+      "group_id": "867e1250-9391-4a36-8942-bb2563351799",
+      "group_name": "DLA PIEE PMO Dynamo Team",
+      "group_type": "Unified",
+      "member_count": 8,
+      "description": "We now have six team members supporting the DLA PIEE PMO within Dynamo. I?ve created this team space"
+    },
+    {
+      "group_id": "870abe88-d4f3-4a0d-aaa3-d7e4582b6fb6",
+      "group_name": "USSF PEX Support",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "USSF PEX Support"
+    },
+    {
+      "group_id": "87ca1d68-43ca-4b12-949c-154ee2c94bc0",
+      "group_name": "USDA FS PPS SS -0011 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FS PPS SS -0011 Ahad"
+    },
+    {
+      "group_id": "88209374-f362-4ace-b09a-2bb2cde33860",
+      "group_name": "Infrastructure Support and Modernization",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Dynamo Infrastructure Support and Modernization Capability and Solution Team"
+    },
+    {
+      "group_id": "89abf1de-2859-439d-8e06-96ee52e2c8bc",
+      "group_name": "Test Project Plan",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Test Project Plan"
+    },
+    {
+      "group_id": "8b24dd7f-7662-453d-b062-8d0d70dfbcea",
+      "group_name": "DOS PESS IDIQ -0123 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DOS PESS IDIQ -0123 Taneja"
+    },
+    {
+      "group_id": "8d17bc0f-3015-49b1-809d-eb8dfbaa1d9f",
+      "group_name": "SG - CA MFA Exempt",
+      "group_type": "Security",
+      "member_count": 5,
+      "description": "For accounts that can't have MFA enabled."
+    },
+    {
+      "group_id": "8d652784-5579-40c2-b85f-5ecee2ca5d46",
+      "group_name": "Evergreen Team",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "All evergreen team members"
+    },
+    {
+      "group_id": "8d95bc15-19bd-4500-bd95-596ea5ccda11",
+      "group_name": "_Rodney",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "_Rodney"
+    },
+    {
+      "group_id": "8dce2c2c-cd06-4b33-bad2-2dfb866ee1b9",
+      "group_name": "AFLCMC EPASS74 -B005 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "AFLCMC EPASS74 -B005 Manager"
+    },
+    {
+      "group_id": "8ef0da98-9c8b-4491-8b85-c1106c363a29",
+      "group_name": "Evergreen IT Admins",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "8f1a0dd3-a844-49ac-8622-d939f47ea55c",
+      "group_name": "SG - Enterprise G",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "Global admin"
+    },
+    {
+      "group_id": "8f33db54-01dc-4eef-9039-6e73888df1fa",
+      "group_name": "CFPB T&I BI ASS -0003 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Consumer Financial Protection Bureau (CFPB) Business Intelligence (BI) Analyst Support Services (ASS"
+    },
+    {
+      "group_id": "8f6422fc-13b5-4b11-8724-9314941b03ae",
+      "group_name": "Expense Reports",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": ""
+    },
+    {
+      "group_id": "8f87041d-bd26-4ca4-a36b-1f072007abca",
+      "group_name": "Direct Marketing",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Direct Marketing"
+    },
+    {
+      "group_id": "8fcef313-2335-4ce3-af6f-a8bd1a4c2f87",
+      "group_name": "SG - Microsoft 365 Audio Conferencing",
+      "group_type": "Security",
+      "member_count": 25,
+      "description": "Licensing group for audio conferencing."
+    },
+    {
+      "group_id": "904c104e-de9a-48b8-aadd-df7ba54b404d",
+      "group_name": "Temp CDS Archive",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "temporary holding space for file that are too long. Don't set it to sync."
+    },
+    {
+      "group_id": "919ad65d-faa2-40fe-9ad3-0bf160908ac0",
+      "group_name": "SG - IT Test Group",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "Danny's group for testing IT things."
+    },
+    {
+      "group_id": "9236a514-8aea-454e-8afb-12c6e4e47ee9",
+      "group_name": "Dynamo Women",
+      "group_type": "Security",
+      "member_count": 78,
+      "description": "Dynamo Women"
+    },
+    {
+      "group_id": "927edf81-c851-46b5-b911-dc31da356ff1",
+      "group_name": "DHS USCIS FMPSS -0012 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Department of Homeland Security (DHS) U.S. Citizenship and Immigration Services (USCIS), Office of t"
+    },
+    {
+      "group_id": "928551c2-e223-4326-aa5c-34d679ea1963",
+      "group_name": "Special Projects - FNS/ARS/Permitting Council",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Special Projects - FNS/ARS/Permitting Council"
+    },
+    {
+      "group_id": "935c382f-cbbe-499b-8b1d-6a0d435a2472",
+      "group_name": "USCG OPTEVFOR OTEM -0001 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG Contractor Support Services for Commander, Operational Test and Evaluation Force (COMOPTEVFOR),"
+    },
+    {
+      "group_id": "938c64b0-2878-43a9-a842-fed14f9c4e9a",
+      "group_name": "Automated Threat Prioritization",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Documents for ATP solution"
+    },
+    {
+      "group_id": "93dc8563-690b-4e3b-9420-b5999cfa306d",
+      "group_name": "Security - Cleared Personnel and Contractors",
+      "group_type": "Security",
+      "member_count": 25,
+      "description": ""
+    },
+    {
+      "group_id": "9455b2b6-f80c-4146-8f3c-c5d26eb4d7da",
+      "group_name": "Operations Department Leads",
+      "group_type": "Security",
+      "member_count": 11,
+      "description": "Operations Department Leads"
+    },
+    {
+      "group_id": "94a698ca-11c5-4d26-83a7-761c02085948",
+      "group_name": "CMMI 3.0",
+      "group_type": "Unified",
+      "member_count": 19,
+      "description": "CMMI 3.0"
+    },
+    {
+      "group_id": "94a6ed54-b672-4c21-a27f-ddbde6343fda",
+      "group_name": "Biometrics PMOSE",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "PMOSE"
+    },
+    {
+      "group_id": "952de9a9-a28f-4387-8fff-02812e9c9698",
+      "group_name": "SG - Microsoft 365 Exchange Online",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "Group for users that require an exchange online license."
+    },
+    {
+      "group_id": "96e0e931-12cb-48f0-9148-c5159332f5d3",
+      "group_name": "USGS WMA UFDCA TO3 -0179 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USGS WMA UFDCA TO3 -0179 Manager"
+    },
+    {
+      "group_id": "974a26a5-0967-4688-931e-658a3bc2986b",
+      "group_name": "OASIS +",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "OASIS + Proposal Site"
+    },
+    {
+      "group_id": "983c3ba6-5887-4e32-bb27-60897bd9ebc1",
+      "group_name": "COP - Applications and Development",
+      "group_type": "Unified",
+      "member_count": 7,
+      "description": "Community of Practice for applications and software development. Includes Software-as-a-Service (Saa"
+    },
+    {
+      "group_id": "98652c3f-df16-40a4-9e65-e76a8df17f61",
+      "group_name": "USCG C5ISC C2PL -0010 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Command, Control, and Navigation Product Line (C2PL), Engineering and Sustainment Support Services f"
+    },
+    {
+      "group_id": "98d5d62a-7b9a-4700-b101-7ccc8e9bc31d",
+      "group_name": "DOS Paramaribo HW -3595 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "DOS Paramaribo HW -3595 Amerson"
+    },
+    {
+      "group_id": "9947dad8-d710-4ccb-a0d2-871bb6ab1ff1",
+      "group_name": "Invoices",
+      "group_type": "Security",
+      "member_count": 5,
+      "description": ""
+    },
+    {
+      "group_id": "994eadb3-8ec8-49a3-a523-fa25534af803",
+      "group_name": "myLGP Email",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "myLGP Email Group"
+    },
+    {
+      "group_id": "99ec38ab-4b5d-4e26-be9d-ef16e3018be1",
+      "group_name": "Tasks",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Tasks"
+    },
+    {
+      "group_id": "9a8768fd-5393-4c41-9d44-7c0f83f7aa52",
+      "group_name": "DoD Account Leads",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DoD Account Leads"
+    },
+    {
+      "group_id": "9a92a0b8-99d2-4f0c-867e-7001596cdc65",
+      "group_name": "NCUA TO8",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "NCUA TO8"
+    },
+    {
+      "group_id": "9b52a2a8-1b89-4542-8112-22ab796ed503",
+      "group_name": "SG - 1Password Users",
+      "group_type": "Security",
+      "member_count": 45,
+      "description": "Mail enabled security group for 1Password users"
+    },
+    {
+      "group_id": "9c714e1f-a4a4-41b4-91ff-527536d50828",
+      "group_name": "SNAP-Ed Project",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Manage tasks, share documents, conduct project meetings and document risks and decisions with this t"
+    },
+    {
+      "group_id": "9cb6dbdb-bb53-49b5-a814-62eebdea939a",
+      "group_name": "CIO-SP4",
+      "group_type": "Security",
+      "member_count": 5,
+      "description": ""
+    },
+    {
+      "group_id": "9f73102d-9b7a-4bce-888b-0b0c3bf26568",
+      "group_name": "GSA OAITS PPMS - 0006 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "GSA OAITS PPMS - 0006 Manager"
+    },
+    {
+      "group_id": "a17bd4f3-7515-4d43-b33c-4a4c8026678f",
+      "group_name": "CFPB DASS BPA -0019 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Consumer Financial Protection Bureau (CFPB) Data Analytics Support Services (DASS) BPA"
+    },
+    {
+      "group_id": "a17dbcd7-e3e1-422a-ab4e-eb7ee202e605",
+      "group_name": "TMAdminEmails",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "a28ad813-a1f8-4af8-8e0b-acd75f60a8ea",
+      "group_name": "Data Analytics and Management",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Dynamo Data Analytics and Management Capability and Solution Team"
+    },
+    {
+      "group_id": "a389dfdd-14c5-4f64-b656-ca364eb9ea83",
+      "group_name": "Dynamo DOJ ITSS 5",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "a433664c-67ac-4a81-a72f-e1349a86139f",
+      "group_name": "DG OPSPRO",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "DG External Users -OPSPRO"
+    },
+    {
+      "group_id": "a43fff79-76dc-474b-a9e2-f822f68d117d",
+      "group_name": "Protects",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "partner ECS"
+    },
+    {
+      "group_id": "a620feda-0441-43ef-9a7d-30944ac12585",
+      "group_name": "CMMC",
+      "group_type": "Unified",
+      "member_count": 7,
+      "description": "CMMC"
+    },
+    {
+      "group_id": "a64610d3-be50-400f-aff1-6c40fafe01ce",
+      "group_name": "USDA FNS SNAP -0403 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FNS SNAP -0403 Deutscher"
+    },
+    {
+      "group_id": "a699da56-55be-42ae-90b2-f7a1a09eb1fd",
+      "group_name": "SG - Microsoft Power Apps for Dev-Free",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": ""
+    },
+    {
+      "group_id": "a6cb9592-7b60-40d9-8148-588c553ece19",
+      "group_name": "UniversalPrint_6bb2cfb1-9478-4a65-ba48-ce2ba8314b5c",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DO NOT MODIFY! Universal Print managed security group. Please see documentation for further details."
+    },
+    {
+      "group_id": "a6e00b49-c420-41b1-b9eb-04f0e67ce727",
+      "group_name": "Lattice Reviewers",
+      "group_type": "Security",
+      "member_count": 15,
+      "description": "Lattice Reviewers"
+    },
+    {
+      "group_id": "a77c8abf-5cd9-4b60-b6b7-104c742c420a",
+      "group_name": "SG - External Sharing Allowed",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Allows users in group to share files externally"
+    },
+    {
+      "group_id": "a91aee80-705b-4d8b-bf30-f3747a03d426",
+      "group_name": "USDA - EOS",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Collaboration site for Enterprise Operations Services"
+    },
+    {
+      "group_id": "a9577d2e-8759-4577-a5c3-21f91be3b03c",
+      "group_name": "NGB BTO CPISS -2502 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Army National Guard Business Transformation Office (BTO) Continuous Process Improvement Support Serv"
+    },
+    {
+      "group_id": "aaf31d1a-c444-40f4-a357-19df41047e9e",
+      "group_name": "Biometrics PMOSE",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Biometrics"
+    },
+    {
+      "group_id": "adce869a-c557-4e93-9d43-7e4cab5c768b",
+      "group_name": "CDS-JV",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "ae70857d-6c6d-4e84-b142-68be20decc0e",
+      "group_name": "USAF CAE A&AS-0004 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF CAE A&AS-0004 Manager"
+    },
+    {
+      "group_id": "af036eab-9a38-48e4-8871-0176b0697816",
+      "group_name": "Dynamo Executive Team",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": ""
+    },
+    {
+      "group_id": "afc6a79a-9569-4055-b471-bf0d1e1cfd85",
+      "group_name": "Modern Workplace Devices-Windows Autopatch-Fast",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Fast ring for quick rollout and adoption"
+    },
+    {
+      "group_id": "afd3ab2c-6d36-475e-9194-6997b0ed0eb6",
+      "group_name": "USDA iNAP -0439 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA iNAP -0439 Ahad"
+    },
+    {
+      "group_id": "b048c9ee-31a5-4800-bac2-10199dec3b61",
+      "group_name": "Timesheet Approvers",
+      "group_type": "Security",
+      "member_count": 17,
+      "description": "Timesheet Approvers"
+    },
+    {
+      "group_id": "b0771eb4-7d28-4e53-830f-ec7a0ea7739a",
+      "group_name": "myLGP Sharepoint",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "The U.S. State Department has over 285 embassies and consulates that are physically protected by loc"
+    },
+    {
+      "group_id": "b101fd6e-8848-425c-91d9-b2a1cfe9dce3",
+      "group_name": "Development",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Development"
+    },
+    {
+      "group_id": "b19242b6-8469-4579-b54c-198ece86646e",
+      "group_name": "CFPB OCR RDMT DSS -0099 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Consumer Financial Protection Bureau (CFPB) Office of Consumer Response (OCR), Reporting and Data Ma"
+    },
+    {
+      "group_id": "b239ce76-9f93-43da-8403-dd28d8494b7d",
+      "group_name": "DHA OMNIBUS IV IDIQ -0015 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "DHA OMNIBUS IV IDIQ"
+    },
+    {
+      "group_id": "b23e7ddb-3653-4794-9096-0a1b955c80eb",
+      "group_name": "IT70",
+      "group_type": "Security",
+      "member_count": 11,
+      "description": ""
+    },
+    {
+      "group_id": "b271b5d3-0e48-47d1-a4d2-223ec974fabd",
+      "group_name": "Proposal Pricing",
+      "group_type": "Unified",
+      "member_count": 17,
+      "description": "Proposal Pricing Documentation for Proposals"
+    },
+    {
+      "group_id": "b305be9d-680a-400e-9f18-034736ec9f18",
+      "group_name": "NCUA",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "NCUA ETM PMO Support"
+    },
+    {
+      "group_id": "b4aec319-e339-4001-80f2-6d5065d258e7",
+      "group_name": "Dynamo Navy PASS-SB",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": ""
+    },
+    {
+      "group_id": "b53ec12a-9bfb-45b8-ba47-ce5ac57eb221",
+      "group_name": "USGS WMA UFDCA TO1 -0199 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USGS Water Mission Area (WMA), National Water Information System (NWIS), Unified Field Data Collecti"
+    },
+    {
+      "group_id": "b695f8a5-9e16-4a61-8c2c-d8754cf9d737",
+      "group_name": "BLN24-Dynamo",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "BLN24-Dynamo"
+    },
+    {
+      "group_id": "b6e138da-26be-49f2-893f-c6906c517d5f",
+      "group_name": "Proposal Archive",
+      "group_type": "Unified",
+      "member_count": 17,
+      "description": "Repository for Archived Proposals"
+    },
+    {
+      "group_id": "b789cc3f-e677-48b9-b6c7-e2e220815bef",
+      "group_name": "USDA Stratus",
+      "group_type": "Security",
+      "member_count": 12,
+      "description": "USDA Stratus"
+    },
+    {
+      "group_id": "b7a25c8f-dfc2-4400-a2c0-9c77f3e0383e",
+      "group_name": "SSPRSecurityGroupUsers",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "SSPRSecurityGroupUsers"
+    },
+    {
+      "group_id": "b9911f7f-2196-4f19-addb-5835754c2e6e",
+      "group_name": "DOS AF-RPS PKO PMSS -0062 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "DOS AF-RPS PKO PMSS -0062 Amerson"
+    },
+    {
+      "group_id": "b9c97170-1ff9-4167-8778-2ee4bc1e0c2b",
+      "group_name": "HHS  AFR Documentation Process",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "HHS  TO 25 AFR Documentation Process"
+    },
+    {
+      "group_id": "b9cc3285-a47c-4716-a07f-0de4eb334ee8",
+      "group_name": "Dynamo Travel Compliance & Tracking",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Dynamo Travel Compliance & Tracking"
+    },
+    {
+      "group_id": "ba5af362-6642-4124-99af-b9a346133182",
+      "group_name": "SFE Data Project",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Shore Forces Enterprise Data Project"
+    },
+    {
+      "group_id": "bb573867-5c7d-412e-94b7-3e67dbae8e59",
+      "group_name": "DynamoCredence",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "DG for Dynamo and Credence collaboration."
+    },
+    {
+      "group_id": "bca31b4e-d4bf-4ba3-b77d-7c9f1a7e3eb3",
+      "group_name": "USCG PROGC TSS -0100 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG National Security Cutter (NSC) Project Resident Office Gulf Coast (PROGC) Technical Support Ser"
+    },
+    {
+      "group_id": "bca3e24d-5b78-46fe-be9a-87730a42c2fd",
+      "group_name": "USCG ALC ACATS -0001 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG Aviation Logistics Center (ALC) Automatic Circuit Analysis Test System Services (ACATS)"
+    },
+    {
+      "group_id": "bce9930b-a7ed-4fc3-9385-f1baff2c10f7",
+      "group_name": "AlphaOmega-DMARC",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "bd1802f3-8496-46cc-89af-65ef5ca1909b",
+      "group_name": "DOT FRA GSS -0002 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DOT FRA GSS -0002 Ebner"
+    },
+    {
+      "group_id": "be238b2a-6451-4fb6-840c-14cb58a65c55",
+      "group_name": "USDA SOFA BPA -0019 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA SOFA BPA -0019 Ahad"
+    },
+    {
+      "group_id": "be7e9e04-c85c-405f-b2cc-0fdd22875fe2",
+      "group_name": "USDA FS VIPR -0292 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FS VIPR -0292 Hall"
+    },
+    {
+      "group_id": "be8270a6-e324-4d59-b624-0b77653d3310",
+      "group_name": "Dynamo",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Dynamo"
+    },
+    {
+      "group_id": "bf1417a0-2876-44a4-a53d-a4a6df9dd0f5",
+      "group_name": "GSA MAS -230CA Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "GSA MAS -230CA Taneja"
+    },
+    {
+      "group_id": "bf610df4-6eae-43c3-9dc6-13c449b3d524",
+      "group_name": "Holokai - Product Development",
+      "group_type": "Unified",
+      "member_count": 10,
+      "description": "Holokai - Product Development"
+    },
+    {
+      "group_id": "c0444ac6-5d24-4b2a-b611-a02da7a06754",
+      "group_name": "USCG CG-9125 OPC SS -0003 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "USCG CG-9125 Offshore Patrol Cutter (OPC) Project Resident Office (PRO) and Resident Inspection Offi"
+    },
+    {
+      "group_id": "c0aa3a1a-ea83-4001-a0f2-1bbb406524c8",
+      "group_name": "Tech Initiatives",
+      "group_type": "Unified",
+      "member_count": 10,
+      "description": "Tech Initiatives"
+    },
+    {
+      "group_id": "c151e8eb-b3cc-46a9-aba8-50e4ca7fb702",
+      "group_name": "SG - Microsoft 365 Planner Plan 1",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Group for users that require Planner Plan 1."
+    },
+    {
+      "group_id": "c189c2b5-dce2-423a-8bd7-3efff577c8d8",
+      "group_name": "SG - Merger.Acquisition",
+      "group_type": "Security",
+      "member_count": 11,
+      "description": "SG - Merger.Acquisition"
+    },
+    {
+      "group_id": "c2489afe-a4b4-48fc-8943-7be094b8ee61",
+      "group_name": "COP - Data Analytics",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "This Team is for Big Data, Data warehouse, Analytics, Business Intelligence and reporting."
+    },
+    {
+      "group_id": "c324f677-6ceb-4a46-8026-9f7476091691",
+      "group_name": "USSF SpOC SpACES -0006 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "\"USSF Space Operations Command (SpOC) Accounting and Cost Estimation Services\n(SpACES)\""
+    },
+    {
+      "group_id": "c3d6d684-3106-4b5d-a381-19808ef8f2e2",
+      "group_name": "SG - Intune USB Allow",
+      "group_type": "Security",
+      "member_count": 14,
+      "description": "Allow USB write access via Intune"
+    },
+    {
+      "group_id": "c44a9117-02f8-4952-ab2d-82956b6babac",
+      "group_name": "USAF AFCENT ISR -0071 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF AFCENT ISR -0071 Manager"
+    },
+    {
+      "group_id": "c4cf3a16-5be0-4aee-aa88-2dd3ba6c4d74",
+      "group_name": "My Plan",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "My Plan"
+    },
+    {
+      "group_id": "c4cf4e32-bf56-4e48-b628-52f877ecdca5",
+      "group_name": "FBI CIRG NVLP ?0335 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "FBI CIRG NVLP ?0335 Manager"
+    },
+    {
+      "group_id": "c8ade8e2-20ad-47bd-b432-88465d68d7ec",
+      "group_name": "OASIS 8(a) P1 IDIQ -8134 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "OASIS 8(a) P1 IDIQ -8134 Plishker"
+    },
+    {
+      "group_id": "c9b2c49b-c5db-431a-9401-906a348633ea",
+      "group_name": "PMOSE Contractor Positions Tracking",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "Contractor Positions Tracking"
+    },
+    {
+      "group_id": "c9bfd8a4-6534-4dc9-98fb-d035574e174c",
+      "group_name": "Department of State--EAP/OIP",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Department of State--EAP"
+    },
+    {
+      "group_id": "ca52153a-d213-4bb3-8a54-065945724e3f",
+      "group_name": "DLA PIEE PMO -0166 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "Defense Logistics Agency (DLA)  Procurement Integrated Enterprise Environment (PIEE) Program Managem"
+    },
+    {
+      "group_id": "cc6e43a8-2321-46f9-a316-fd6af4f71cae",
+      "group_name": "FNS Drupal OMSS",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "FNS Drupal OMSS"
+    },
+    {
+      "group_id": "cc70327b-c2c9-4aab-83d7-3df1f4c90f4a",
+      "group_name": "Modern Workplace Devices-Windows Autopatch-Broad",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Final ring for broad rollout into an enterprise"
+    },
+    {
+      "group_id": "cc8f05d0-e66a-40fc-be8d-091f9a560d5b",
+      "group_name": "Holokai",
+      "group_type": "Security",
+      "member_count": 10,
+      "description": "Holokai SharePoint Permissions"
+    },
+    {
+      "group_id": "cce99c76-7d96-4e92-8ce9-cde1e8a24e74",
+      "group_name": "Phone Interviews",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Phone Interviews"
+    },
+    {
+      "group_id": "cd833b5b-02a5-4c1c-859a-05e688658a09",
+      "group_name": "Permitting Council",
+      "group_type": "Unified",
+      "member_count": 9,
+      "description": "Manage tasks, share documents, conduct project meetings and document risks and decisions with this t"
+    },
+    {
+      "group_id": "cdd46fed-8643-4cb7-a991-64ff8ce54203",
+      "group_name": "USCG MPC LREPL -0014 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USCG MPC LREPL -0014 Manager"
+    },
+    {
+      "group_id": "cdf68a28-3761-4b1a-a040-975c08537df2",
+      "group_name": "ABOUT Her",
+      "group_type": "Unified",
+      "member_count": 7,
+      "description": "Dynamo organization focused on women!"
+    },
+    {
+      "group_id": "cf539a2f-1e11-48af-a982-bb960fd2a8f6",
+      "group_name": "USDA FNS WMSS -0067 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USDA FNS WMSS -0067 Ahad"
+    },
+    {
+      "group_id": "d21feb8b-d350-4828-8978-0d49db221452",
+      "group_name": "Project Management Process Documentation",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Team page for developing and storing project management and project health-related documents"
+    },
+    {
+      "group_id": "d23596d7-eb3c-4317-a9d1-692a9a5ca53f",
+      "group_name": "DHS CBP OPR SS -1262 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Department of the Homeland Security (DHS) Customs and Border Protection (CBP) Office of Professional"
+    },
+    {
+      "group_id": "d3abe224-c8e9-4ed3-8f44-e33bda81edc3",
+      "group_name": "Dynamo COP Leads",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Distribution List Containing All Primary and Secondary COP Leads"
+    },
+    {
+      "group_id": "d447340e-1903-4daa-b3d7-7bab77edd90b",
+      "group_name": "Administrative Support",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "State Department - Team Dynamo"
+    },
+    {
+      "group_id": "d45c433b-f1b4-4f78-a537-59ca47da000b",
+      "group_name": "Project Management",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Project Management"
+    },
+    {
+      "group_id": "d4ed6f2a-b3aa-4d5f-9bd1-97c647cd8f9d",
+      "group_name": "Tracker Updates",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Tracker Updates"
+    },
+    {
+      "group_id": "d5531fe1-577a-4475-b09d-42b8f03632cd",
+      "group_name": "Office Manager Budget",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Office Manager Budget"
+    },
+    {
+      "group_id": "d567dbf4-b159-43db-b1ec-7c6c724c7f01",
+      "group_name": "CIOSP3",
+      "group_type": "Security",
+      "member_count": 6,
+      "description": ""
+    },
+    {
+      "group_id": "d6235826-87a0-4e07-a0ee-1d7341805100",
+      "group_name": "USAF AFCENT ISR-0004 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF AFCENT ISR-0004 Manager"
+    },
+    {
+      "group_id": "d6303947-f4c3-4065-83dd-157ed4e6e829",
+      "group_name": "DIA SITE III TO -0001 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "SITE III IDIQ Contract Kick-Off Meeting (satisfies IDIQ minimum guarantee)"
+    },
+    {
+      "group_id": "d645b717-f7e1-49fc-be94-98177823ddff",
+      "group_name": "SG - jira-security-members",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "d7656d45-b5f2-40b1-b3a0-9ebb5b5203d4",
+      "group_name": "DnsUpdateProxy",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "DNS clients who are permitted to perform dynamic updates on behalf of some other clients (such as DH"
+    },
+    {
+      "group_id": "d7d96639-f36a-4b3c-84c4-b40d240675ff",
+      "group_name": "HHS PSC FCB ASS -0230 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "HHS PSC FCB ASS -0230 Manager"
+    },
+    {
+      "group_id": "d87b31b4-fa19-4508-ac21-789ac6cf1ebf",
+      "group_name": "Internal Operations",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "Internal Operations"
+    },
+    {
+      "group_id": "d95006db-28ab-476d-bfe8-6b0ee91fd857",
+      "group_name": "noaa-nmits",
+      "group_type": "Security",
+      "member_count": 6,
+      "description": ""
+    },
+    {
+      "group_id": "dac82f83-0243-4326-922e-519149eacebb",
+      "group_name": "IT Alerts",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "Alerts for IT Admins"
+    },
+    {
+      "group_id": "dbc963a7-7341-49bd-a8a1-615a3a0f107c",
+      "group_name": "USDA OCIO STRATUS -0026",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA OCIO STRATUS -0026"
+    },
+    {
+      "group_id": "dbebbc66-2025-4139-81ec-34691ad38f90",
+      "group_name": "Dynamo Marketing Plan 2021-2022",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Dynamo Marketing Plan 2021-2022"
+    },
+    {
+      "group_id": "dc0e798b-6401-4a0e-aa14-beb36f18ac27",
+      "group_name": "DHHS PSC FCB ASS -0230 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "HHS Program Support Center (PSC), Financial Control Branch (FCB) Accounting Support Services"
+    },
+    {
+      "group_id": "dc2f1514-9027-41a9-9614-297488bbab40",
+      "group_name": "DOS OIP CSS -3125 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "DOS OIP CSS -3125 Amerson"
+    },
+    {
+      "group_id": "dc771f8d-f771-4a4e-900c-3c748934eb30",
+      "group_name": "USCG CG721 PMSS -0001 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG Office of Specialized Capabilities (CG-721) Program Management Support Services"
+    },
+    {
+      "group_id": "dd30ac2a-a1c3-41e9-9296-8f7ad9ee653c",
+      "group_name": "SG - Project Nova",
+      "group_type": "Security",
+      "member_count": 6,
+      "description": "SG - Project Nova"
+    },
+    {
+      "group_id": "df840890-e122-4063-9dda-15bae6b4b80f",
+      "group_name": "GSA 8(a) STARS II",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Current and Legacy Contract Details"
+    },
+    {
+      "group_id": "e0b57a33-498d-4fe4-a49a-a03fc62c2f57",
+      "group_name": "USAF EPASS 74 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USAF EPASS 74 Manager"
+    },
+    {
+      "group_id": "e0b9a896-6564-4f98-bf4a-199216af2724",
+      "group_name": "Dynamo DOD/DHS Portfolio",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Dynamo DOD/DHS Portfolio"
+    },
+    {
+      "group_id": "e0def0cb-2bd5-4f20-a26c-a92f148a9d1e",
+      "group_name": "Dynamo - USCG PRO Panama City",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Our Dynamo PRO Team can message here if any of us has something to address with the Team as a whole."
+    },
+    {
+      "group_id": "e13d623a-3a76-49b1-8131-1d2bf83b226b",
+      "group_name": "SG - jira-hr-members",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": ""
+    },
+    {
+      "group_id": "e16827ef-8077-49af-aded-d045ea690a32",
+      "group_name": "EPASS MSR",
+      "group_type": "Unified",
+      "member_count": 10,
+      "description": "EPASS Monthly MSR Input"
+    },
+    {
+      "group_id": "e1c2f60b-9b11-463f-903c-45ff74327c1e",
+      "group_name": "VA Sales Tax",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "VA Sales Tax"
+    },
+    {
+      "group_id": "e334b6fd-3240-43e0-a0aa-fcb887696965",
+      "group_name": "USDA NRM ITSS - Dynamo Resources",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": ""
+    },
+    {
+      "group_id": "e52aac41-8b1e-41af-a1fd-3418b7328d77",
+      "group_name": "Women's Empowerment Initatives",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Women's Empowerment Initatives"
+    },
+    {
+      "group_id": "e66d78ac-b6e8-485d-a859-e8cc74659916",
+      "group_name": "Operations",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Operations"
+    },
+    {
+      "group_id": "e68af64a-fd36-423c-9994-1386f77960e5",
+      "group_name": "site3@dynamo.works",
+      "group_type": "Security",
+      "member_count": 6,
+      "description": ""
+    },
+    {
+      "group_id": "e7822c7b-6567-466a-a4e0-830749e162d5",
+      "group_name": "USDA OCIO ISC SOC -0296 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA OCIO ISC SOC -0296 Ebner"
+    },
+    {
+      "group_id": "e7ba2ca5-72a7-4764-b6c5-b13b2c6cebe6",
+      "group_name": "General OLC",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "The Office of Legislative Counsel (OLC) provides legal advice to the Secretary of Defense and all De"
+    },
+    {
+      "group_id": "e817cf15-99e3-4ae7-bfc1-bd67aa931fa4",
+      "group_name": "Dynamo Tysons Office Group Commercial",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "For all of the people in the office at Tysons"
+    },
+    {
+      "group_id": "e831ac65-20c1-498e-b4ff-c2f93e85d5ad",
+      "group_name": "OGC and OMC",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "OGC and OMC"
+    },
+    {
+      "group_id": "e854b78d-0a43-4d30-a273-c1517d4ba5fb",
+      "group_name": "Candidate Offer Letters",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "Offer Letters"
+    },
+    {
+      "group_id": "eac44864-cea4-4dad-9c3f-0463d0982149",
+      "group_name": "Tech Initiative",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "Docs for Tech Initiative"
+    },
+    {
+      "group_id": "eb9fc584-7782-4cf4-82e9-947ece5ac805",
+      "group_name": "IDIQ",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": ""
+    },
+    {
+      "group_id": "ebf1fe43-1152-4a08-814c-e2adfbe98937",
+      "group_name": "Business & IT Strategic Planning",
+      "group_type": "Unified",
+      "member_count": 4,
+      "description": "This team supports the overall Dynamo organization strategic planning activities for business and te"
+    },
+    {
+      "group_id": "ec191c05-1e91-44cb-8433-48f82928de17",
+      "group_name": "Modern Workplace Devices-Virtual Machine",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Any MMD Virtual Machine"
+    },
+    {
+      "group_id": "ec6cb3f1-ae87-47ee-9fef-c7c622d380e2",
+      "group_name": "AD-Azure Information Protection",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": ""
+    },
+    {
+      "group_id": "ec983c5d-d619-4820-926a-48e9f4f0eb95",
+      "group_name": "Dynamo HQ [Vienna]",
+      "group_type": "Security",
+      "member_count": 39,
+      "description": "Distro list for users in the Tysons, VA region."
+    },
+    {
+      "group_id": "ed3b7c42-6aab-4cfa-833e-5d681161bde2",
+      "group_name": "Paul's SharePoint for Exercises",
+      "group_type": "Unified",
+      "member_count": 1,
+      "description": "To complete exercises in the Power Platform modules"
+    },
+    {
+      "group_id": "ef01bebb-1157-4ad2-8624-7d2290c6e09c",
+      "group_name": "AD-Azure Information Protection",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "ad.dynamotechnologies.com/Users/AD-Azure Information Protection"
+    },
+    {
+      "group_id": "ef3116b0-2ffd-433b-89cb-21d0c932563d",
+      "group_name": "ADSyncBrowse",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "ADSyncBrowse"
+    },
+    {
+      "group_id": "f0bbf47a-ad98-4a19-8222-2cefe31e293a",
+      "group_name": "CFPB-DASS",
+      "group_type": "Security",
+      "member_count": 9,
+      "description": "CFPB-DASS"
+    },
+    {
+      "group_id": "f159fa07-0a5c-4426-bf26-434529911ff7",
+      "group_name": "MSD Common Program Requirements",
+      "group_type": "Unified",
+      "member_count": 3,
+      "description": "MSD Common Program Requirements"
+    },
+    {
+      "group_id": "f3de184e-a181-4e5a-b40f-c9e53fe39fc8",
+      "group_name": "SG - Service Accounts",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "SG - Service Accounts"
+    },
+    {
+      "group_id": "f561b13a-3708-4e49-b0dd-d6e6f1f12b6d",
+      "group_name": "Army INSCOM PRMSS -0019 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "\"United States (US) Army Intelligence and Security Command (INSCOM)\nEnhanced Program and Resource Ma"
+    },
+    {
+      "group_id": "f5e36e85-0c4e-4ec0-8c91-55e174e9ca60",
+      "group_name": "Compliance",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Compliance"
+    },
+    {
+      "group_id": "f636621b-7684-4bc7-86fe-3e2bae8cb716",
+      "group_name": "USDA FNS NDL -0816 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA FNS NDL -0816 Choi"
+    },
+    {
+      "group_id": "f713612a-6c55-4664-b0e2-8941829bdb5c",
+      "group_name": "USGS",
+      "group_type": "Unified",
+      "member_count": 8,
+      "description": "Manage tasks, share documents, conduct project meetings and document risks and decisions with this t"
+    },
+    {
+      "group_id": "f71fa270-148a-43c7-b35d-817a087473d8",
+      "group_name": "USCG CG741 PMSS -0007 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "USCG Office of Shore Forces (CG-741) Program Management Support Services"
+    },
+    {
+      "group_id": "f7e4f014-5dfe-4f2a-b5ed-cc55cb36d901",
+      "group_name": "OASIS SB P3 IDIQ -3009 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "OASIS SB P3 IDIQ -3009 Plishker"
+    },
+    {
+      "group_id": "f97f90ed-8469-4076-b16c-4e37e5356643",
+      "group_name": "USAF AFSOC CSS -0001 Manager",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "United States Air Force (USAF), Air Force Special Operations Command (AFSOC) Courseware Support Serv"
+    },
+    {
+      "group_id": "f9d82d5a-1309-4808-928d-ebbfcabe271d",
+      "group_name": "Project Group Owners",
+      "group_type": "Security",
+      "member_count": 2,
+      "description": "Group Owners for Microsoft groups (Projects)"
+    },
+    {
+      "group_id": "fa38061c-2692-4521-a6cb-a2026a045c10",
+      "group_name": "Burris",
+      "group_type": "Unified",
+      "member_count": 2,
+      "description": "Internal Dynamo team site for Burris project."
+    },
+    {
+      "group_id": "fa9e434e-bc5b-4611-9b48-9d7b276a1500",
+      "group_name": "SG - NOVA",
+      "group_type": "Security",
+      "member_count": 4,
+      "description": "NOVA"
+    },
+    {
+      "group_id": "fb5fd29f-044e-441c-813d-42429a1e94ff",
+      "group_name": "COVID-19 Response Team",
+      "group_type": "Unified",
+      "member_count": 5,
+      "description": "COVID-19 Response Team"
+    },
+    {
+      "group_id": "fd1d697c-1f7b-4714-9dcd-ef8733b0465d",
+      "group_name": "Internal IT",
+      "group_type": "Unified",
+      "member_count": 7,
+      "description": "This team and content is for managing Dynamo's internal IT capability. This site will contain docume"
+    },
+    {
+      "group_id": "fdaa0663-a674-4497-955f-67e9c2ea93c8",
+      "group_name": "Emergency Response Team",
+      "group_type": "Unified",
+      "member_count": 21,
+      "description": "Emergency Response Team"
+    },
+    {
+      "group_id": "fdcc4121-7c78-457e-9937-b9ae2a0be3d4",
+      "group_name": "USDA ARS NAL DPSS -0153 Manager",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "USDA ARS NAL DPSS -0153 Manager"
+    },
+    {
+      "group_id": "fe2a28f7-b1b4-4709-a33b-53124faab678",
+      "group_name": "SG - Intune MAM -Exclude",
+      "group_type": "Security",
+      "member_count": 1,
+      "description": "Group for users that need to be excluded from MAM"
+    },
+    {
+      "group_id": "ffcc5f28-9045-4a66-a21f-6c1192ea474b",
+      "group_name": "OASIS 8(a) P2 IDIQ -8206 Manager",
+      "group_type": "Security",
+      "member_count": 3,
+      "description": "OASIS 8(a) P2 IDIQ -8206 Plishker"
+    }
+  ]
+}

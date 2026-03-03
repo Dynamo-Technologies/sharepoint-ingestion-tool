@@ -257,6 +257,19 @@ class GraphClient:
             url = data.get("@odata.nextLink")
 
     # ------------------------------------------------------------------
+    # Item metadata
+    # ------------------------------------------------------------------
+
+    def get_download_url(self, drive_id: str, item_id: str) -> str:
+        """Fetch the download URL for a specific drive item.
+
+        Useful as a fallback when the delta API omits
+        ``@microsoft.graph.downloadUrl`` from its response.
+        """
+        data = self._get(f"{GRAPH_BASE}/drives/{drive_id}/items/{item_id}")
+        return data.get("@microsoft.graph.downloadUrl", "")
+
+    # ------------------------------------------------------------------
     # File download
     # ------------------------------------------------------------------
 
@@ -309,6 +322,22 @@ class GraphClient:
             of every changed item (with ``"deleted"`` key for removals)
             and *new_delta_token* is the token to pass on the next call.
         """
+        changes: list[dict] = []
+        for item in self.iter_delta(drive_id, delta_token):
+            changes.append(item)
+        return changes, self._last_delta_token
+
+    def iter_delta(
+        self,
+        drive_id: str,
+        delta_token: str | None = None,
+    ) -> Generator[dict, None, None]:
+        """Yield individual changed items from the Graph delta API.
+
+        Processes results page-by-page so only one page is held in memory
+        at a time.  After iteration completes, the new delta token is
+        available via ``self.last_delta_token``.
+        """
         if delta_token:
             url: str | None = (
                 f"{GRAPH_BASE}/drives/{drive_id}/root/delta?token={delta_token}"
@@ -316,12 +345,11 @@ class GraphClient:
         else:
             url = f"{GRAPH_BASE}/drives/{drive_id}/root/delta"
 
-        changes: list[dict] = []
-        new_delta_token = ""
+        self._last_delta_token = ""
 
         while url:
             data = self._get(url)
-            changes.extend(data.get("value", []))
+            yield from data.get("value", [])
 
             # Follow pagination
             url = data.get("@odata.nextLink")
@@ -329,9 +357,12 @@ class GraphClient:
             # When there are no more pages, Graph returns a deltaLink
             delta_link = data.get("@odata.deltaLink", "")
             if delta_link:
-                new_delta_token = self._extract_token(delta_link)
+                self._last_delta_token = self._extract_token(delta_link)
 
-        return changes, new_delta_token
+    @property
+    def last_delta_token(self) -> str:
+        """The delta token from the most recent ``iter_delta`` call."""
+        return getattr(self, "_last_delta_token", "")
 
     @staticmethod
     def _extract_token(delta_link: str) -> str:

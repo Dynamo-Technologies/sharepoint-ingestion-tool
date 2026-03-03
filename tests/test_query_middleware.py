@@ -298,8 +298,8 @@ class TestAuditLogger:
         expected_hash = hashlib.sha256(query.encode()).hexdigest()
         assert entry["query_text_hash"] == expected_hash
 
-    def test_permission_scoped_null_logged_distinctly(self, caplog):
-        """permission_scoped_null result type appears in log."""
+    def test_result_type_logged_distinctly(self, caplog):
+        """Different result_type values are faithfully preserved in the log."""
         logger_instance = AuditLogger()
 
         with caplog.at_level(logging.INFO, logger="query_middleware.audit"):

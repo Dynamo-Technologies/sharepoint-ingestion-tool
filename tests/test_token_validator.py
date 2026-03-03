@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 
-import os
-
 import pytest
-from unittest.mock import patch
 
 from lib.auth.token_validator import TokenValidator, AuthError
 

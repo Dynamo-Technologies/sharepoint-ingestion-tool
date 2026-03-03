@@ -64,6 +64,10 @@ class TestLLMRouter:
         model = router.select_model("Short", chunk_count=4)
         assert model == LLMRouter.SONNET
 
+    def test_exactly_7_chunks_not_opus(self, router):
+        model = router.select_model("x" * 200, chunk_count=7)
+        assert model == LLMRouter.SONNET
+
     def test_default_chunk_count_zero(self, router):
         model = router.select_model("Short query")
         assert model == LLMRouter.HAIKU
